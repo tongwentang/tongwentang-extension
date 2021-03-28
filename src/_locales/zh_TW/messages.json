@@ -1,0 +1,224 @@
+{
+  "MSG_EXT_NAME": {
+    "message": "爵士咖啡廳"
+  },
+  "MSG_EXT_DESC": {
+    "message": "切換簡體和正體中文"
+  },
+  "MSG_GENERAL": {
+    "message": "一般"
+  },
+  "MSG_MAINTAIN_PREF": {
+    "message": "維護偏好設定"
+  },
+  "MSG_AUTO_CONVERT": {
+    "message": "自動轉換"
+  },
+  "MSG_BROWSER_ACTION": {
+    "message": "圖示動作"
+  },
+  "MSG_DEFAULT_CONVERT": {
+    "message": "預設轉換"
+  },
+  "MSG_DYNAMIC_CONVERT": {
+    "message": "動態轉換"
+  },
+  "MSG_DEBUG_MODE": {
+    "message": "偵錯模式"
+  },
+  "MSG_IMPORT": {
+    "message": "匯入"
+  },
+  "MSG_EXPORT": {
+    "message": "匯出"
+  },
+  "MSG_RESET": {
+    "message": "重設"
+  },
+  "MSG_RESET_ALL": {
+    "message": "全部重設"
+  },
+  "MSG_RESET_TIP": {
+    "message": "保留自訂字典檔"
+  },
+  "MSG_RESET_ALL_TIP": {
+    "message": "同時刪除自訂字典檔"
+  },
+  "MSG_EXPORT_FAILED": {
+    "message": "匯出失敗"
+  },
+  "MSG_IMPORT_CANCELED": {
+    "message": "匯入取消"
+  },
+  "MSG_IMPORT_COMPLETED": {
+    "message": "匯入完成"
+  },
+  "MSG_IMPORT_FAILED": {
+    "message": "匯入失敗"
+  },
+  "MSG_PREF_RESET_COMPLETED": {
+    "message": "重設偏好完成"
+  },
+  "MSG_PREF_RESET_FAILED": {
+    "message": "重設偏好失敗"
+  },
+  "MSG_OPTION": {
+    "message": "選項"
+  },
+  "MSG_DISABLED": {
+    "message": "停用"
+  },
+  "MSG_S2T": {
+    "message": "簡轉正"
+  },
+  "MSG_T2S": {
+    "message": "正轉簡"
+  },
+  "MSG_DETECTIVE_S2T": {
+    "message": "偵測式簡轉正"
+  },
+  "MSG_DETECTIVE_T2S": {
+    "message": "偵測式正轉簡"
+  },
+  "MSG_CONFIRM_FIX_IMPORT": {
+    "message": "匯入的偏好設定格是不正確，是否讓程式自動修正後匯入？"
+  },
+  "MSG_CONFIRM_RESET": {
+    "message": "這個動作會重設所有的偏好設定除了自訂的字典檔，是否繼續？"
+  },
+  "MSG_CONFIRM_RESET_ALL": {
+    "message": "這個動作會重設所有的偏好設定包含自訂的字點檔，是否繼續？"
+  },
+  "MSG_MENU": {
+    "message": "右鍵選單"
+  },
+  "MSG_ENABLE_MENU": {
+    "message": "啟用右鍵選單"
+  },
+  "MSG_WEBPAGE_S2T": {
+    "message": "網頁簡轉正"
+  },
+  "MSG_WEBPAGE_T2S": {
+    "message": "網頁正轉簡"
+  },
+  "MSG_TEXTAREA_S2T": {
+    "message": "文字區簡轉正"
+  },
+  "MSG_TEXTAREA_T2S": {
+    "message": "文字區正轉簡"
+  },
+  "MSG_DOMAIN_RULE": {
+    "message": "網域規則"
+  },
+  "MSG_ENABLE_DOMAIN_RULE": {
+    "message": "啟用網域規則"
+  },
+  "MSG_TARGET": {
+    "message": "目標"
+  },
+  "MSG_PATTERN": {
+    "message": "型樣"
+  },
+  "MSG_ADD": {
+    "message": "加入"
+  },
+  "MSG_EDIT": {
+    "message": "編輯"
+  },
+  "MSG_DELETE": {
+    "message": "刪除"
+  },
+  "MSG_SAVE": {
+    "message": "儲存"
+  },
+  "MSG_MOVE_UP": {
+    "message": "上移"
+  },
+  "MSG_MOVE_DOWN": {
+    "message": "下移"
+  },
+  "MSG_DEFAULT_S2T_CHAR": {
+    "message": "預設簡轉正單字"
+  },
+  "MSG_DEFAULT_S2T_WORD": {
+    "message": "預設簡轉正詞彙"
+  },
+  "MSG_DEFAULT_T2S_CHAR": {
+    "message": "預設正轉簡單字"
+  },
+  "MSG_DEFAULT_T2S_WORD": {
+    "message": "預設正轉簡詞彙"
+  },
+  "MSG_CUSTOM_S2T": {
+    "message": "自訂簡轉正"
+  },
+  "MSG_CUSTOM_T2S": {
+    "message": "自訂正轉簡"
+  },
+  "MSG_CHAR": {
+    "message": "單字"
+  },
+  "MSG_DEFAULT": {
+    "message": "預設"
+  },
+  "MSG_UPDATE_COMPLETED": {
+    "message": "完成更新"
+  },
+  "MSG_ABOUT": {
+    "message": "關於"
+  },
+  "MSG_CHANGELOG": {
+    "message": "變更紀錄"
+  },
+  "MSG_CONTRIBUTORS": {
+    "message": "貢獻者"
+  },
+  "MSG_LICENSE": {
+    "message": "授權方式"
+  },
+  "MSG_HELP_SUPPORT": {
+    "message": "說明與支援"
+  },
+  "MSG_ISSUES": {
+    "message": "問題"
+  },
+  "MSG_ADD_DOMAIN_TO_DISABLED": {
+    "message": "加入停用網域"
+  },
+  "MSG_ADD_DOMAIN_TO_S2T": {
+    "message": "加入簡轉正網域"
+  },
+  "MSG_ADD_DOMAIN_TO_T2S": {
+    "message": "加入正轉簡網域"
+  },
+  "MSG_CONVERT_CLIPBOARD_S2T": {
+    "message": "轉換剪貼簿簡至正"
+  },
+  "MSG_CONVERT_CLIPBOARD_T2S": {
+    "message": "轉換剪貼簿正至簡"
+  },
+  "MSG_OK": {
+    "message": "確認"
+  },
+  "MSG_CANCEL": {
+    "message": "取消"
+  },
+  "MSG_JSON_ERROR": {
+    "message": "無法解析匯入的檔案，請確保檔案符合 JSON 格式"
+  },
+  "NT_TITLE": {
+    "message": "新同文堂 - 通知"
+  },
+  "NT_CLB_TO_S2T": {
+    "message": "剪貼簿已轉換成正體"
+  },
+  "NT_CLB_TO_T2S": {
+    "message": "剪貼簿已轉換成簡體"
+  },
+  "NT_GRT_PRM_DENIED": {
+    "message": "請求選擇性授權被拒絕"
+  },
+  "NT_GRT_PRM_ONLY_USR_INTER": {
+    "message": "請求選擇性授權只能在使用者互動下，請先到套件的授權分頁啟用"
+  }
+}

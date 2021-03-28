@@ -1,0 +1,70 @@
+{
+  "name": "tongwentang-extension",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "t7yang",
+  "license": "MIT",
+  "scripts": {
+    "dev:firefox": "webpack --mode=development --env vendor=firefox",
+    "dev:chromium": "webpack --mode=development --env vendor=chromium",
+    "we:firefox": "web-ext run --config=web-ext-config-firefox.js --no-config-discovery",
+    "we:chromium2": "web-ext run --config=web-ext-config-chrome.js --no-config-discovery",
+    "we:chromium": "web-ext --verbose run -s ./dist --config-discovery=false --target=chromium --chromium-binary= --start-url=chrome://extensions",
+    "test:tsc": "tsc --noEmit",
+    "build:firefox": "webpack --mode=production --env vendor=firefox",
+    "build:chromium": "webpack --mode=production --env vendor=chromium",
+    "lint": "eslint --fix --ext=ts,tsx src/",
+    "update": "yarn upgrade-interactive",
+    "we:build": "web-ext build -s dist",
+    "we:sign": "web-ext sign --config=web-ext-config-firefox.js --no-config-discovery",
+    "postinstall": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "npm run lint"
+    ]
+  },
+  "dependencies": {
+    "data-fixer": "^5.0.0",
+    "jsonschema": "^1.2.6",
+    "ramda": "^0.27.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "spectre.css": "^0.5.1",
+    "tongwen-core": "^3.2.3",
+    "webextension-polyfill": "^0.7.0"
+  },
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^82.0.0",
+    "@types/node": "^14.14.9",
+    "@types/ramda": "^0.27.6",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
+    "clean-webpack-plugin": "^2.0.1",
+    "copy-webpack-plugin": "^6.0.1",
+    "dotenv": "^8.1.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.0",
+    "html-webpack-plugin": "^4.0.4",
+    "husky": "^5.1.3",
+    "lint-staged": "^10.2.13",
+    "prettier": "^2.0.2",
+    "ts-loader": "^8.0.6",
+    "typescript": "~4.2.3",
+    "web-ext": "^6.0.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^4.1.0",
+    "webpack-shell-plugin": "^0.5.0",
+    "webpack-webextension-plugin": "^0.3.0"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es2019",
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "outDir": "dist",
+    "declaration": false,
+    "sourceMap": true,
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    /* Strict Type-Checking Options */
+    "strict": true,
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/**.jsx"],
+  "exclude": ["**/node_modules", "**/.*/", "src/**/*.test.ts"]
+}

@@ -1,0 +1,224 @@
+{
+  "MSG_EXT_NAME": {
+    "message": "Project Jazz Cafe"
+  },
+  "MSG_EXT_DESC": {
+    "message": "Convert characters between Chinese Simplified and Chinese Traditional"
+  },
+  "MSG_GENERAL": {
+    "message": "General"
+  },
+  "MSG_MAINTAIN_PREF": {
+    "message": "Maintain Preferences"
+  },
+  "MSG_AUTO_CONVERT": {
+    "message": "Auto Convert"
+  },
+  "MSG_BROWSER_ACTION": {
+    "message": "Icon Action"
+  },
+  "MSG_DEFAULT_CONVERT": {
+    "message": "Default Convert"
+  },
+  "MSG_DYNAMIC_CONVERT": {
+    "message": "Dynamic Convert"
+  },
+  "MSG_DEBUG_MODE": {
+    "message": "Debug Mode"
+  },
+  "MSG_IMPORT": {
+    "message": "Import"
+  },
+  "MSG_EXPORT": {
+    "message": "Export"
+  },
+  "MSG_RESET": {
+    "message": "Reset"
+  },
+  "MSG_RESET_ALL": {
+    "message": "Reset ALL"
+  },
+  "MSG_RESET_TIP": {
+    "message": "Keep Your Custom Words"
+  },
+  "MSG_RESET_ALL_TIP": {
+    "message": "Clean Including Your Custom Words"
+  },
+  "MSG_EXPORT_FAILED": {
+    "message": "Export Failed"
+  },
+  "MSG_IMPORT_CANCELED": {
+    "message": "Import Canceled"
+  },
+  "MSG_IMPORT_COMPLETED": {
+    "message": "Import Completed"
+  },
+  "MSG_IMPORT_FAILED": {
+    "message": "Import FAILED"
+  },
+  "MSG_PREF_RESET_COMPLETED": {
+    "message": "Reset Preference Completed"
+  },
+  "MSG_PREF_RESET_FAILED": {
+    "message": "Reset Preference Failed"
+  },
+  "MSG_OPTION": {
+    "message": "Option"
+  },
+  "MSG_DISABLED": {
+    "message": "Disabled"
+  },
+  "MSG_S2T": {
+    "message": "Simplified to Traditional"
+  },
+  "MSG_T2S": {
+    "message": "Traditional to Simplified"
+  },
+  "MSG_DETECTIVE_S2T": {
+    "message": "Detective Simplified to Traditional"
+  },
+  "MSG_DETECTIVE_T2S": {
+    "message": "Detective Traditional to Simplified"
+  },
+  "MSG_CONFIRM_FIX_IMPORT": {
+    "message": "Imported preferences are invalid, do you want to import a fixed preferences base on imported?"
+  },
+  "MSG_CONFIRM_RESET": {
+    "message": "This action will reset all your preferences while still keeping your custom dictionaries, continue?"
+  },
+  "MSG_CONFIRM_RESET_ALL": {
+    "message": "This action will reset all your preferences including your custom dictionaries, continue?"
+  },
+  "MSG_MENU": {
+    "message": "Context Menu"
+  },
+  "MSG_ENABLE_MENU": {
+    "message": "Enable Menu"
+  },
+  "MSG_WEBPAGE_S2T": {
+    "message": "Web Page Simplified to Traditional"
+  },
+  "MSG_WEBPAGE_T2S": {
+    "message": "Web Page Traditional to Simplified"
+  },
+  "MSG_TEXTAREA_S2T": {
+    "message": "Textarea Simplified to Traditional"
+  },
+  "MSG_TEXTAREA_T2S": {
+    "message": "Textarea Traditional to Simplified"
+  },
+  "MSG_DOMAIN_RULE": {
+    "message": "Domain Rule"
+  },
+  "MSG_ENABLE_DOMAIN_RULE": {
+    "message": "Enable Domain Rule"
+  },
+  "MSG_TARGET": {
+    "message": "Target"
+  },
+  "MSG_PATTERN": {
+    "message": "Pattern"
+  },
+  "MSG_ADD": {
+    "message": "Add"
+  },
+  "MSG_EDIT": {
+    "message": "Edit"
+  },
+  "MSG_DELETE": {
+    "message": "Delete"
+  },
+  "MSG_SAVE": {
+    "message": "Save"
+  },
+  "MSG_MOVE_UP": {
+    "message": "Up"
+  },
+  "MSG_MOVE_DOWN": {
+    "message": "Down"
+  },
+  "MSG_DEFAULT_S2T_CHAR": {
+    "message": "Default Simplified to Traditional Character"
+  },
+  "MSG_DEFAULT_S2T_WORD": {
+    "message": "Default Simplified to Traditional Word"
+  },
+  "MSG_DEFAULT_T2S_CHAR": {
+    "message": "Default Traditional to Simplified Character"
+  },
+  "MSG_DEFAULT_T2S_WORD": {
+    "message": "Default Traditional to Simplified Word"
+  },
+  "MSG_CUSTOM_S2T": {
+    "message": "Custom Simplified to Traditional"
+  },
+  "MSG_CUSTOM_T2S": {
+    "message": "Custom Traditional to Simplified"
+  },
+  "MSG_WORD": {
+    "message": "Word"
+  },
+  "MSG_DEFAULT": {
+    "message": "Default"
+  },
+  "MSG_UPDATE_COMPLETED": {
+    "message": "Update Completed"
+  },
+  "MSG_ABOUT": {
+    "message": "About"
+  },
+  "MSG_CHANGELOG": {
+    "message": "Changelog"
+  },
+  "MSG_CONTRIBUTORS": {
+    "message": "Contributors"
+  },
+  "MSG_LICENSE": {
+    "message": "LICENSE"
+  },
+  "MSG_HELP_SUPPORT": {
+    "message": "Help and Support"
+  },
+  "MSG_ISSUES": {
+    "message": "Issues"
+  },
+  "MSG_ADD_DOMAIN_TO_DISABLED": {
+    "message": "Add Domain to Disabled"
+  },
+  "MSG_ADD_DOMAIN_TO_S2T": {
+    "message": "Add Domain to Simplified to Traditional"
+  },
+  "MSG_ADD_DOMAIN_TO_T2S": {
+    "message": "Add Domain to Traditonal to Simplified"
+  },
+  "MSG_CONVERT_CLIPBOARD_S2T": {
+    "message": "Convert Clipboard Simplified to Traditional"
+  },
+  "MSG_CONVERT_CLIPBOARD_T2S": {
+    "message": "Convert Clipboard Traditional to Simplified"
+  },
+  "MSG_OK": {
+    "message": "OK"
+  },
+  "MSG_CANCEL": {
+    "message": "Cancel"
+  },
+  "MSG_JSON_ERROR": {
+    "message": "Can not parse file import, make sure the file is JSON form"
+  },
+  "NT_TITLE": {
+    "message": "New TongWenTang - Notify"
+  },
+  "NT_CLB_TO_S2T": {
+    "message": "Clipboard has been converted to Traditional Chinese"
+  },
+  "NT_CLB_TO_T2S": {
+    "message": "Clipboard has been converted to Simpified Chinese"
+  },
+  "NT_GRT_PRM_DENIED": {
+    "message": "Grant permission(s) denied"
+  },
+  "NT_GRT_PRM_ONLY_USR_INTER": {
+    "message": "Grant optional permission can only under user interaction, to give permission(s) please go extension permission tab"
+  }
+}
