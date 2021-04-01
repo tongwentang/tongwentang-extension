@@ -59,25 +59,25 @@
     "w_s2t": {
       "description": "Convert web page to Tranditional Chinese",
       "suggested_key": {
-        "default": "Ctrl+Alt+X"
+        "default": "Shift+Alt+C"
       }
     },
     "w_t2s": {
       "description": "Convert web page to Simplified Chinese",
       "suggested_key": {
-        "default": "Ctrl+Alt+C"
+        "default": "Shift+Alt+V"
       }
     },
     "c_s2t": {
       "description": "Convert clipboard to Tranditional Chinese",
       "suggested_key": {
-        "default": "Ctrl+Alt+S"
+        "default": "Shift+Alt+Z"
       }
     },
     "c_t2s": {
       "description": "Convert clipboard to Simplified Chinese",
       "suggested_key": {
-        "default": "Ctrl+Alt+D"
+        "default": "Shift+Alt+X"
       }
     }
   }
