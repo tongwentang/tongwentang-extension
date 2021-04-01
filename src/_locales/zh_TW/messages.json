@@ -1,6 +1,6 @@
 {
   "MSG_EXT_NAME": {
-    "message": "爵士咖啡廳"
+    "message": "新同文堂"
   },
   "MSG_EXT_DESC": {
     "message": "切換簡體和正體中文"
@@ -155,8 +155,8 @@
   "MSG_CUSTOM_T2S": {
     "message": "自訂正轉簡"
   },
-  "MSG_CHAR": {
-    "message": "單字"
+  "MSG_WORD": {
+    "message": "詞彙"
   },
   "MSG_DEFAULT": {
     "message": "預設"
@@ -164,8 +164,17 @@
   "MSG_UPDATE_COMPLETED": {
     "message": "完成更新"
   },
+  "MSG_CONVERT_TARGET": {
+    "message": "轉換目標"
+  },
+  "MSG_CONVERT_VALUE": {
+    "message": "轉換值"
+  },
   "MSG_ABOUT": {
     "message": "關於"
+  },
+  "MSG_REPOSITORY": {
+    "message": "程式碼倉庫"
   },
   "MSG_CHANGELOG": {
     "message": "變更紀錄"
@@ -179,8 +188,8 @@
   "MSG_HELP_SUPPORT": {
     "message": "說明與支援"
   },
-  "MSG_ISSUES": {
-    "message": "問題"
+  "MSG_ISSUE_REPORT": {
+    "message": "問題回報"
   },
   "MSG_ADD_DOMAIN_TO_DISABLED": {
     "message": "加入停用網域"

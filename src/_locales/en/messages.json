@@ -1,6 +1,6 @@
 {
   "MSG_EXT_NAME": {
-    "message": "Project Jazz Cafe"
+    "message": "New TongWenTang"
   },
   "MSG_EXT_DESC": {
     "message": "Convert characters between Chinese Simplified and Chinese Traditional"
@@ -164,8 +164,17 @@
   "MSG_UPDATE_COMPLETED": {
     "message": "Update Completed"
   },
+  "MSG_CONVERT_TARGET": {
+    "message": "Convert Target"
+  },
+  "MSG_CONVERT_VALUE": {
+    "message": "Convert Value"
+  },
   "MSG_ABOUT": {
     "message": "About"
+  },
+  "MSG_REPOSITORY": {
+    "message": "Repository"
   },
   "MSG_CHANGELOG": {
     "message": "Changelog"
@@ -179,8 +188,8 @@
   "MSG_HELP_SUPPORT": {
     "message": "Help and Support"
   },
-  "MSG_ISSUES": {
-    "message": "Issues"
+  "MSG_ISSUE_REPORT": {
+    "message": "Issue Report"
   },
   "MSG_ADD_DOMAIN_TO_DISABLED": {
     "message": "Add Domain to Disabled"

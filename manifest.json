@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "__MSG_EXT_NAME__",
+  "name": "__MSG_MSG_EXT_NAME__",
   "version": "2.0.0",
-  "description": "__MSG_EXT_DESC__",
+  "description": "__MSG_MSG_EXT_DESC__",
   "author": "t7yang",
   "homepage_url": "https://github.com/tongwentang/tongwentang-extension",
 
@@ -57,25 +57,25 @@
 
   "commands": {
     "w_s2t": {
-      "description": "Convert web page to Tranditional Chinese",
+      "description": "__MSG_MSG_WEBPAGE_S2T__",
       "suggested_key": {
         "default": "Shift+Alt+C"
       }
     },
     "w_t2s": {
-      "description": "Convert web page to Simplified Chinese",
+      "description": "__MSG_MSG_WEBPAGE_T2S__",
       "suggested_key": {
         "default": "Shift+Alt+V"
       }
     },
     "c_s2t": {
-      "description": "Convert clipboard to Tranditional Chinese",
+      "description": "__MSG_MSG_CONVERT_CLIPBOARD_S2T__",
       "suggested_key": {
         "default": "Shift+Alt+Z"
       }
     },
     "c_t2s": {
-      "description": "Convert clipboard to Simplified Chinese",
+      "description": "__MSG_MSG_CONVERT_CLIPBOARD_T2S__",
       "suggested_key": {
         "default": "Shift+Alt+X"
       }

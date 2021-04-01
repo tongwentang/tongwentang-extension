@@ -10,13 +10,13 @@ export const AboutPage: FC = () => {
 
         <CardBody>
           <p>
-            Repository
+            {i18n.getMessage('MSG_REPOSITORY')}
             <a href="https://github.com/tongwentang/tongwentang-extension" target="_blank" rel="noreferrer">
               <i className="icon icon-link" />
             </a>
           </p>
           <p>
-            {i18n.getMessage('MSG_ISSUES')}
+            {i18n.getMessage('MSG_ISSUE_REPORT')}
             <a href="https://github.com/tongwentang/tongwentang-extension/issues" target="_blank" rel="noreferrer">
               <i className="icon icon-link" />
             </a>
