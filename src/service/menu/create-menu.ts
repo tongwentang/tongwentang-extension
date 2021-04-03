@@ -36,7 +36,7 @@ function createSubMenu(parentId: MenuId, funcKey: PrefMenuGroupKeys, settings: P
       const menuProps: menus.CreateProperties = {
         parentId,
         type: 'normal',
-        title: `${i18n.getMessage(`MSG_${funcKey}_${target}`)}}`,
+        title: `${i18n.getMessage(`MSG_${funcKey}_${target}`)}`,
         contexts: getSubMenuContexts(funcKey),
         onclick: createOnClickCbBy(funcKey, target as LangType),
       };
