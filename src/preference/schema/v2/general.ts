@@ -9,7 +9,7 @@ export const generalSchema: Control<PrefGeneral> = dctrl({
     vldFn({
       type: 'string',
       required: true,
-      enum: ['disabled', LangType.s2t, LangType.t2s, 'detst2', 'dett2s'],
+      enum: ['disabled', LangType.s2t, LangType.t2s, 'dst2', 'dt2s'],
     }),
     'disabled',
   ),
