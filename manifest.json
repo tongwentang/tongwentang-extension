@@ -22,7 +22,7 @@
     "128": "icons/tongwen-icon-128.png"
   },
 
-  "permissions": ["activeTab", "contextMenus", "downloads", "notifications", "storage", "unlimitedStorage"],
+  "permissions": ["contextMenus", "downloads", "notifications", "storage", "unlimitedStorage"],
 
   "optional_permissions": ["clipboardWrite", "clipboardRead"],
 
