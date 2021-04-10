@@ -2,6 +2,16 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.1.1] - 2021-04-11
+
+### Changed
+
+- Remove `activeTab` permission due no using.
+
+### Fixed
+
+- Remove trailing bracket in context menu.
+
 ## [2.1.0] - 2021-04-01
 
 ### Changed

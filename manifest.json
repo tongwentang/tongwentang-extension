@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_MSG_EXT_NAME__",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "__MSG_MSG_EXT_DESC__",
   "author": "t7yang",
   "homepage_url": "https://github.com/tongwentang/tongwentang-extension",
