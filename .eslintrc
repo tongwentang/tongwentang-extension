@@ -5,8 +5,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "eslint-config-prettier",
-    "eslint-config-prettier/@typescript-eslint"
+    "eslint-config-prettier"
   ],
   "plugins": ["@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
@@ -33,6 +32,7 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "prettier/prettier": "warn",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }
