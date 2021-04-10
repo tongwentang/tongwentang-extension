@@ -3,18 +3,22 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebextensionPlugin = require('webpack-webextension-plugin');
-const WebpackShellPlugin = require('webpack-shell-plugin');
+const WebpackShellPlugin = require('webpack-shell-plugin-next');
 
 module.exports = function (env, argv) {
   const isProd = argv.mode === 'production';
   const vendor = env.vendor || 'firefox';
 
-  return {
+  /**
+   * @type {import('webpack').Configuration}
+   */
+  const config = {
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      fallback: { url: require.resolve('url/') }, // for jsonschema
     },
 
-    devtool: isProd ? '' : 'source-map',
+    devtool: isProd ? false : 'source-map',
 
     watch: !isProd,
 
@@ -52,8 +56,7 @@ module.exports = function (env, argv) {
           { from: './src/icons', to: 'icons' },
           {
             from: './node_modules/tongwen-core/dictionaries/**/*',
-            to: 'dictionaries/',
-            flatten: true,
+            to: 'dictionaries/[name][ext]',
           },
         ],
       }),
@@ -62,7 +65,17 @@ module.exports = function (env, argv) {
         template: './src/options/index.html',
         chunks: ['options'],
       }),
-      ...(isProd ? [] : [new WebpackShellPlugin({ onBuildEnd: [`npm run we:${vendor}`] })]),
+      ...(isProd
+        ? []
+        : [
+            new WebpackShellPlugin({
+              onAfterDone: {
+                scripts: [`npm run we:${vendor}`],
+              },
+            }),
+          ]),
     ],
   };
+
+  return config;
 };
