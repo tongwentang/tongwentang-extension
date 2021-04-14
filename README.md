@@ -18,21 +18,30 @@ Main Features:
 
 ### Todo Features
 
-- Settings sync
-- `web-ext run` with chromium [issue](https://github.com/mozilla/web-ext/issues/1862)
+- Settings sync.
 
 ### Development
 
+To start developing, first git clone then install dependencies:
+
+```
+$ yarn install
+```
+
+#### Developing with Firefox
+
+Run command:
+
+```
+$ yarn dev:firefox
+```
+
 #### Developing with chromium-based browser
 
-Todo start a Chromium-based developing environment you need to paste your chromium binary path into `scripts.we:chromium`, then run `yarn dev:chromium`, because `web-ext` still not yet support for starting chromium-based browser from config.
+To start a Chromium-based developing environment you need to create a `.env` file from `env.sample` then paste your chromium binary path to `CHROMIUM_BINARY`. ([issue](https://github.com/mozilla/web-ext/issues/1862))
 
-Replace `/path/to/your/chromiumbinary` to actual path, **and do not commit this change**.
+Run command:
 
-```json
-{
-  "scripts": {
-    "we:chromium": "web-ext --verbose run -s ./dist --config-discovery=false --target=chromium --chromium-binary=/path/to/your/chromiumbinary --start-url=chrome://extensions"
-  }
-}
+```
+$ yarn dev:chromium
 ```
