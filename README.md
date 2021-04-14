@@ -16,6 +16,11 @@ Main Features:
 - Mapping Words
   - Built-in and custom mapping words.
 
+### Download
+
+- [Firefox](https://addons.mozilla.org/firefox/addon/new_tongwentang/)
+- [Chrome](https://chrome.google.com/webstore/detail/new-tongwentang/ldmgbgaoglmaiblpnphffibpbfchjaeg)
+
 ### Todo Features
 
 - Settings sync.
