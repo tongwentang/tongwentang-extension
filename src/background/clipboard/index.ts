@@ -21,4 +21,4 @@ export const convertClipboard = (state: BgState, target: LangType): Promise<void
         i18n.getMessage(!isGet ? 'NT_GRT_PRM_DENIED' : target === LangType.s2t ? 'NT_CLB_TO_S2T' : 'NT_CLB_TO_T2S'),
       );
     })
-    .catch(() => void createNoti('NT_GRT_PRM_ONLY_USR_INTER'));
+    .catch(() => void createNoti(i18n.getMessage('NT_GRT_PRM_ONLY_USR_INTER')));
