@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebextensionPlugin = require('webpack-webextension-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin-next');
+const { parsed: dotEnv } = require('dotenv').config();
 
 module.exports = function (env, argv) {
   const isProd = argv.mode === 'production';
@@ -65,15 +66,15 @@ module.exports = function (env, argv) {
         template: './src/options/index.html',
         chunks: ['options'],
       }),
-      ...(isProd
+      ...(isProd || !dotEnv.CHROMIUM_BINARY
         ? []
         : [
-            new WebpackShellPlugin({
-              onAfterDone: {
-                scripts: [`npm run we:${vendor}`],
-              },
-            }),
-          ]),
+          new WebpackShellPlugin({
+            onAfterDone: {
+              scripts: [`npm run we:${vendor}`],
+            },
+          }),
+        ]),
     ],
   };
 
