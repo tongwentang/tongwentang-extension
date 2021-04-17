@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 yarn test:tsc
-yarn lint
+yarn lint-staged
