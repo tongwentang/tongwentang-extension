@@ -15,7 +15,9 @@ import { WordEntryList } from './WordEntryList';
 export const WordSettings: FC = () => {
   const { word, setWord } = useWord();
 
-  const setDefault = useCallback((w: PrefWordDefault) => setWord(assoc('default', w)), [setWord]);
+  const setDefault = useCallback((w: PrefWordDefault) => storage.set({ word: assocPath(['default'], w, word) }), [
+    word,
+  ]);
 
   const [tab, setTab] = useState<LangType | null>(null);
 

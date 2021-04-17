@@ -5,10 +5,10 @@ import { i18n } from '../../../service/i18n/i18n';
 import { Checkbox } from '../../components/forms';
 import { getEventChecked } from '../../shared/event-value';
 
-const scPath = ['s2t', 'char', 'enabled'];
-const spPath = ['s2t', 'phrase', 'enabled'];
-const tcPath = ['t2s', 'char', 'enabled'];
-const tpPath = ['t2s', 'phrase', 'enabled'];
+const scPath = ['s2t', 'char'];
+const spPath = ['s2t', 'phrase'];
+const tcPath = ['t2s', 'char'];
+const tpPath = ['t2s', 'phrase'];
 
 export const WordDefaultSettings: FC<{
   value: PrefWordDefault;
