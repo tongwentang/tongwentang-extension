@@ -25,7 +25,7 @@
     "**/*.{js,jsx,ts,tsx,json,md}": [
       "prettier --write --ignore-unknown"
     ],
-    "**/*.{js,jsx,ts,tsx}": [
+    "**/*.{ts,tsx}": [
       "eslint --fix"
     ]
   },
