@@ -69,8 +69,10 @@ module.exports = function (env, argv) {
         ? []
         : [
             new WebpackShellPlugin({
-              onAfterDone: {
+              onBuildEnd: {
                 scripts: [`npm run we:${vendor}`],
+                blocking: false,
+                parallel: true,
               },
             }),
           ]),
