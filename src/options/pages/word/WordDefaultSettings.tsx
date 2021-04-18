@@ -2,18 +2,20 @@ import { assocPath, pipe } from 'ramda';
 import { FC, Fragment, useCallback } from 'react';
 import { PrefWordDefault } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
+import { Button } from '../../components';
 import { Checkbox } from '../../components/forms';
 import { getEventChecked } from '../../shared/event-value';
 
-const scPath = ['s2t', 'char', 'enabled'];
-const spPath = ['s2t', 'phrase', 'enabled'];
-const tcPath = ['t2s', 'char', 'enabled'];
-const tpPath = ['t2s', 'phrase', 'enabled'];
+const scPath = ['s2t', 'char'];
+const spPath = ['s2t', 'phrase'];
+const tcPath = ['t2s', 'char'];
+const tpPath = ['t2s', 'phrase'];
 
 export const WordDefaultSettings: FC<{
   value: PrefWordDefault;
   onChange: (d: PrefWordDefault) => void;
-}> = ({ value: defWord, onChange: handleChange }) => {
+  onSave: () => Promise<any>;
+}> = ({ value: defWord, onChange: handleChange, onSave: handleSave }) => {
   const upWord = useCallback((path: string[]) => (state: boolean) => handleChange(assocPath(path, state, defWord)), [
     defWord,
   ]);
@@ -49,6 +51,9 @@ export const WordDefaultSettings: FC<{
         checked={defWord.t2s.phrase}
         onChange={upTp}
       />
+      <Button type="primary" onClick={handleSave}>
+        {i18n.getMessage('MSG_SAVE')}
+      </Button>
     </Fragment>
   );
 };

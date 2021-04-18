@@ -83,7 +83,7 @@ export const WordSettings: FC = () => {
 
         <div className="panel-body" style={{ padding: '1em', maxHeight: '60vh' }}>
           {tab === null ? (
-            <WordDefaultSettings value={word.default} onChange={setDefault} />
+            <WordDefaultSettings value={word.default} onChange={setDefault} onSave={save} />
           ) : (
             <Fragment>
               <div className="columns">
