@@ -2,6 +2,17 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.1.2] - 2021-04-24
+
+### Fixed
+
+- Grant permission for clipboard failed message now show properly.
+- Switching default word now work properly (#23).
+- Cursor now do not jump to line start when typing on input area (#10).
+- All relating punctuations now collect and send to converter (#11).
+- Prevent detect language API failed (#12).
+- v1 preference for Google Chromium is now handle properly on importing (#15).
+
 ## [2.1.1] - 2021-04-11
 
 ### Changed
