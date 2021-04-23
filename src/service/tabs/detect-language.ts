@@ -6,4 +6,9 @@ const langToZhtype = (lang: string): ZhType =>
   chsTypes.find(tag => tag === lang) ? ZhType.hans : chtTypes.find(tag => tag === lang) ? ZhType.hant : ZhType.und;
 
 export const detectLanguage = (tabId?: number): Promise<ZhType> =>
-  tabs.detectLanguage(tabId).then(toLower).then(langToZhtype);
+  tabs
+    .detectLanguage(tabId)
+    .then(toLower)
+    .then(langToZhtype)
+    // INFO: some browsers may fail with detect language api
+    .catch(() => ZhType.und);
