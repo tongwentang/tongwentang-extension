@@ -12,7 +12,7 @@ const isFilterRule = dctrl({
 });
 
 export const v1SchemaGc: Control<PrefGcV1> = dctrl({
-  version: vctrl<1>(vldFn({ type: 'number', required: true, enum: [1] }), 1),
+  version: vctrl<string>(vldFn({ type: 'string', required: true, pattern: '^1..+' }), '1.0.0.0'),
   autoConvert: vctrl<'none' | 'trad' | 'simp'>(
     vldFn({ type: 'string', required: true, enum: ['none', 'trad', 'simp'] }),
     'none',

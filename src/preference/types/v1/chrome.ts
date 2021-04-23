@@ -6,7 +6,8 @@ export interface PrefGcV1FilterRule {
 }
 
 export interface PrefGcV1 {
-  version: 1;
+  /** 1.x float number as string */
+  version: string;
   autoConvert: 'none' | 'trad' | 'simp';
   iconAction: 'auto' | 'trad' | 'simp';
   symConvert: boolean;
