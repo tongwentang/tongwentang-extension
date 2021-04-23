@@ -17,10 +17,6 @@ const getValidPref = (type: BrowserType) => (holder: Holder<any>) => {
   return safeUpgradePref(type, holder.value());
 };
 
-/**
- * TODO: Error reason throw with error, catch and display if necessary.
- * TODO: should enable to receive v1 pref
- */
 export const importPref = (type: BrowserType, raw: string): Promise<string> =>
   parseJson(raw)
     .then(validatePref(type))

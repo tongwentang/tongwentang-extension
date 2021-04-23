@@ -12,7 +12,7 @@ export const safeUpgradePref = (type: BrowserType, pref: any = {}): Pref => {
       return v2Schema(pref).value();
     case pref?.version === 1 && type === BrowserType.FX:
       return safeUpgradePref(type, prefFxV1ToV2(v1SchemaFx(pref).value()));
-    case pref?.version === 1 && type === BrowserType.GC:
+    case Number.parseInt(pref?.version) === 1 && type === BrowserType.GC:
       return safeUpgradePref(type, prefGcV1ToV2(v1SchemaGc(pref).value()));
     default:
       return getDefaultPref();
