@@ -1,14 +1,14 @@
-import { ParsedNode } from 'tongwen-core/esm/walker/types';
+import { ParsedResult } from 'tongwen-core';
 
-const updateNode = (parsed: ParsedNode, text: string) => {
+const updateNode = (parsed: ParsedResult, text: string) => {
   switch (parsed.type) {
     case 'TEXT':
       parsed.node.nodeValue = text;
       break;
-    case 'ATTRIBUTE':
+    case 'ELEMENT':
       parsed.node.setAttribute(parsed.attr, text);
   }
 };
 
-export const updateNodes = (parseds: ParsedNode[], texts: string[]): void =>
+export const updateNodes = (parseds: ParsedResult[], texts: string[]): void =>
   parseds.forEach((parsed, index) => updateNode(parsed, texts[index]));
