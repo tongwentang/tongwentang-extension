@@ -13,11 +13,12 @@
     "test:tsc": "tsc --noEmit",
     "build:firefox": "webpack --mode=production --env vendor=firefox",
     "build:chromium": "webpack --mode=production --env vendor=chromium",
+    "build:all": "yarn build:firefox && yarn build:chromium",
     "format": "prettier --write --ignore-unknown",
     "lint": "eslint --fix --ext=ts,tsx src/",
     "lint-staged": "lint-staged",
     "update": "yarn upgrade-interactive",
-    "we:build": "web-ext build -s dist",
+    "we:build": "web-ext build -s dist/firefox",
     "we:sign": "web-ext sign --config=web-ext-config-firefox.js --no-config-discovery",
     "prepare": "husky install"
   },

@@ -7,6 +7,7 @@ if (error) {
 
 module.exports = {
   ...config,
+  sourceDir: './dist/chromium',
   run: {
     target: ['chromium'],
     chromiumBinary: env.CHROMIUM_BINARY || undefined,

@@ -7,6 +7,7 @@ if (error) {
 
 module.exports = {
   ...config,
+  sourceDir: './dist/firefox',
   run: {
     firefox: env.FIREFOX || 'firefox',
     target: ['firefox-desktop'],
