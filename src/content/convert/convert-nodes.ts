@@ -4,14 +4,16 @@ import { CtState } from '../state';
 import { updateNodes } from './update-nodes';
 
 type SConvertNode = (state: CtState, target: LangType, nodes: Node[]) => Promise<void>;
-export const convertNode: SConvertNode = (state, target, nodes) => {
+export const convertNode: SConvertNode = async (state, target, nodes) => {
   const parsedNodes = nodes.flatMap(node => walkNode(node));
-  return (state.converting = state.converting
-    .catch(() => undefined)
-    .then(() => convertNodesText(target, parsedNodes))
-    .then(texts => {
-      state.mutationObserver?.disconnect();
-      updateNodes(parsedNodes, texts);
-      state.mutationObserver?.observe(document, state.mutationOpt);
-    }));
+  return parsedNodes.length === 0
+    ? void 0
+    : (state.converting = state.converting
+        .catch(() => undefined)
+        .then(() => convertNodesText(target, parsedNodes))
+        .then(texts => {
+          state.mutationObserver?.disconnect();
+          updateNodes(parsedNodes, texts);
+          state.mutationObserver?.observe(document, state.mutationOpt);
+        }));
 };
