@@ -2,6 +2,13 @@
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.1.3] - 2021-04-28
+
+### Fixed
+
+- Cursor jump to line start in input area. (#31)
+- Can not save with "detective simplified to Traditional" as auto convert option. (#22 #30)
+
 ## [2.1.2] - 2021-04-24
 
 ### Fixed
