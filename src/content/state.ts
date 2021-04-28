@@ -1,4 +1,4 @@
-import { targetAttrs } from 'tongwen-core';
+import { TARGET_NODE_ATTRIBUTES } from 'tongwen-core';
 import { storage } from '../service/storage/storage';
 import { ZhType } from '../service/tabs/tabs.constant';
 import { getDetectLanguage } from './services';
@@ -8,7 +8,7 @@ const mutationOpt: MutationObserverInit = {
   attributes: true,
   characterData: true,
   subtree: true,
-  attributeFilter: targetAttrs,
+  attributeFilter: TARGET_NODE_ATTRIBUTES as string[],
 };
 
 export interface CtState {
