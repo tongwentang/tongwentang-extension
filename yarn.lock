@@ -4450,9 +4450,9 @@ to-regex-range@^5.0.1:
     is-number "^7.0.0"
 
 tongwen-core@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/tongwen-core/-/tongwen-core-4.0.1.tgz#59204cb6736af1cf31e6735ae38030db27650502"
-  integrity sha512-QjrsjCmWQt8zNKgJLqCQpxtnks2MxkoTOhOI+N/97LR4QeqtvIfjbKsatYeC3BK2aiy6FhfguaW/dukv65akwA==
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/tongwen-core/-/tongwen-core-4.1.0.tgz#29740d48edcc961dbf4f91f66566be88fca35246"
+  integrity sha512-2yxnsk9pSqC7nhQtzfL0qq7X6Yn5gmmc92KeoQo+EodZnR3HSY8NeG3sY4TiK8VkQFRrM5XW3wucChQkzgBblw==
 
 tosource@1.0.0:
   version "1.0.0"
