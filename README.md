@@ -20,6 +20,7 @@ Main Features:
 
 - [Firefox](https://addons.mozilla.org/firefox/addon/new_tongwentang/)
 - [Chrome](https://chrome.google.com/webstore/detail/new-tongwentang/ldmgbgaoglmaiblpnphffibpbfchjaeg)
+- [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/%E6%96%B0%E5%90%8C%E6%96%87%E5%A0%82/ijddgmclgedepadbikmfekambhhfjfnl)
 
 ### Todo Features
 
