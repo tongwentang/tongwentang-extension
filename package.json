@@ -14,7 +14,7 @@
     "build:firefox": "webpack --mode=production --env vendor=firefox",
     "build:chromium": "webpack --mode=production --env vendor=chromium",
     "build:all": "yarn build:firefox && yarn build:chromium",
-    "format": "prettier --write --ignore-unknown",
+    "format": "prettier . --write --ignore-unknown",
     "lint": "eslint --fix --ext=ts,tsx src/",
     "lint-staged": "lint-staged",
     "release": "standard-version -t ''",
