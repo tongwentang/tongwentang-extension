@@ -8,9 +8,9 @@ const createSrcPack = async ({ default: def, custom }: PrefWord): Promise<SrcPac
     custom.s2t,
   ],
   t2s: [
-    {},
     def.t2s.char ? await fetch(`dictionaries/t2s-char.json`).then(res => res.json()) : {},
     def.t2s.phrase ? await fetch(`dictionaries/t2s-phrase.json`).then(res => res.json()) : {},
+    custom.t2s,
   ],
 });
 
