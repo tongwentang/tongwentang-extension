@@ -1,6 +1,12 @@
-# TongWenTang Extension
+# Changelog
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [2.1.4](https://github.com/tongwentang/tongwentang-extension/compare/2.1.3...2.1.4) (2021-05-29)
+
+### Bug Fixes
+
+- custom t2s mapping words do not merge into converter. ([96bff08](https://github.com/tongwentang/tongwentang-extension/commit/96bff081e95d05098cc39e506118b795e929fb1c)), closes [#33](https://github.com/tongwentang/tongwentang-extension/issues/33)
 
 ## [2.1.3] - 2021-04-28
 

@@ -1,6 +1,6 @@
 {
   "name": "tongwentang-extension",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "",
   "keywords": [],
   "author": "t7yang",
@@ -17,7 +17,7 @@
     "format": "prettier . --write --ignore-unknown",
     "lint": "eslint --fix --ext=ts,tsx src/",
     "lint-staged": "lint-staged",
-    "release": "standard-version -t ''",
+    "release": "standard-version -t '' --packageFiles package.json",
     "update": "yarn upgrade-interactive",
     "we:build": "web-ext build -s dist/firefox",
     "we:sign": "web-ext sign --config=web-ext-config-firefox.js --no-config-discovery",
