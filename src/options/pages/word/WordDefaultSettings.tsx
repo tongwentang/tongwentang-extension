@@ -16,9 +16,10 @@ export const WordDefaultSettings: FC<{
   onChange: (d: PrefWordDefault) => void;
   onSave: () => Promise<any>;
 }> = ({ value: defWord, onChange: handleChange, onSave: handleSave }) => {
-  const upWord = useCallback((path: string[]) => (state: boolean) => handleChange(assocPath(path, state, defWord)), [
-    defWord,
-  ]);
+  const upWord = useCallback(
+    (path: string[]) => (state: boolean) => handleChange(assocPath(path, state, defWord)),
+    [defWord],
+  );
 
   const upSc = useCallback(pipe(getEventChecked, upWord(scPath)), [upWord]);
   const upSp = useCallback(pipe(getEventChecked, upWord(spPath)), [upWord]);

@@ -8,8 +8,10 @@ import { getEventChecked, getSelectEventValue } from '../../shared/event-value';
 export const useGeneralOpt = () => {
   const [general, set] = useState<PrefGeneral>(getDefaultPref().general);
 
-  const setGeneral = <T extends keyof PrefGeneral>(key: T) => (value: PrefGeneral[T]) =>
-    storage.set({ general: { ...general, [key]: value } });
+  const setGeneral =
+    <T extends keyof PrefGeneral>(key: T) =>
+    (value: PrefGeneral[T]) =>
+      storage.set({ general: { ...general, [key]: value } });
 
   const setAutoConvert = pipe(getSelectEventValue, setGeneral('autoConvert'));
 

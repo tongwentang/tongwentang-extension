@@ -33,12 +33,7 @@ export const WordSettings: FC = () => {
 
   const update = useCallback(
     ([key, value]: [string, string]) => {
-      setWord(
-        pipe(
-          dissocPath<PrefWord>(['custom', tab!, toEdit[0]]),
-          assocPath(['custom', tab!, key], value),
-        ),
-      );
+      setWord(pipe(dissocPath<PrefWord>(['custom', tab!, toEdit[0]]), assocPath(['custom', tab!, key], value)));
       off();
     },
     [toEdit, word],
@@ -46,9 +41,7 @@ export const WordSettings: FC = () => {
 
   const remove = useCallback(
     (key: string) => {
-      setWord(
-        dissocPath<PrefWord>(['custom', tab!, key]),
-      );
+      setWord(dissocPath<PrefWord>(['custom', tab!, key]));
     },
     [word, setWord, tab],
   );
