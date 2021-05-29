@@ -12,8 +12,8 @@ jobs:
         with:
           days-before-stale: 30
           days-before-close: 3
-          stale-issue-message: 'Inactive in 30 days.\n30 天沒有動靜。'
-          stale-pr-message: 'Inactive in 30 days.\n30 天沒有動靜。'
-          close-issue-message: 'Close inactive issue.\n關閉不活躍 issue 。'
-          close-pr-message: 'Close inactive PR.\n關閉不活躍 PR 。'
+          stale-issue-message: 'Inactive in 30 days. 30 天沒有動靜。'
+          stale-pr-message: 'Inactive in 30 days. 30 天沒有動靜。'
+          close-issue-message: 'Close inactive issue. 關閉不活躍 issue 。'
+          close-pr-message: 'Close inactive PR. 關閉不活躍 PR 。'
           any-of-labels: question,invalid
