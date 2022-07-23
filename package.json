@@ -16,58 +16,57 @@
     "build:all": "yarn build:firefox && yarn build:chromium",
     "format": "prettier . --write --ignore-unknown",
     "lint": "eslint --fix --ext=ts,tsx src/",
-    "lint-staged": "lint-staged",
     "release": "standard-version -t '' --packageFiles package.json",
     "update": "yarn upgrade-interactive",
     "we:build": "web-ext build -s dist/firefox",
     "we:sign": "web-ext sign --config=web-ext-config-firefox.js --no-config-discovery",
     "prepare": "husky install"
   },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,json,md}": [
+  "nano-staged": {
+    "*.{js,jsx,ts,tsx,json,md}": [
       "prettier --write --ignore-unknown"
     ],
-    "**/*.{ts,tsx}": [
+    "*.{ts,tsx}": [
       "eslint --fix"
     ]
   },
   "dependencies": {
-    "data-fixer": "^5.0.0",
-    "jsonschema": "^1.2.6",
-    "ramda": "^0.27.0",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
+    "data-fixer": "^5.0.1",
+    "jsonschema": "^1.4.1",
+    "ramda": "^0.28.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "spectre.css": "^0.5.1",
-    "tongwen-core": "^4.0.0",
-    "webextension-polyfill": "^0.8.0"
+    "tongwen-core": "^4.1.1",
+    "webextension-polyfill": "^0.9.0"
   },
   "devDependencies": {
-    "@types/firefox-webext-browser": "^82.0.0",
-    "@types/node": "^14.14.9",
-    "@types/ramda": "^0.27.40",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.21.0",
-    "@typescript-eslint/parser": "^4.21.0",
+    "@types/firefox-webext-browser": "^94.0.1",
+    "@types/node": "^16.0.0",
+    "@types/ramda": "^0.28.11",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
     "clean-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "^9.0.0",
-    "dotenv": "^10.0.0",
-    "eslint": "^7.24.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.18.0",
-    "html-webpack-plugin": "^5.3.1",
-    "husky": "^6.0.0",
-    "lint-staged": "^11.0.0",
-    "prettier": "^2.0.2",
-    "standard-version": "^9.3.0",
-    "ts-loader": "^9.1.0",
-    "typescript": "~4.3.2",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.1",
+    "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.1",
+    "nano-staged": "^0.8.0",
+    "prettier": "^2.7.1",
+    "standard-version": "^9.5.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "~4.7.4",
     "url": "^0.11.0",
-    "web-ext": "^6.0.0",
-    "webpack": "^5.31.2",
-    "webpack-cli": "^4.1.0",
+    "web-ext": "^7.1.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
     "webpack-shell-plugin-next": "^2.2.2",
-    "webpack-webextension-plugin": "^0.3.0"
+    "webpack-webextension-plugin": "^1.0.0"
   }
 }
