@@ -1,11 +1,12 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 export const Modal: FC<{
   isActive: boolean;
-  onOk?: () => void;
-  onCancel: () => void;
   head?: string;
   footer?: JSX.Element | JSX.Element[];
+  children: ReactNode;
+  onOk?: () => void;
+  onCancel: () => void;
 }> = ({ head, footer, isActive, onOk, onCancel, children }) => {
   const active = isActive ? 'active' : '';
   return (

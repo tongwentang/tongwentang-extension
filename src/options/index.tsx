@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Header, Navbar } from './components';
 import { usePage } from './hooks/page';
 
@@ -16,4 +16,4 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+createRoot(document.querySelector('#app')!).render(<App />);

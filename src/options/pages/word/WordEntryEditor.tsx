@@ -19,13 +19,13 @@ export const WordEntryEditor: FC<{
       <div className="column col-4">
         <div className="form-group">
           <label className="form-label">{i18n.getMessage('MSG_CONVERT_TARGET')}</label>
-          <input className="form-input" type="text" value={key} onChange={evt => setKey(evt.target.value)} />
+          <input className="form-input" type="text" value={key} onChange={evt => setKey(evt.currentTarget.value)} />
         </div>
       </div>
       <div className="column col-4">
         <div className="form-group">
           <label className="form-label">{i18n.getMessage('MSG_CONVERT_VALUE')}</label>
-          <input className="form-input" type="text" value={value} onChange={evt => setValue(evt.target.value)} />
+          <input className="form-input" type="text" value={value} onChange={evt => setValue(evt.currentTarget.value)} />
         </div>
       </div>
       <div className="column col-4">

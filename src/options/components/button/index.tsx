@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { classEntries } from '../../shared/css';
 
 export const Button: FC<{
@@ -6,6 +6,7 @@ export const Button: FC<{
   tooltip?: string;
   fullWidth?: boolean;
   disabled?: boolean;
+  children: ReactNode;
   onClick?: (v: any) => any;
 }> = ({ type, tooltip, fullWidth, children, onClick: handleClick, disabled }) => {
   const className = classEntries({

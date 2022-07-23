@@ -1,9 +1,10 @@
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC, ReactNode } from 'react';
 
 export const Select: FC<{
   id: string;
   label: string;
   value?: string | number | string[];
+  children: ReactNode;
   onChange?: (evt: ChangeEvent<HTMLSelectElement>) => void;
 }> = ({ id, label, value, onChange, children, ...props }) => {
   return (

@@ -1,4 +1,4 @@
-import { equals, findIndex, ifElse, pipe, prepend, propEq, remove, update } from 'ramda';
+import { remove, update } from 'ramda';
 import { Pref } from '../../preference/types/lastest';
 import { PrefFilterRule } from '../../preference/types/v2';
 import { storage } from './storage';
@@ -12,14 +12,9 @@ export const addFilterRule = (rule: PrefFilterRule): Promise<void> =>
     return {
       filter: {
         enabled,
-        rules: pipe(
-          findIndex(propEq('pattern', rule.pattern)),
-          ifElse(
-            equals(-1),
-            () => prepend(rule, rules),
-            index => update(index, rule, rules),
-          ),
-        )(rules),
+        rules: (index => (index === -1 ? [rule, ...rules] : update(index, rule, rules)))(
+          rules.findIndex(rule => rule.pattern === rule.pattern),
+        ),
       },
     };
   });

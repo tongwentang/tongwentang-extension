@@ -42,7 +42,7 @@ const createBrowserActionProperties: () => menus.CreateProperties[] = () => [
   },
 ];
 
-const reqConvertClipboard = (state: BgState, target: LangType) => () => convertClipboard(state, target);
+const reqConvertClipboard = (state: BgState, target: LangType) => () => void convertClipboard(state, target);
 
 const createClipboardProperties: (s: BgState) => menus.CreateProperties[] = state => [
   {
