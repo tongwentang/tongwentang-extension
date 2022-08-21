@@ -55,7 +55,7 @@ module.exports = function (env, argv) {
           { from: './node_modules/spectre.css/dist/spectre-exp.min.css' },
           { from: './src/icons', to: 'icons' },
           {
-            from: './node_modules/tongwen-core/dictionaries/**/*',
+            from: './dict/**/*',
             to: 'dictionaries/[name][ext]',
           },
         ],
