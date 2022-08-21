@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.5](https://github.com/tongwentang/tongwentang-extension/compare/2.1.4...2.1.5) (2022-08-21)
+
+### Bug Fixes
+
+- fix types errors ([c9ff4f4](https://github.com/tongwentang/tongwentang-extension/commit/c9ff4f4e89557cc0cd83decb90e71702495dda0a))
+
 ## [2.1.4](https://github.com/tongwentang/tongwentang-extension/compare/2.1.3...2.1.4) (2021-05-29)
 
 ### Bug Fixes
