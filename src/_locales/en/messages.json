@@ -116,8 +116,8 @@
   "MSG_TARGET": {
     "message": "Target"
   },
-  "MSG_PATTERN": {
-    "message": "Pattern"
+  "MSG_URL_REGEX": {
+    "message": "URL or RegExp"
   },
   "MSG_ADD": {
     "message": "Add"

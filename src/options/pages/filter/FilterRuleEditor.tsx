@@ -35,7 +35,7 @@ export const FilterRuleEditor: FC<{
     <div className="columns">
       <div className="column">
         <div className="form-group">
-          <label className="form-label">{i18n.getMessage('MSG_PATTERN')}</label>
+          <label className="form-label">{i18n.getMessage('MSG_URL_REGEX')}</label>
           <input
             type="text"
             className={`form-input ${isError ? 'is-error' : ''}`}

@@ -20,7 +20,7 @@ export const FilterRules: FC<{
       <thead>
         <tr>
           <th>#</th>
-          <th>{i18n.getMessage('MSG_PATTERN')}</th>
+          <th>{i18n.getMessage('MSG_URL_REGEX')}</th>
           <th>{i18n.getMessage('MSG_TARGET')}</th>
           <th />
           <th />

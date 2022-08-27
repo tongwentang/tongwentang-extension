@@ -116,8 +116,8 @@
   "MSG_TARGET": {
     "message": "目標"
   },
-  "MSG_PATTERN": {
-    "message": "型樣"
+  "MSG_URL_REGEX": {
+    "message": "網址或正規表示"
   },
   "MSG_ADD": {
     "message": "加入"
