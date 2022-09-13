@@ -13,6 +13,7 @@ const mutationOpt: MutationObserverInit = {
 
 export interface CtState {
   zhType: ZhType;
+  updateLang: boolean;
   debugMode: boolean;
   timeoutId: number | undefined;
   mutationOpt: MutationObserverInit;
@@ -21,15 +22,19 @@ export interface CtState {
   converting: Promise<any>;
 }
 
+const getUpdateLang = () => storage.get('general').then(({ general }) => general.updateLang);
 const getDebugMode = () => storage.get('general').then(({ general }) => general.debugMode);
 
 export async function createCtState(): Promise<CtState> {
-  return Promise.all([getDetectLanguage(), getDebugMode()]).then(([zhType, debugMode]) => ({
-    zhType,
-    debugMode,
-    timeoutId: undefined,
-    mutationOpt,
-    mutations: [],
-    converting: Promise.resolve(null),
-  }));
+  return Promise.all([getDetectLanguage(), getUpdateLang(), getDebugMode()]).then(
+    ([zhType, updateLang, debugMode]) => ({
+      zhType,
+      updateLang,
+      debugMode,
+      timeoutId: undefined,
+      mutationOpt,
+      mutations: [],
+      converting: Promise.resolve(null),
+    }),
+  );
 }

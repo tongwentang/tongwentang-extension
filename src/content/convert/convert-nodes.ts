@@ -14,7 +14,7 @@ export const convertNode: SConvertNode = async (state, target, nodes) => {
         .then(() => convertNodesText(target, parsedNodes))
         .then(texts => {
           state.mutationObserver?.disconnect();
-          updateHtmlLang(document.documentElement, target);
+          state.updateLang && updateHtmlLang(document.documentElement, target);
           updateNodes(parsedNodes, texts);
           state.mutationObserver?.observe(document, state.mutationOpt);
         }));

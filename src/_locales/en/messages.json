@@ -23,6 +23,9 @@
   "MSG_DYNAMIC_CONVERT": {
     "message": "Dynamic Convert"
   },
+  "MSG_UPDATE_LANG": {
+    "message": "Update Page Language (allows the browser to use the appropriate font)"
+  },
   "MSG_DEBUG_MODE": {
     "message": "Debug Mode"
   },

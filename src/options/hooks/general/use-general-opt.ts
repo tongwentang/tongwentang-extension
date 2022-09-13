@@ -21,6 +21,8 @@ export const useGeneralOpt = () => {
 
   const setSpaMode = pipe(getEventChecked, setGeneral('spaMode'));
 
+  const setUpdateLang = pipe(getEventChecked, setGeneral('updateLang'));
+
   const setDebugMode = pipe(getEventChecked, setGeneral('debugMode'));
 
   useEffect(
@@ -43,6 +45,7 @@ export const useGeneralOpt = () => {
     setBrowserAction,
     setDefaultTarget,
     setSpaMode,
+    setUpdateLang,
     setDebugMode,
   };
 };
