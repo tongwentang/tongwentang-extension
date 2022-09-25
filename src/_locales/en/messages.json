@@ -24,7 +24,7 @@
     "message": "Dynamic Convert"
   },
   "MSG_UPDATE_LANG": {
-    "message": "Update Page Language (allows the browser to use the appropriate font)"
+    "message": "Update webpage language attribute (helps the browser display the appropriate font)"
   },
   "MSG_DEBUG_MODE": {
     "message": "Debug Mode"

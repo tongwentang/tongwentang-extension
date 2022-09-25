@@ -5,7 +5,7 @@ import { autoConvertOptions, browserActionOptions, defaultTargetOptions } from '
 import { useGeneralOpt } from '../../hooks/general/use-general-opt';
 
 export const GeneralSettings: FC = () => {
-  const { general, setAutoConvert, setBrowserAction, setDefaultTarget, setSpaMode, setUpdateLang, setDebugMode } =
+  const { general, setAutoConvert, setBrowserAction, setDefaultTarget, setSpaMode, setUpdateLangAttr, setDebugMode } =
     useGeneralOpt();
 
   return (
@@ -43,8 +43,8 @@ export const GeneralSettings: FC = () => {
       <Checkbox
         isSwitch={true}
         label={i18n.getMessage('MSG_UPDATE_LANG')}
-        checked={general.updateLang}
-        onChange={setUpdateLang}
+        checked={general.updateLangAttr}
+        onChange={setUpdateLangAttr}
       />
       <Checkbox
         isSwitch={true}

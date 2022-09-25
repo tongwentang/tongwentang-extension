@@ -1,7 +1,7 @@
 import { LangType, walkNode } from 'tongwen-core';
 import { convertNodesText } from '../services';
 import { CtState } from '../state';
-import { updateHtmlLang } from './update-html-lang';
+import { updateLangAttr } from './update-lang-attr';
 import { updateNodes } from './update-nodes';
 
 type SConvertNode = (state: CtState, target: LangType, nodes: Node[]) => Promise<void>;
@@ -14,8 +14,8 @@ export const convertNode: SConvertNode = async (state, target, nodes) => {
         .then(() => convertNodesText(target, parsedNodes))
         .then(texts => {
           state.mutationObserver?.disconnect();
-          state.updateLang && updateHtmlLang(document.documentElement, target);
           updateNodes(parsedNodes, texts);
+          state.updateLangAttr && updateLangAttr(document.documentElement, target);
           state.mutationObserver?.observe(document, state.mutationOpt);
         }));
 };
