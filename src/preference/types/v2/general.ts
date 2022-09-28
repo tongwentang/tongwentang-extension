@@ -10,5 +10,6 @@ export interface PrefGeneral {
   browserAction: BrowserActionOpt;
   defaultTarget: LangType;
   spaMode: boolean;
+  updateLangAttr: boolean;
   debugMode: boolean;
 }

@@ -27,6 +27,7 @@ export function prefFxV1ToV2(v1Pref: PrefFxV1): PrefV2 {
       browserAction: V1PrefFxActionEnum[v1Pref.iconAction] as BrowserActionOpt,
       defaultTarget: LangType.s2t,
       spaMode: true,
+      updateLangAttr: false,
       debugMode: false,
     },
     menu: {

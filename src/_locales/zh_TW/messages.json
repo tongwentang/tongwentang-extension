@@ -23,6 +23,9 @@
   "MSG_DYNAMIC_CONVERT": {
     "message": "動態轉換"
   },
+  "MSG_UPDATE_LANG": {
+    "message": "同時更新網頁的語言屬性（有助於瀏覽器使用適當的字型）"
+  },
   "MSG_DEBUG_MODE": {
     "message": "偵錯模式"
   },

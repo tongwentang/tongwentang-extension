@@ -33,6 +33,7 @@ export function prefGcV1ToV2(v1Pref: PrefGcV1): PrefV2 {
       browserAction: TargetConverter[v1Pref.iconAction],
       defaultTarget: LangType.s2t,
       spaMode: true,
+      updateLangAttr: false,
       debugMode: false,
     },
     menu: {

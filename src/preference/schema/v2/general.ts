@@ -19,5 +19,6 @@ export const generalSchema: Control<PrefGeneral> = dctrl({
   ),
   defaultTarget: vctrl(vldFn({ type: 'string', required: true, enum: [LangType.s2t, LangType.t2s] }), LangType.s2t),
   spaMode: isBoolean(true),
+  updateLangAttr: isBoolean(false),
   debugMode: isBoolean(false),
 });
