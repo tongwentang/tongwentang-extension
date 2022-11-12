@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/tongwentang/tongwentang-extension/compare/2.1.6...2.2.0) (2022-11-12)
+
+### Features
+
+- update HTML lang attr on convert ([#60](https://github.com/tongwentang/tongwentang-extension/issues/60)) ([907dd94](https://github.com/tongwentang/tongwentang-extension/commit/907dd9462585c9f0c39d6e451b660ae7ad0bae0a))
+
 ### [2.1.6](https://github.com/tongwentang/tongwentang-extension/compare/2.1.5...2.1.6) (2022-08-27)
 
 ### Bug Fixes
