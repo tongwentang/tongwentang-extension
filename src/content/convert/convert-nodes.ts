@@ -15,7 +15,8 @@ export const convertNode: SConvertNode = async (state, target, nodes) => {
         .then(texts => {
           state.mutationObserver?.disconnect();
           updateNodes(parsedNodes, texts);
-          state.updateLangAttr && updateLangAttr(document.documentElement, target);
+          state.updateLangAttr &&
+            document.querySelectorAll<HTMLElement>('[lang|="zh"]').forEach(el => updateLangAttr(el, target));
           state.mutationObserver?.observe(document, state.mutationOpt);
         }));
 };
