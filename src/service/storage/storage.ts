@@ -1,5 +1,5 @@
 import { equals, pick } from 'ramda';
-import browser from 'webextension-polyfill';
+import browser, { Storage } from 'webextension-polyfill';
 import { getDefaultPref } from '../../preference/default';
 import { Pref, PrefKeys, PrefPick } from '../../preference/types/lastest';
 import { safeUpgradePref, validatePref } from '../../preference/upgrade';
@@ -11,7 +11,7 @@ export namespace storage {
 
   // types
   export type StorageAreaName = 'local' | 'managed' | 'sync';
-  export type StorageChange = browser.storage.StorageChange;
+  export type StorageChange = Storage.StorageChange;
   export type StorageChanges = Partial<{ [P in PrefKeys]: storage.StorageChange }>;
   export type StorageListener<A extends StorageAreaName> = (store: StorageChanges, areaName: A) => void;
 

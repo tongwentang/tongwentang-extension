@@ -3,4 +3,4 @@ export enum BrowserType {
   GC = 'GC',
 }
 
-export const BROWSER_TYPE = window.browser ? BrowserType.FX : BrowserType.GC;
+export const BROWSER_TYPE = navigator.userAgent.includes('Firefox') ? BrowserType.FX : BrowserType.GC;

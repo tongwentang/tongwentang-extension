@@ -41,11 +41,11 @@
     "zod": "^3.20.2"
   },
   "devDependencies": {
-    "@types/firefox-webext-browser": "^94.0.1",
     "@types/node": "^16.0.0",
     "@types/ramda": "^0.28.11",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/webextension-polyfill": "^0.10.0",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "clean-webpack-plugin": "^2.0.1",

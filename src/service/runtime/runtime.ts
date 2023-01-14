@@ -1,4 +1,4 @@
-import browser from 'webextension-polyfill';
+import browser, { Runtime } from 'webextension-polyfill';
 
 export namespace runtime {
   export const openOptionsPage = browser.runtime.openOptionsPage;
@@ -6,5 +6,5 @@ export namespace runtime {
   export const sendMessage = browser.runtime.sendMessage;
 
   // types
-  export type MessageSender = browser.runtime.MessageSender;
+  export type MessageSender = Runtime.MessageSender;
 }
