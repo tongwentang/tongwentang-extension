@@ -1,3 +1,3 @@
-import { Schema, validate } from 'jsonschema';
+import { ZodFirstPartySchemaTypes } from 'zod';
 
-export const vldFn = (schema: Schema) => (data: any) => validate(data, schema).valid;
+export const vldFn = (schema: ZodFirstPartySchemaTypes) => (data: any) => schema.safeParse(data).success;

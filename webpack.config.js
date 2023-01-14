@@ -15,7 +15,6 @@ module.exports = function (env, argv) {
   const config = {
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-      fallback: { url: require.resolve('url/') }, // for jsonschema
     },
 
     devtool: isProd ? false : 'source-map',
