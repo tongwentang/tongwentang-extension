@@ -8,7 +8,7 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v3
+      - uses: actions/stale@v7
         with:
           days-before-stale: 30
           days-before-close: 3
@@ -16,4 +16,4 @@ jobs:
           stale-pr-message: 'Inactive in 30 days. 30 天沒有動靜。'
           close-issue-message: 'Close inactive issue. 關閉不活躍 issue 。'
           close-pr-message: 'Close inactive PR. 關閉不活躍 PR 。'
-          any-of-labels: question,invalid
+          any-of-issue-labels: question,invalid
