@@ -38,7 +38,7 @@
     "spectre.css": "^0.5.1",
     "tongwen-core": "^4.1.1",
     "webextension-polyfill": "^0.10.0",
-    "zod": "^3.20.2"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@types/node": "^16.0.0",
