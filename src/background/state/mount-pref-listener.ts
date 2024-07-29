@@ -1,4 +1,3 @@
-import { evolve } from 'ramda';
 import { BgState, updateLogger } from '.';
 import { patchRulesRegExp } from '../../preference/filter-rule';
 import { Pref } from '../../preference/types/lastest';
@@ -30,7 +29,8 @@ export function mountPrefListener(state: BgState) {
             break;
           case 'filter':
             if (change?.newValue) {
-              state.pref.filter = evolve({ rules: patchRulesRegExp })(change!.newValue as PrefFilter);
+              const filter = change!.newValue as PrefFilter;
+              state.pref.filter = Object.assign(filter, { ...filter, rules: patchRulesRegExp(filter.rules) });
             }
             break;
           case 'word':

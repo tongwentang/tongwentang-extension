@@ -1,4 +1,3 @@
-import { isNil } from 'ramda';
 import { LangType } from 'tongwen-core';
 import { BgState } from '../../background/state';
 import { PrefMenuGroupKeys, PrefMenuOptions } from '../../preference/types/v2';
@@ -46,7 +45,7 @@ function createSubMenu(parentId: MenuId, funcKey: PrefMenuGroupKeys, settings: P
 }
 
 export async function createMenu(state: BgState): Promise<void> {
-  !isNil(state.menuId) && (await menus.remove(state.menuId));
+  !(state.menuId == null) && (await menus.remove(state.menuId));
 
   const topMenuContexts = getTopMenuContexts(state.pref.menu.group);
 

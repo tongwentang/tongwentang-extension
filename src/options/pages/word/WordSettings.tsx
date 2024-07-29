@@ -1,7 +1,6 @@
-import { assoc, assocPath, dissocPath, pipe } from 'ramda';
 import { FC, Fragment, useCallback, useState } from 'react';
 import { LangType } from 'tongwen-core';
-import { PrefWord, PrefWordDefault } from '../../../preference/types/v2';
+import { PrefWordDefault } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
 import { createNoti } from '../../../service/notification/create-noti';
 import { storage } from '../../../service/storage/storage';
@@ -14,13 +13,9 @@ import { WordEntryList } from './WordEntryList';
 
 export const WordSettings: FC = () => {
   const { word, setWord } = useWord();
-
-  const setDefault = useCallback((w: PrefWordDefault) => setWord(assoc('default', w)), [setWord]);
-
+  const setDefault = useCallback((def: PrefWordDefault) => setWord(word => ({ ...word, default: def })), [setWord]);
   const [tab, setTab] = useState<LangType | null>(null);
-
   const [toEdit, setToEdit] = useState<[string, string]>(['', '']);
-
   const [isModal, { on, off }] = useToggle(false);
 
   const edit = useCallback(
@@ -33,17 +28,37 @@ export const WordSettings: FC = () => {
 
   const update = useCallback(
     ([key, value]: [string, string]) => {
-      setWord(pipe(dissocPath<PrefWord>(['custom', tab!, toEdit[0]]), assocPath(['custom', tab!, key], value)));
+      if (!tab) return;
+
+      setWord(pw => {
+        const newPw = { ...pw };
+        const map = new Map(Object.entries(pw.custom[tab]));
+
+        toEdit[0] !== '' && map.delete(toEdit[0]);
+        map.set(key, value);
+        newPw.custom[tab] = Object.fromEntries(map);
+        return newPw;
+      });
+
       off();
     },
-    [toEdit, word],
+    [tab, toEdit],
   );
 
   const remove = useCallback(
     (key: string) => {
-      setWord(dissocPath<PrefWord>(['custom', tab!, key]));
+      if (!tab) return;
+
+      setWord(pw => {
+        const newPw = { ...pw };
+        const map = new Map(Object.entries(pw.custom[tab]));
+
+        map.delete(key);
+        newPw.custom[tab] = Object.fromEntries(map);
+        return newPw;
+      });
     },
-    [word, setWord, tab],
+    [tab],
   );
 
   const save = useCallback(

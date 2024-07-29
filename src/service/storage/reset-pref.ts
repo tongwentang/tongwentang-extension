@@ -1,4 +1,3 @@
-import { always, evolve } from 'ramda';
 import { getDefaultPref } from '../../preference/default';
 import { i18n } from '../i18n/i18n';
 import { createNoti } from '../notification/create-noti';
@@ -19,7 +18,7 @@ const extractCustom = () => storage.get().then(({ word: { custom } }) => custom)
 export const confirmResetPrefKeep = async (): Promise<void> =>
   confirmReset(i18n.getMessage('MSG_CONFIRM_RESET'))
     ? extractCustom()
-        .then(custom => evolve({ word: { custom: always(custom) } })(getDefaultPref()))
+        .then(custom => (pref => ((pref.word.custom = custom), pref))(getDefaultPref()))
         .then(storage.set)
         .then(() => void createNoti(i18n.getMessage('MSG_PREF_RESET_COMPLETED')))
         .catch(() => void createNoti(i18n.getMessage('MSG_PREF_RESET_FAILED')))

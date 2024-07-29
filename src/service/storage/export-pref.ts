@@ -1,4 +1,3 @@
-import { tap } from 'ramda';
 import { safeUpgradePref } from '../../preference/upgrade';
 import { downloads } from '../downloads/downloads';
 import { i18n } from '../i18n/i18n';
@@ -14,7 +13,7 @@ export const exportPref = () =>
     .then(pref => safeUpgradePref(BROWSER_TYPE, pref))
     .then(pref => new Blob([JSON.stringify(pref, null, 2)], { type: 'application/json;charset=utf-8' }))
     .then(blob => URL.createObjectURL(blob))
-    .then(tap(delayRevoke))
+    .then(url => (delayRevoke(url), url))
     .then(url => ({ url, filename: 'tongwentang-pref.json', saveAs: true }))
     .then(downloads.download)
     .catch(() => createNoti(i18n.getMessage('MSG_EXPORT_FAILED')));

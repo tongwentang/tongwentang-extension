@@ -1,5 +1,5 @@
-import { assoc, pipe } from 'ramda';
 import { LangType } from 'tongwen-core';
+import { Menus } from 'webextension-polyfill';
 import { isUrlPattern } from '../../preference/filter-rule';
 import { FilterTarget } from '../../preference/types/v2';
 import { i18n } from '../../service/i18n/i18n';
@@ -60,11 +60,8 @@ export async function createBrowserActionMenus(state: BgState): Promise<(string 
   const browserActionMenuItems: menus.CreateProperties[] = [
     ...createBrowserActionProperties(),
     ...createClipboardProperties(state),
-  ].map(
-    pipe(
-      assoc<menus.ContextType[], 'contexts'>('contexts', ['browser_action']),
-      assoc<menus.ItemType, 'type'>('type', 'normal'),
-    ),
+  ].map(item =>
+    Object.assign(item, { type: 'normal', contexts: ['browser_action'] } satisfies Menus.CreateCreatePropertiesType),
   );
 
   return Promise.all(browserActionMenuItems.map(item => menus.create(item)));

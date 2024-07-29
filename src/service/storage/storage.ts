@@ -1,4 +1,3 @@
-import { equals, pick } from 'ramda';
 import browser, { Storage } from 'webextension-polyfill';
 import { getDefaultPref } from '../../preference/default';
 import { Pref, PrefKeys, PrefPick } from '../../preference/types/lastest';
@@ -29,18 +28,18 @@ export namespace storage {
    */
   export const reset = (pref?: Pref) => local.clear().then(() => local.set(pref || getDefaultPref()));
 
-  export const listen = <T extends PrefKeys, A extends StorageAreaName>(
-    listener: StorageListener<A>,
-    opt: Partial<{ keys: T[]; areaName: A[] }> = {},
+  export const listen = <PKey extends PrefKeys, AreaName extends StorageAreaName>(
+    listener: StorageListener<AreaName>,
+    opt: Partial<{ keys: PKey[]; areaName: AreaName[] }> = {},
   ): (() => void) => {
     const wrapper = (changes: StorageChanges, areaName: StorageAreaName) => {
       opt.areaName && !opt.areaName.includes(areaName as any)
         ? null
         : !Array.isArray(opt.keys)
-        ? listener(changes, areaName as any)
-        : !equals({} as any, pick(opt.keys, changes))
-        ? listener(changes, areaName as any)
-        : null;
+          ? listener(changes, areaName as any)
+          : Object.keys(changes).some(key => opt.keys?.includes(key as PKey))
+            ? listener(changes, areaName as any)
+            : null;
     };
 
     onChanged.addListener(wrapper as any);

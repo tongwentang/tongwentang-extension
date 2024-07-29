@@ -1,30 +1,30 @@
-import { assocPath, pipe } from 'ramda';
-import { FC, Fragment, useCallback } from 'react';
+import { ChangeEventHandler, FC, Fragment, useCallback } from 'react';
 import { PrefWordDefault } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
 import { Button } from '../../components';
 import { Checkbox } from '../../components/forms';
-import { getEventChecked } from '../../shared/event-value';
-
-const scPath = ['s2t', 'char'];
-const spPath = ['s2t', 'phrase'];
-const tcPath = ['t2s', 'char'];
-const tpPath = ['t2s', 'phrase'];
 
 export const WordDefaultSettings: FC<{
   value: PrefWordDefault;
   onChange: (d: PrefWordDefault) => void;
   onSave: () => Promise<any>;
 }> = ({ value: defWord, onChange: handleChange, onSave: handleSave }) => {
-  const upWord = useCallback(
-    (path: string[]) => (state: boolean) => handleChange(assocPath(path, state, defWord)),
-    [defWord],
+  const upSc: ChangeEventHandler<HTMLInputElement> = useCallback(
+    e => ((d, char) => handleChange(((d.s2t = { ...d.s2t, char }), d)))({ ...defWord }, e.currentTarget.checked),
+    [handleChange, defWord],
   );
-
-  const upSc = useCallback(pipe(getEventChecked, upWord(scPath)), [upWord]);
-  const upSp = useCallback(pipe(getEventChecked, upWord(spPath)), [upWord]);
-  const upTc = useCallback(pipe(getEventChecked, upWord(tcPath)), [upWord]);
-  const upTp = useCallback(pipe(getEventChecked, upWord(tpPath)), [upWord]);
+  const upSp: ChangeEventHandler<HTMLInputElement> = useCallback(
+    e => ((d, phrase) => handleChange(((d.s2t = { ...d.s2t, phrase }), d)))({ ...defWord }, e.currentTarget.checked),
+    [handleChange, defWord],
+  );
+  const upTc: ChangeEventHandler<HTMLInputElement> = useCallback(
+    e => ((d, char) => handleChange(((d.t2s = { ...d.t2s, char }), d)))({ ...defWord }, e.currentTarget.checked),
+    [handleChange, defWord],
+  );
+  const upTp: ChangeEventHandler<HTMLInputElement> = useCallback(
+    e => ((d, phrase) => handleChange(((d.t2s = { ...d.t2s, phrase }), d)))({ ...defWord }, e.currentTarget.checked),
+    [handleChange, defWord],
+  );
 
   return (
     <Fragment>

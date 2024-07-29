@@ -1,22 +1,41 @@
-import { assocPath, pipe } from 'ramda';
-import { useEffect, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 import { LangType } from 'tongwen-core';
 import { getDefaultPref } from '../../../preference/default';
-import { PrefMenu, PrefMenuGroup } from '../../../preference/types/v2';
 import { storage } from '../../../service/storage/storage';
-import { getEventChecked } from '../../shared/event-value';
 
 export const useMenu = () => {
   const [menu, set] = useState(getDefaultPref().menu);
 
-  const setMenu = (path: [keyof PrefMenu, (keyof PrefMenuGroup)?, LangType?]) => (state: boolean) =>
-    storage.set({ menu: assocPath(path as string[], state, menu) });
-
-  const setMenuEnable = pipe(getEventChecked, setMenu(['enabled']));
-  const setWebS2t = pipe(getEventChecked, setMenu(['group', 'webpage', LangType.s2t]));
-  const setWebT2s = pipe(getEventChecked, setMenu(['group', 'webpage', LangType.t2s]));
-  const setTextS2t = pipe(getEventChecked, setMenu(['group', 'textarea', LangType.s2t]));
-  const setTextT2s = pipe(getEventChecked, setMenu(['group', 'textarea', LangType.t2s]));
+  const setMenuEnable: ChangeEventHandler<HTMLInputElement> = e =>
+    storage.set({ menu: { ...menu, enabled: e.currentTarget.checked } });
+  const setWebS2t: ChangeEventHandler<HTMLInputElement> = e =>
+    storage.set({
+      menu: {
+        ...menu,
+        group: { ...menu.group, webpage: { ...menu.group.webpage, [LangType.s2t]: e.currentTarget.checked } },
+      },
+    });
+  const setWebT2s: ChangeEventHandler<HTMLInputElement> = e =>
+    storage.set({
+      menu: {
+        ...menu,
+        group: { ...menu.group, webpage: { ...menu.group.webpage, [LangType.t2s]: e.currentTarget.checked } },
+      },
+    });
+  const setTextS2t: ChangeEventHandler<HTMLInputElement> = e =>
+    storage.set({
+      menu: {
+        ...menu,
+        group: { ...menu.group, textarea: { ...menu.group.textarea, [LangType.s2t]: e.currentTarget.checked } },
+      },
+    });
+  const setTextT2s: ChangeEventHandler<HTMLInputElement> = e =>
+    storage.set({
+      menu: {
+        ...menu,
+        group: { ...menu.group, textarea: { ...menu.group.textarea, [LangType.t2s]: e.currentTarget.checked } },
+      },
+    });
 
   useEffect(() => storage.listen(changes => set(changes.menu?.newValue), { keys: ['menu'], areaName: ['local'] }), []);
 

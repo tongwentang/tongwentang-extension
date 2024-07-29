@@ -14,8 +14,8 @@ export function getTopMenuContexts({ textarea, webpage }: PrefMenuGroup): menus.
   return hasEditable && hasOther
     ? [...menus.ContextOnAll, ...menus.ContextOnEditable]
     : hasEditable
-    ? menus.ContextOnEditable
-    : hasOther
-    ? menus.ContextOnAll
-    : [];
+      ? menus.ContextOnEditable
+      : hasOther
+        ? menus.ContextOnAll
+        : [];
 }

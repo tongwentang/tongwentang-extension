@@ -1,4 +1,3 @@
-import { dec, eqProps, findIndex, inc, move, prepend, remove, update } from 'ramda';
 import { Reducer, useEffect, useReducer, useState } from 'react';
 import { getDefaultPref } from '../../../preference/default';
 import { PrefFilterRule } from '../../../preference/types/v2';
@@ -13,21 +12,27 @@ export type UseFilterRuleAction =
 const reducer: Reducer<PrefFilterRule[], UseFilterRuleAction> = (rules, action) => {
   switch (action.type) {
     case 'ADD':
-      return prepend(action.payload, rules);
+      return [action.payload, ...rules];
     case 'UPDATE':
-      return update(findIndex(eqProps('id', action.payload), rules), action.payload, rules);
+      return Object.assign([...rules], { [rules.findIndex(r => r.id === action.payload.id)]: action.payload });
     case 'DELETE':
-      return remove(findIndex(eqProps('id', action.payload), rules), 1, rules);
+      return rules.filter(r => r.id !== action.payload.id);
     case 'UP':
-      return move(action.payload, dec(action.payload), rules);
+      return Object.assign([...rules], {
+        [action.payload - 1]: rules[action.payload],
+        [action.payload]: rules[action.payload - 1],
+      });
     case 'DOWN':
-      return move(action.payload, inc(action.payload), rules);
+      return Object.assign([...rules], {
+        [action.payload]: rules[action.payload + 1],
+        [action.payload + 1]: rules[action.payload],
+      });
     case 'RESET':
       return action.payload;
   }
 };
 
-export const useFilterRules = (org: PrefFilterRule[]) => {
+const useFilterRules = (org: PrefFilterRule[]) => {
   const [rules, setRules] = useReducer<Reducer<PrefFilterRule[], UseFilterRuleAction>>(reducer, org);
 
   return { rules, setRules };
@@ -35,7 +40,6 @@ export const useFilterRules = (org: PrefFilterRule[]) => {
 
 export const useFilter = () => {
   const [enabled, setEnable] = useState(getDefaultPref().filter.enabled);
-
   const { rules, setRules } = useFilterRules(getDefaultPref().filter.rules);
 
   useEffect(() => {

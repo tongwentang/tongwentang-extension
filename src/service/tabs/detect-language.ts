@@ -1,4 +1,3 @@
-import { toLower } from 'ramda';
 import { tabs } from './tabs';
 import { chsTypes, chtTypes, ZhType } from './tabs.constant';
 
@@ -8,7 +7,7 @@ const langToZhtype = (lang: string): ZhType =>
 export const detectLanguage = (tabId?: number): Promise<ZhType> =>
   tabs
     .detectLanguage(tabId)
-    .then(toLower)
+    .then(lang => lang.toLowerCase())
     .then(langToZhtype)
     // INFO: some browsers may fail with detect language api
     .catch(() => ZhType.und);

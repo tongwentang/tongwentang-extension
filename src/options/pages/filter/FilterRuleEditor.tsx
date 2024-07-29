@@ -1,5 +1,4 @@
-import { assoc } from 'ramda';
-import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
+import { ChangeEventHandler, FC, useCallback, useEffect, useState } from 'react';
 import { isPatternValid } from '../../../preference/filter-rule';
 import { FilterTarget, PrefFilterRule } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
@@ -17,13 +16,13 @@ export const FilterRuleEditor: FC<{
 
   const [isError, setError] = useState(false);
 
-  const updatePattern = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => setRule(assoc('pattern', e.currentTarget.value)),
+  const updatePattern: ChangeEventHandler<HTMLInputElement> = useCallback(
+    e => (pattern => setRule(rule => ({ ...rule, pattern })))(e.currentTarget.value),
     [],
   );
 
-  const updateTarget = useCallback(
-    (e: ChangeEvent<HTMLSelectElement>) => setRule(assoc('target', e.currentTarget.value as FilterTarget)),
+  const updateTarget: ChangeEventHandler<HTMLSelectElement> = useCallback(
+    e => (target => setRule(rule => ({ ...rule, target })))(e.currentTarget.value as FilterTarget),
     [],
   );
 

@@ -1,29 +1,24 @@
-import { pipe } from 'ramda';
-import { useEffect, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
+import { LangType } from 'tongwen-core';
 import { getDefaultPref } from '../../../preference/default';
-import { PrefGeneral } from '../../../preference/types/v2';
+import { AutoConvertOpt, BrowserActionOpt, PrefGeneral } from '../../../preference/types/v2';
 import { storage } from '../../../service/storage/storage';
-import { getEventChecked, getSelectEventValue } from '../../shared/event-value';
 
 export const useGeneralOpt = () => {
   const [general, set] = useState<PrefGeneral>(getDefaultPref().general);
 
-  const setGeneral =
-    <T extends keyof PrefGeneral>(key: T) =>
-    (value: PrefGeneral[T]) =>
-      storage.set({ general: { ...general, [key]: value } });
-
-  const setAutoConvert = pipe(getSelectEventValue, setGeneral('autoConvert'));
-
-  const setBrowserAction = pipe(getSelectEventValue, setGeneral('browserAction'));
-
-  const setDefaultTarget = pipe(getSelectEventValue, setGeneral('defaultTarget'));
-
-  const setSpaMode = pipe(getEventChecked, setGeneral('spaMode'));
-
-  const setUpdateLangAttr = pipe(getEventChecked, setGeneral('updateLangAttr'));
-
-  const setDebugMode = pipe(getEventChecked, setGeneral('debugMode'));
+  const setGeneral = <T extends keyof PrefGeneral>(key: T, value: PrefGeneral[T]) =>
+    storage.set({ general: { ...general, [key]: value } });
+  const setAutoConvert: ChangeEventHandler<HTMLSelectElement> = e =>
+    void setGeneral('autoConvert', e.currentTarget.value as AutoConvertOpt);
+  const setBrowserAction: ChangeEventHandler<HTMLSelectElement> = e =>
+    void setGeneral('browserAction', e.currentTarget.value as BrowserActionOpt);
+  const setDefaultTarget: ChangeEventHandler<HTMLSelectElement> = e =>
+    void setGeneral('defaultTarget', e.currentTarget.value as LangType);
+  const setSpaMode: ChangeEventHandler<HTMLInputElement> = e => void setGeneral('spaMode', e.currentTarget.checked);
+  const setUpdateLangAttr: ChangeEventHandler<HTMLInputElement> = e =>
+    void setGeneral('updateLangAttr', e.currentTarget.checked);
+  const setDebugMode: ChangeEventHandler<HTMLInputElement> = e => void setGeneral('debugMode', e.currentTarget.checked);
 
   useEffect(
     () =>

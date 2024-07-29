@@ -1,4 +1,3 @@
-import { evolve } from 'ramda';
 import { Converter } from 'tongwen-core';
 import { patchRulesRegExp } from '../../preference/filter-rule';
 import { Pref } from '../../preference/types/lastest';
@@ -14,7 +13,8 @@ export interface BgState {
   logger: Logger;
 }
 
-const patchRegExp: (pref: Pref) => Pref = evolve({ filter: { rules: patchRulesRegExp } });
+const patchRegExp: (pref: Pref) => Pref = pref =>
+  Object.assign(pref, { filter: Object.assign(pref.filter, { rules: patchRulesRegExp(pref.filter.rules) }) });
 
 export const updateLogger = (state: BgState) => {
   state.logger = loggerWith(state.pref.general.debugMode);

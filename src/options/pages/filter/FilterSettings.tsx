@@ -1,5 +1,4 @@
-import { pipe } from 'ramda';
-import { FC, Fragment, useCallback, useState } from 'react';
+import { ChangeEventHandler, FC, Fragment, useCallback, useState } from 'react';
 import { createFilterRule } from '../../../preference/filter-rule';
 import { PrefFilterRule } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
@@ -8,14 +7,16 @@ import { storage } from '../../../service/storage/storage';
 import { Button, Checkbox, Modal } from '../../components';
 import { useFilter } from '../../hooks/filter';
 import { useToggle } from '../../hooks/state/use-toggle';
-import { getEventChecked } from '../../shared/event-value';
 import { FilterRuleEditor } from './FilterRuleEditor';
 import { FilterRules } from './FilterRules';
 
 export const FilterSettings: FC = () => {
   const { enabled, setEnable, rules, setRules } = useFilter();
 
-  const handleEnabledChange = useCallback(pipe(getEventChecked, setEnable), [setEnable]);
+  const handleEnabledChange: ChangeEventHandler<HTMLInputElement> = useCallback(
+    e => setEnable(e.currentTarget.checked),
+    [setEnable],
+  );
 
   const [isModal, { on, off }] = useToggle(false);
 
