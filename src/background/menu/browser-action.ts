@@ -1,6 +1,6 @@
 import { LangType } from 'tongwen-core';
 import { Menus } from 'webextension-polyfill';
-import { isUrlPattern } from '../../preference/filter-rule';
+import { isUrlLike } from '../../preference/filter-rule';
 import { FilterTarget } from '../../preference/types/v2';
 import { i18n } from '../../service/i18n/i18n';
 import { menus } from '../../service/menu/menus';
@@ -14,7 +14,7 @@ import { BgState } from '../state';
 // TODO: handle for none http protocol url
 type AddDomainToRule = (t: FilterTarget) => (i: menus.OnClickData, t: tabs.Tab) => void;
 const addDomainToRules: AddDomainToRule = target => (_, tab) => {
-  isUrlPattern(tab.url!) &&
+  isUrlLike(tab.url!) &&
     addFilterRule({
       target,
       regexp: null,

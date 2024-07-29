@@ -1,5 +1,5 @@
 import { ChangeEventHandler, FC, useCallback, useEffect, useState } from 'react';
-import { isPatternValid } from '../../../preference/filter-rule';
+import { isFilterPatternValid } from '../../../preference/filter-rule';
 import { FilterTarget, PrefFilterRule } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
 import { Button, Select } from '../../components';
@@ -28,7 +28,7 @@ export const FilterRuleEditor: FC<{
 
   const submit = useCallback(() => !isError && handleSubmit(rule), [rule, isError]);
 
-  useEffect(() => void setError(!isPatternValid(rule.pattern)), [rule.pattern]);
+  useEffect(() => void setError(!isFilterPatternValid(rule.pattern)), [rule.pattern]);
 
   return (
     <div className="columns">

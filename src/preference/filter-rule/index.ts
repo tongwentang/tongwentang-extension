@@ -5,15 +5,15 @@ export const REGEXP_PATTERN = /^\/(.+)\/([gimuy]{0,5})$/;
 
 export const DOMAIN_PATTERN = /^[\w-]+\.([\w-]+\.)*[\w-]+$/;
 
-export const isUrlPattern = (pattern: string) => /https?:(\/?\/?)[^\s]+/.test(pattern);
+export const isUrlLike = (pattern: string) => /https?:(\/?\/?)[^\s]+/.test(pattern);
 
-export const isDomain = (pattern: string) => DOMAIN_PATTERN.test(pattern);
+export const isDomainLike = (pattern: string) => DOMAIN_PATTERN.test(pattern);
 
 export const isRegExpLike = (pattern: string) => REGEXP_PATTERN.test(pattern);
 
-export const isPatternValid = (pattern: string) => isDomain(pattern) || isRegExpLike(pattern);
+export const isFilterPatternValid = (pattern: string) => isDomainLike(pattern) || isRegExpLike(pattern);
 
-const createRegExpByRELike = (pattern: string): RegExpMaybe => {
+const createRegExpWithRegexLike = (pattern: string): RegExpMaybe => {
   try {
     const [, body = '', options = ''] = REGEXP_PATTERN.exec(pattern.trim()) || [];
     return new RegExp(body, [...new Set(options)].join(''));
@@ -22,7 +22,7 @@ const createRegExpByRELike = (pattern: string): RegExpMaybe => {
   }
 };
 
-const createRegExpByDomainLike = (pattern: string): RegExpMaybe => {
+const createRegExpWithDomainLike = (pattern: string): RegExpMaybe => {
   try {
     return new RegExp(pattern);
   } catch (error) {
@@ -31,7 +31,7 @@ const createRegExpByDomainLike = (pattern: string): RegExpMaybe => {
 };
 
 export const patternRegExpify = (pattern: string): RegExpMaybe =>
-  isRegExpLike(pattern) ? createRegExpByRELike(pattern) : createRegExpByDomainLike(pattern);
+  isRegExpLike(pattern) ? createRegExpWithRegexLike(pattern) : createRegExpWithDomainLike(pattern);
 
 export const regularOldPattern = (pattern: string) => `/${pattern.replace(/(\W)/g, '\\$1').replace(/\\\*/g, '.*')}/`;
 
