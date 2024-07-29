@@ -1,5 +1,4 @@
-import { BgActSpaMode, BgActType } from '../../service/runtime/interface';
-import { runtime } from '../../service/runtime/runtime';
+import { dispatchBgAction } from '../../service/runtime/background';
 import { CtState } from '../state';
 import { exhaustMutations } from './exhaust-mutations';
 
@@ -15,8 +14,7 @@ const observerFn: ObserverFn = state => mutations => {
 };
 
 export const mountMutationObserver = async (state: CtState): Promise<void> => {
-  const msg: BgActSpaMode = { type: BgActType.SpaMode, payload: true };
-  return runtime.sendMessage(msg).then(({ payload: isSpa }) => {
+  dispatchBgAction({ type: 'SpaMode', payload: undefined }).then(isSpa => {
     if (isSpa) {
       state.mutationObserver = new MutationObserver(observerFn(state));
       state.mutationObserver.observe(document, state.mutationOpt);

@@ -1,6 +1,6 @@
 import { convertNode } from './convert';
 import { mountMutationObserver } from './mutation-observer';
-import { mountRuntimeListener } from './runtime';
+import { mountRuntimeListener } from './runtime/mount-runtime-listener';
 import { getTarget } from './services';
 import { createCtState, CtState } from './state';
 

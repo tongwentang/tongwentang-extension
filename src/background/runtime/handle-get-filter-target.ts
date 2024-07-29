@@ -1,6 +1,5 @@
 import { isRegExpLike } from '../../preference/filter-rule';
 import { FilterTarget, PrefFilterRule } from '../../preference/types/v2';
-import { BgActFilterTarget } from '../../service/runtime/interface';
 import { BgState } from '../state';
 
 const findRule = (rules: PrefFilterRule[], url: URL) =>
@@ -14,9 +13,3 @@ export const getTargetByFilter: GetTargetByFilter = (state, url) => {
 
   return rule ? rule.target : undefined;
 };
-
-type HandleFilterTarget = (s: BgState, r: BgActFilterTarget, u: string) => BgActFilterTarget;
-export const handleGetFilterTarget: HandleFilterTarget = (state, req, url) => ({
-  ...req,
-  payload: getTargetByFilter(state, url),
-});

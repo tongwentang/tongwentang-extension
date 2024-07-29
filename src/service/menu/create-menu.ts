@@ -1,29 +1,32 @@
 import { LangType } from 'tongwen-core';
+import { Menus } from 'webextension-polyfill';
 import { BgState } from '../../background/state';
 import { PrefMenuGroupKeys, PrefMenuOptions } from '../../preference/types/v2';
+import { browser } from '../browser';
 import { i18n } from '../i18n/i18n';
-import { CtAct, CtActTextArea, CtActType, CtActWebPage } from '../runtime/interface';
-import { tabs } from '../tabs/tabs';
+import { ReqAction } from '../runtime/action';
+import { CtActionMap, dispatchCtAction } from '../runtime/content';
 import { getSubMenuContexts, getTopMenuContexts } from './determine-context';
-import { menus } from './menus';
 
 export type MenuId = string | number;
 
-const createOnClickCb = (req: CtAct) => (_: menus.OnClickData, tab: tabs.Tab) =>
-  tab.id && tabs.sendMessage(tab.id, req);
+const createMenuClickHandler =
+  (
+    action: ReqAction<Pick<CtActionMap, 'Textarea' | 'Webpage'>>,
+  ): NonNullable<Menus.CreateCreatePropertiesType['onclick']> =>
+  (_, tab) =>
+    typeof tab.id === 'number' && dispatchCtAction(action, tab.id);
 
-const createOnClickCbBy = (
+const createMenuClickWith = (
   funcKey: PrefMenuGroupKeys,
   target: LangType,
-): ((_: menus.OnClickData, tab: tabs.Tab) => void) => {
+): NonNullable<Menus.CreateCreatePropertiesType['onclick']> => {
   switch (funcKey) {
     case 'textarea': {
-      const req: CtActTextArea = { type: CtActType.Textarea, payload: target };
-      return createOnClickCb(req);
+      return createMenuClickHandler({ type: 'Textarea', payload: target });
     }
     case 'webpage': {
-      const req: CtActWebPage = { type: CtActType.Webpage, payload: target };
-      return createOnClickCb(req);
+      return createMenuClickHandler({ type: 'Webpage', payload: target });
     }
   }
 };
@@ -32,20 +35,20 @@ function createSubMenu(parentId: MenuId, funcKey: PrefMenuGroupKeys, settings: P
   Object.entries(settings)
     .filter(([, enabled]) => enabled)
     .forEach(([target]) => {
-      const menuProps: menus.CreateProperties = {
+      const menuProps: Menus.CreateCreatePropertiesType = {
         parentId,
         type: 'normal',
         title: `${i18n.getMessage(`MSG_${funcKey}_${target}`)}`,
         contexts: getSubMenuContexts(funcKey),
-        onclick: createOnClickCbBy(funcKey, target as LangType),
+        onclick: createMenuClickWith(funcKey, target as LangType),
       };
 
-      menus.create(menuProps);
+      browser.menus.create(menuProps);
     });
 }
 
 export async function createMenu(state: BgState): Promise<void> {
-  !(state.menuId == null) && (await menus.remove(state.menuId));
+  !(state.menuId == null) && (await browser.menus.remove(state.menuId));
 
   const topMenuContexts = getTopMenuContexts(state.pref.menu.group);
 
@@ -53,14 +56,14 @@ export async function createMenu(state: BgState): Promise<void> {
     return;
   }
 
-  const parentMenuProp: menus.CreateProperties = {
+  const parentMenuProp: Menus.CreateCreatePropertiesType = {
     type: 'normal',
     title: i18n.getMessage('MSG_EXT_NAME'),
     contexts: topMenuContexts,
   };
 
   // eslint-disable-next-line require-atomic-updates
-  state.menuId = menus.create(parentMenuProp);
+  state.menuId = browser.menus.create(parentMenuProp);
 
   Object.entries(state.pref.menu.group).forEach(([funcKey, settings]) => {
     createSubMenu(state.menuId!, funcKey as PrefMenuGroupKeys, settings);

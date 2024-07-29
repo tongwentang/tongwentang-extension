@@ -1,6 +1,5 @@
 import { LangType } from 'tongwen-core';
 import { MaybeTransTarget } from '../../preference/types/types';
-import { BgActAutoConvert } from '../../service/runtime/interface';
 import { detectLanguage } from '../../service/tabs/detect-language';
 import { ZhType } from '../../service/tabs/tabs.constant';
 import { BgState } from '../state';
@@ -32,7 +31,3 @@ export const getTargetByAutoConvert: GetTargetByAutoConvert = (state, tabId) => 
       return Promise.resolve(undefined);
   }
 };
-
-type HandleGetAutoConvert = (s: BgState, r: BgActAutoConvert, id: number) => Promise<BgActAutoConvert>;
-export const handleGetAutoConvert: HandleGetAutoConvert = (state, req, tabId) =>
-  getTargetByAutoConvert(state, tabId).then(target => ({ ...req, payload: target }));

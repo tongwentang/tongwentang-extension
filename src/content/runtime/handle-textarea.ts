@@ -1,19 +1,12 @@
 import { LangType } from 'tongwen-core';
-import { BgActConvert, BgActType } from '../../service/runtime/interface';
-import { runtime } from '../../service/runtime/runtime';
+import { dispatchBgAction } from '../../service/runtime/background';
 
 export const handleTextarea = (target: LangType) => {
-  const elm = document.activeElement as HTMLInputElement;
+  const elm = document.activeElement;
 
-  if (elm && ['INPUT', 'TEXTAREA'].includes(elm.nodeName)) {
-    const msg: BgActConvert = {
-      type: BgActType.Convert,
-      payload: { target, text: elm.value },
-    };
-
-    runtime
-      .sendMessage(msg)
-      .then(({ payload: { text } }: BgActConvert) => text)
-      .then(converted => (elm.value = converted));
+  if (elm && (elm instanceof HTMLInputElement || elm instanceof HTMLTextAreaElement)) {
+    return dispatchBgAction({ type: 'Convert', payload: { target, text: elm.value } }).then(
+      converted => void (elm.value = converted),
+    );
   }
 };
