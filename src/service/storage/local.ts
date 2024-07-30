@@ -1,10 +1,9 @@
 import { Pref } from '../../preference/types/lastest';
 import { PrefFilterRule } from '../../preference/types/v2';
-import { storage } from './storage';
+import { getStorage, setStorage } from './storage';
 
 export type StoreReducer = (store: Pref) => Partial<Pref>;
-export const patchLocalStorage = (reducer: StoreReducer): Promise<void> =>
-  storage.get().then(reducer).then(storage.set);
+export const patchLocalStorage = (reducer: StoreReducer): Promise<void> => getStorage().then(reducer).then(setStorage);
 
 export const addFilterRule = (rule: PrefFilterRule): Promise<void> => {
   return patchLocalStorage(({ filter: { rules, ...rest } }) => ({

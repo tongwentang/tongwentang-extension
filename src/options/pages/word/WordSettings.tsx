@@ -3,7 +3,7 @@ import { LangType } from 'tongwen-core';
 import { PrefWordDefault } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
 import { createNoti } from '../../../service/notification/create-noti';
-import { storage } from '../../../service/storage/storage';
+import { setStorage } from '../../../service/storage/storage';
 import { Button, Divider, Modal } from '../../components';
 import { useToggle } from '../../hooks/state/use-toggle';
 import { useWord } from '../../hooks/word/use-word';
@@ -62,7 +62,7 @@ export const WordSettings: FC = () => {
   );
 
   const save = useCallback(
-    () => storage.set({ word }).then(() => createNoti(i18n.getMessage('MSG_UPDATE_COMPLETED'))),
+    () => setStorage({ word }).then(() => createNoti(i18n.getMessage('MSG_UPDATE_COMPLETED'))),
     [word],
   );
 

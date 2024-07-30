@@ -2,7 +2,7 @@ import { Converter } from 'tongwen-core';
 import { patchRulesRegExp } from '../../preference/filter-rule';
 import { Pref } from '../../preference/types/lastest';
 import { MenuId } from '../../service/menu/create-menu';
-import { storage } from '../../service/storage/storage';
+import { initialStorage } from '../../service/storage/storage';
 import { Logger, loggerWith } from '../../utilities';
 import { getConverter } from '../converter';
 
@@ -21,7 +21,6 @@ export const updateLogger = (state: BgState) => {
 };
 
 export const createBgState = async (): Promise<BgState> =>
-  storage
-    .initial()
+  initialStorage()
     .then(pref => Promise.all([patchRegExp(pref), getConverter(pref.word)]))
     .then(([pref, converter]) => ({ pref, converter, logger: loggerWith(pref.general.debugMode) }));

@@ -1,21 +1,22 @@
 import { PrefMenuGroup, PrefMenuGroupKeys, PrefMenuOptions } from '../../preference/types/v2';
-import { menus } from './menus';
+import type { browser } from '../browser';
+import { ContextOnAll, ContextOnEditable } from './menus';
 
 const hasEnabled = (options: PrefMenuOptions) => options.s2t || options.t2s;
 
-export function getSubMenuContexts(prefKey: PrefMenuGroupKeys): menus.ContextType[] {
-  return prefKey === 'textarea' ? menus.ContextOnEditable : menus.ContextOnAll;
+export function getSubMenuContexts(prefKey: PrefMenuGroupKeys): browser.Menus.ContextType[] {
+  return prefKey === 'textarea' ? ContextOnEditable : ContextOnAll;
 }
 
-export function getTopMenuContexts({ textarea, webpage }: PrefMenuGroup): menus.ContextType[] {
+export function getTopMenuContexts({ textarea, webpage }: PrefMenuGroup): browser.Menus.ContextType[] {
   const hasEditable = hasEnabled(textarea);
   const hasOther = hasEnabled(webpage);
 
   return hasEditable && hasOther
-    ? [...menus.ContextOnAll, ...menus.ContextOnEditable]
+    ? [...ContextOnAll, ...ContextOnEditable]
     : hasEditable
-      ? menus.ContextOnEditable
+      ? ContextOnEditable
       : hasOther
-        ? menus.ContextOnAll
+        ? ContextOnAll
         : [];
 }

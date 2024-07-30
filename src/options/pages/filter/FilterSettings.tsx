@@ -3,7 +3,7 @@ import { createFilterRule } from '../../../preference/filter-rule';
 import { PrefFilterRule } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
 import { createNoti } from '../../../service/notification/create-noti';
-import { storage } from '../../../service/storage/storage';
+import { setStorage } from '../../../service/storage/storage';
 import { Button, Checkbox, Modal } from '../../components';
 import { useFilter } from '../../hooks/filter';
 import { useToggle } from '../../hooks/state/use-toggle';
@@ -47,7 +47,7 @@ export const FilterSettings: FC = () => {
   );
 
   const save = useCallback(
-    () => storage.set({ filter: { enabled, rules } }).then(() => createNoti(i18n.getMessage('MSG_UPDATE_COMPLETED'))),
+    () => setStorage({ filter: { enabled, rules } }).then(() => createNoti(i18n.getMessage('MSG_UPDATE_COMPLETED'))),
     [enabled, rules],
   );
 

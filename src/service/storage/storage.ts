@@ -4,54 +4,50 @@ import { Pref, PrefKeys, PrefPick } from '../../preference/types/lastest';
 import { safeUpgradePref, validatePref } from '../../preference/upgrade';
 import { BROWSER_TYPE } from '../types';
 
-export namespace storage {
-  const local = browser.storage.local;
-  const onChanged = browser.storage.onChanged;
+type StorageAreaName = Exclude<keyof Storage.Static, 'onChanged'>;
+type StorageChanges = Partial<{ [P in PrefKeys]: Storage.StorageChange }>;
+type StorageListener<A extends StorageAreaName> = (store: StorageChanges, areaName: A) => void;
 
-  // types
-  export type StorageAreaName = 'local' | 'managed' | 'sync';
-  export type StorageChange = Storage.StorageChange;
-  export type StorageChanges = Partial<{ [P in PrefKeys]: storage.StorageChange }>;
-  export type StorageListener<A extends StorageAreaName> = (store: StorageChanges, areaName: A) => void;
+const updatePrefTime = (pref: Partial<Pref>): Partial<Pref> => ({ ...pref, meta: { update: Date.now() } });
 
-  // custom
-  const updatePrefTime = (pref: Partial<Pref>): Partial<Pref> => ({ ...pref, meta: { update: Date.now() } });
+export const getStorage = <T extends PrefKeys>(
+  keys?: T,
+): Promise<typeof keys extends undefined ? Pref : PrefPick<T>> => {
+  return browser.storage.local.get(keys) as any;
+};
 
-  export const get = <T extends PrefKeys>(keys?: T): Promise<typeof keys extends undefined ? Pref : PrefPick<T>> => {
-    return local.get(keys) as any;
-  };
+export const setStorage = (data: Partial<Pref>): Promise<void> => browser.storage.local.set(updatePrefTime(data));
 
-  export const set = (data: Partial<Pref>): Promise<void> => local.set(updatePrefTime(data));
+/**
+ * reset pref, if undefined or null given, reset to default pref
+ */
+export const resetStorage = (pref?: Pref) => {
+  return browser.storage.local.clear().then(() => browser.storage.local.set(pref || getDefaultPref()));
+};
 
-  /**
-   * reset pref, if undefined or null given, reset to default pref
-   */
-  export const reset = (pref?: Pref) => local.clear().then(() => local.set(pref || getDefaultPref()));
-
-  export const listen = <PKey extends PrefKeys, AreaName extends StorageAreaName>(
-    listener: StorageListener<AreaName>,
-    opt: Partial<{ keys: PKey[]; areaName: AreaName[] }> = {},
-  ): (() => void) => {
-    const wrapper = (changes: StorageChanges, areaName: StorageAreaName) => {
-      opt.areaName && !opt.areaName.includes(areaName as any)
-        ? null
-        : !Array.isArray(opt.keys)
+export const listenStorage = <PKey extends PrefKeys, AreaName extends StorageAreaName>(
+  listener: StorageListener<AreaName>,
+  opt: Partial<{ keys: PKey[]; areaName: AreaName[] }> = {},
+): (() => void) => {
+  const wrapper = (changes: StorageChanges, areaName: StorageAreaName) => {
+    opt.areaName && !opt.areaName.includes(areaName as any)
+      ? null
+      : !Array.isArray(opt.keys)
+        ? listener(changes, areaName as any)
+        : Object.keys(changes).some(key => opt.keys?.includes(key as PKey))
           ? listener(changes, areaName as any)
-          : Object.keys(changes).some(key => opt.keys?.includes(key as PKey))
-            ? listener(changes, areaName as any)
-            : null;
-    };
-
-    onChanged.addListener(wrapper as any);
-    return () => onChanged.removeListener(wrapper as any);
+          : null;
   };
 
-  export const initial = async (): Promise<Pref> => {
-    return local
-      .get()
-      .then(validatePref(BROWSER_TYPE))
-      .then(async holder => (holder.invalid && (await local.clear()), holder.value()))
-      .then(pref => safeUpgradePref(BROWSER_TYPE, pref))
-      .then(async pref => (await local.set(pref), pref));
-  };
-}
+  browser.storage.onChanged.addListener(wrapper as any);
+  return () => browser.storage.onChanged.removeListener(wrapper as any);
+};
+
+export const initialStorage = async (): Promise<Pref> => {
+  return browser.storage.local
+    .get()
+    .then(validatePref(BROWSER_TYPE))
+    .then(async holder => (holder.invalid && (await browser.storage.local.clear()), holder.value()))
+    .then(pref => safeUpgradePref(BROWSER_TYPE, pref))
+    .then(async pref => (await browser.storage.local.set(pref), pref));
+};

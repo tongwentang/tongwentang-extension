@@ -17,6 +17,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/**.jsx"],
+  "include": ["src"],
   "exclude": ["**/node_modules", "**/.*/", "src/**/*.test.ts"]
 }

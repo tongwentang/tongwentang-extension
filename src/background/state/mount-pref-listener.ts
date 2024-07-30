@@ -4,11 +4,11 @@ import { Pref } from '../../preference/types/lastest';
 import { PrefFilter } from '../../preference/types/v2';
 import { setBadge } from '../../service/browser-action/set-badge';
 import { createMenu } from '../../service/menu/create-menu';
-import { storage } from '../../service/storage/storage';
+import { listenStorage } from '../../service/storage/storage';
 import { getConverter } from '../converter';
 
 export function mountPrefListener(state: BgState) {
-  storage.listen(
+  listenStorage(
     changes => {
       state.logger('[BG_RECEIVE_SYNC_PREF_CHANGE]', changes);
 

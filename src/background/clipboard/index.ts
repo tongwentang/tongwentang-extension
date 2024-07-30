@@ -1,7 +1,7 @@
 import { LangType } from 'tongwen-core';
+import { browser } from '../../service/browser';
 import { i18n } from '../../service/i18n/i18n';
 import { createNoti } from '../../service/notification/create-noti';
-import { permissions } from '../../service/permissions/permissions';
 import { BgState } from '../state';
 
 const convertClipboardContent = (state: BgState, target: LangType): Promise<void> =>
@@ -11,7 +11,7 @@ const convertClipboardContent = (state: BgState, target: LangType): Promise<void
     .then(text => navigator.clipboard.writeText(text));
 
 export const convertClipboard = (state: BgState, target: LangType): Promise<void> =>
-  permissions
+  browser.permissions
     .request({ permissions: ['clipboardRead', 'clipboardWrite'] })
     .then(async isGet => (isGet && (await convertClipboardContent(state, target)), isGet))
     .then(isGet => {

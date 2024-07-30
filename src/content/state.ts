@@ -1,5 +1,5 @@
 import { TARGET_NODE_ATTRIBUTES } from 'tongwen-core';
-import { storage } from '../service/storage/storage';
+import { getStorage } from '../service/storage/storage';
 import { ZhType } from '../service/tabs/tabs.constant';
 import { getDetectLanguage } from './services';
 
@@ -22,8 +22,8 @@ export interface CtState {
   converting: Promise<any>;
 }
 
-const getUpdateLangAttr = () => storage.get('general').then(({ general }) => general.updateLangAttr);
-const getDebugMode = () => storage.get('general').then(({ general }) => general.debugMode);
+const getUpdateLangAttr = () => getStorage('general').then(({ general }) => general.updateLangAttr);
+const getDebugMode = () => getStorage('general').then(({ general }) => general.debugMode);
 
 export async function createCtState(): Promise<CtState> {
   return Promise.all([getDetectLanguage(), getUpdateLangAttr(), getDebugMode()]).then(

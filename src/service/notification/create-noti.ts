@@ -1,14 +1,14 @@
 import { getRandomId } from '../../utilities';
+import { browser } from '../browser';
 import { i18n } from '../i18n/i18n';
-import { notifications } from './notifications';
 
-const autoDeleteNoti = (id: string, closeIn: number) => setTimeout(() => notifications.clear(id), closeIn);
+const autoDeleteNoti = (id: string, closeIn: number) => setTimeout(() => browser.notifications.clear(id), closeIn);
 
 export const createNoti = (message: string, closeIn = 5000, id = getRandomId()) => {
   autoDeleteNoti(id, closeIn);
 
   // TODO: need i18n
-  return notifications.create(id, {
+  return browser.notifications.create(id, {
     type: 'basic',
     title: i18n.getMessage('NT_TITLE'),
     message,

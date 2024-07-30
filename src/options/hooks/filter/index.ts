@@ -1,7 +1,7 @@
 import { Reducer, useEffect, useReducer, useState } from 'react';
 import { getDefaultPref } from '../../../preference/default';
 import { PrefFilterRule } from '../../../preference/types/v2';
-import { storage } from '../../../service/storage/storage';
+import { getStorage } from '../../../service/storage/storage';
 
 export type UseFilterRuleAction =
   | { type: 'DELETE'; payload: PrefFilterRule }
@@ -43,9 +43,9 @@ export const useFilter = () => {
   const { rules, setRules } = useFilterRules(getDefaultPref().filter.rules);
 
   useEffect(() => {
-    storage
-      .get('filter')
-      .then(({ filter: { enabled, rules } }) => void (setEnable(enabled), setRules({ type: 'RESET', payload: rules })));
+    getStorage('filter').then(
+      ({ filter: { enabled, rules } }) => void (setEnable(enabled), setRules({ type: 'RESET', payload: rules })),
+    );
   }, []);
 
   return { enabled, setEnable, rules, setRules };

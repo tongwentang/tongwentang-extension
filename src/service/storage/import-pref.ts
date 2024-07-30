@@ -3,7 +3,7 @@ import { safeUpgradePref, validatePref } from '../../preference/upgrade';
 import { i18n } from '../i18n/i18n';
 import { createNoti } from '../notification/create-noti';
 import { BrowserType } from '../types';
-import { storage } from './storage';
+import { setStorage } from './storage';
 
 const parseJson = (raw: string) =>
   Promise.resolve(JSON.parse(raw)).catch(() => Promise.reject(i18n.getMessage('MSG_JSON_ERROR')));
@@ -21,6 +21,6 @@ export const importPref = (type: BrowserType, raw: string): Promise<string> =>
   parseJson(raw)
     .then(validatePref(type))
     .then(getValidPref(type))
-    .then(storage.set)
+    .then(setStorage)
     .then(() => createNoti(i18n.getMessage('MSG_IMPORT_COMPLETED')))
     .catch(() => createNoti(i18n.getMessage('MSG_IMPORT_FAILED')));

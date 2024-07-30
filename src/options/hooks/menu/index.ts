@@ -1,46 +1,46 @@
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { LangType } from 'tongwen-core';
 import { getDefaultPref } from '../../../preference/default';
-import { storage } from '../../../service/storage/storage';
+import { getStorage, listenStorage, setStorage } from '../../../service/storage/storage';
 
 export const useMenu = () => {
   const [menu, set] = useState(getDefaultPref().menu);
 
   const setMenuEnable: ChangeEventHandler<HTMLInputElement> = e =>
-    storage.set({ menu: { ...menu, enabled: e.currentTarget.checked } });
+    setStorage({ menu: { ...menu, enabled: e.currentTarget.checked } });
   const setWebS2t: ChangeEventHandler<HTMLInputElement> = e =>
-    storage.set({
+    setStorage({
       menu: {
         ...menu,
         group: { ...menu.group, webpage: { ...menu.group.webpage, [LangType.s2t]: e.currentTarget.checked } },
       },
     });
   const setWebT2s: ChangeEventHandler<HTMLInputElement> = e =>
-    storage.set({
+    setStorage({
       menu: {
         ...menu,
         group: { ...menu.group, webpage: { ...menu.group.webpage, [LangType.t2s]: e.currentTarget.checked } },
       },
     });
   const setTextS2t: ChangeEventHandler<HTMLInputElement> = e =>
-    storage.set({
+    setStorage({
       menu: {
         ...menu,
         group: { ...menu.group, textarea: { ...menu.group.textarea, [LangType.s2t]: e.currentTarget.checked } },
       },
     });
   const setTextT2s: ChangeEventHandler<HTMLInputElement> = e =>
-    storage.set({
+    setStorage({
       menu: {
         ...menu,
         group: { ...menu.group, textarea: { ...menu.group.textarea, [LangType.t2s]: e.currentTarget.checked } },
       },
     });
 
-  useEffect(() => storage.listen(changes => set(changes.menu?.newValue), { keys: ['menu'], areaName: ['local'] }), []);
+  useEffect(() => listenStorage(changes => set(changes.menu?.newValue), { keys: ['menu'], areaName: ['local'] }), []);
 
   useEffect(() => {
-    storage.get('menu').then(({ menu }) => set(menu));
+    getStorage('menu').then(({ menu }) => set(menu));
   }, []);
 
   return { menu, setMenuEnable, setWebS2t, setWebT2s, setTextS2t, setTextT2s };
