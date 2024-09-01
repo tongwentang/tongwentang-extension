@@ -36,7 +36,7 @@
     "react-dom": "^18.2.0",
     "spectre.css": "^0.5.1",
     "tongwen-core": "^4.1.1",
-    "webextension-polyfill": "^0.10.0",
+    "webextension-polyfill": "^0.12.0",
     "zod": "^3.20.2"
   },
   "devDependencies": {
@@ -45,7 +45,7 @@
     "@types/node": "^22.0.0",
     "@types/react": "^18.0.38",
     "@types/react-dom": "^18.0.11",
-    "@types/webextension-polyfill": "^0.10.0",
+    "@types/webextension-polyfill": "^0.10.7",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "dotenv": "^16.0.0",

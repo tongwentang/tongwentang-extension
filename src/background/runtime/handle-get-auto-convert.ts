@@ -2,7 +2,7 @@ import { LangType } from 'tongwen-core';
 import { MaybeTransTarget } from '../../preference/types/types';
 import { detectLanguage } from '../../service/tabs/detect-language';
 import { ZhType } from '../../service/tabs/tabs.constant';
-import { BgState } from '../state';
+import { bgGetPref } from '../state/storage';
 
 type GetTargetByDetectLanguage = (tabId: number, t: LangType) => Promise<MaybeTransTarget>;
 export const getTargetByDetectLanguage: GetTargetByDetectLanguage = (tabId, target) =>
@@ -17,17 +17,19 @@ export const getTargetByDetectLanguage: GetTargetByDetectLanguage = (tabId, targ
     }
   });
 
-type GetTargetByAutoConvert = (s: BgState, tabId: number) => Promise<MaybeTransTarget>;
-export const getTargetByAutoConvert: GetTargetByAutoConvert = (state, tabId) => {
-  switch (state.pref.general.autoConvert) {
-    case LangType.s2t:
-    case LangType.t2s:
-      return Promise.resolve(state.pref.general.autoConvert);
-    case 'ds2t':
-      return getTargetByDetectLanguage(tabId, LangType.s2t);
-    case 'dt2s':
-      return getTargetByDetectLanguage(tabId, LangType.t2s);
-    case 'disabled':
-      return Promise.resolve(undefined);
-  }
+type GetTargetByAutoConvert = (tabId: number) => Promise<MaybeTransTarget>;
+export const getTargetByAutoConvert: GetTargetByAutoConvert = tabId => {
+  return bgGetPref().then(pref => {
+    switch (pref.general.autoConvert) {
+      case LangType.s2t:
+      case LangType.t2s:
+        return Promise.resolve(pref.general.autoConvert);
+      case 'ds2t':
+        return getTargetByDetectLanguage(tabId, LangType.s2t);
+      case 'dt2s':
+        return getTargetByDetectLanguage(tabId, LangType.t2s);
+      case 'disabled':
+        return Promise.resolve(undefined);
+    }
+  });
 };

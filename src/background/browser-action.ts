@@ -2,7 +2,8 @@ import { LangType } from 'tongwen-core';
 import { browser } from '../service/browser';
 import { dispatchCtAction } from '../service/runtime/content';
 import { ZhType } from '../service/tabs/tabs.constant';
-import { BgState } from './state';
+import { bgLog } from './logger';
+import { bgGetPref } from './state/storage';
 
 type GetTargetByDetection = (id: number, f: LangType) => Promise<LangType>;
 const getTargetByDetection: GetTargetByDetection = (id, fallback) => {
@@ -18,15 +19,18 @@ const getTargetByDetection: GetTargetByDetection = (id, fallback) => {
   });
 };
 
-export function mountBrowserActionListener(state: BgState): void {
-  browser.browserAction.onClicked.addListener(tab => {
-    state.logger('[ACTION_RECEIVE_REQ] req:', { tab, state });
-    if (typeof tab.id !== 'number') return;
+export function mountBrowserActionListener(): void {
+  browser.action.onClicked.addListener(tab => {
+    bgLog('[ACTION_RECEIVE_REQ] req:', { tab });
+    const tabId = tab.id;
+    if (typeof tabId !== 'number') return;
 
-    const ba = state.pref.general.browserAction;
-    const fb = state.pref.general.defaultTarget;
-    return Promise.resolve(ba === 'auto' ? getTargetByDetection(tab.id, fb) : ba).then(target =>
-      dispatchCtAction({ type: 'Webpage', payload: target }, tab.id!),
-    );
+    return bgGetPref()
+      .then(pref =>
+        pref.general.browserAction === 'auto'
+          ? getTargetByDetection(tabId, pref.general.defaultTarget)
+          : pref.general.browserAction,
+      )
+      .then(target => dispatchCtAction({ type: 'Webpage', payload: target }, tabId!));
   });
 }

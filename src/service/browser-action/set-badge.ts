@@ -7,10 +7,10 @@ const browserActionToBadge = (ba: BrowserActionOpt) => (ba === 'auto' ? 'A' : ba
 
 const color = '#C0C0C0';
 
-export const setBadge = (pref: Pref) => {
-  const text = browserActionToBadge(pref.general.browserAction);
-  const setText = browser.browserAction.setBadgeText({ text });
-  const setBg = browser.browserAction.setBadgeBackgroundColor({ color });
+export const setBadge = (general: Pref['general']) => {
+  const text = browserActionToBadge(general.browserAction);
+  const setText = browser.action.setBadgeText({ text });
+  const setBg = browser.action.setBadgeBackgroundColor({ color });
 
   return Promise.all([setText, setBg]);
 };

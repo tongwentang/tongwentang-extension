@@ -5,7 +5,7 @@ import { safeUpgradePref, validatePref } from '../../preference/upgrade';
 import { BROWSER_TYPE } from '../types';
 
 type StorageAreaName = Exclude<keyof Storage.Static, 'onChanged'>;
-type StorageChanges = Partial<{ [P in PrefKeys]: Storage.StorageChange }>;
+export type StorageChanges = Partial<{ [P in PrefKeys]: Storage.StorageChange }>;
 type StorageListener<A extends StorageAreaName> = (store: StorageChanges, areaName: A) => void;
 
 const updatePrefTime = (pref: Partial<Pref>): Partial<Pref> => ({ ...pref, meta: { update: Date.now() } });

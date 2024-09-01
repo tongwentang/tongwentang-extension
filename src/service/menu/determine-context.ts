@@ -10,13 +10,13 @@ export function getSubMenuContexts(prefKey: PrefMenuGroupKeys): browser.Menus.Co
 
 export function getTopMenuContexts({ textarea, webpage }: PrefMenuGroup): browser.Menus.ContextType[] {
   const hasEditable = hasEnabled(textarea);
-  const hasOther = hasEnabled(webpage);
+  const hasOthers = hasEnabled(webpage);
 
-  return hasEditable && hasOther
+  return hasEditable && hasOthers
     ? [...ContextOnAll, ...ContextOnEditable]
     : hasEditable
       ? ContextOnEditable
-      : hasOther
+      : hasOthers
         ? ContextOnAll
         : [];
 }

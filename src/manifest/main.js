@@ -3,19 +3,23 @@ const { writeFileSync } = require('fs');
 const { resolve } = require('path');
 const pkg = require('../../package.json');
 
+/** @import { Manifest } from 'webextension-polyfill' */
+
 /**
  * @param {string | undefined} vendor
- * @returns {import('webextension-polyfill').Manifest.WebExtensionManifest}
+ * @returns {Manifest.WebExtensionManifest}
  */
 const createManifest = vendor => {
   const isFirefox = vendor === 'firefox';
-  /** @type {import('webextension-polyfill').Manifest.WebExtensionManifest['browser_specific_settings']} */
+  /** @type {Manifest.WebExtensionManifest['browser_specific_settings']} */
   const browser_specific_settings = isFirefox
     ? { gecko: { id: 'tongwen@softcup', strict_min_version: '63.0' } }
     : undefined;
+  /** @type {Manifest.WebExtensionManifest['background']} */
+  const background = isFirefox ? { scripts: ['background.js'] } : { service_worker: 'background.js' };
 
   return {
-    manifest_version: 2,
+    manifest_version: 3,
     name: '__MSG_MSG_EXT_NAME__',
     version: pkg.version,
     description: '__MSG_MSG_EXT_DESC__',
@@ -31,9 +35,7 @@ const createManifest = vendor => {
     },
     permissions: ['contextMenus', 'downloads', 'notifications', 'storage', 'tabs', 'unlimitedStorage'],
     optional_permissions: ['clipboardWrite', 'clipboardRead'],
-    background: {
-      scripts: ['background.js'],
-    },
+    background,
     content_scripts: [
       {
         matches: ['<all_urls>'],
@@ -42,8 +44,7 @@ const createManifest = vendor => {
         run_at: 'document_idle',
       },
     ],
-    browser_action: {
-      browser_style: true,
+    action: {
       default_icon: {
         16: 'icons/tongwen-icon-16.png',
         32: 'icons/tongwen-icon-32.png',
