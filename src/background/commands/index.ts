@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { browser } from '../../service/browser';
 import { CommandType } from '../../service/commands/type';
 import { dispatchCtAction } from '../../service/runtime/content';
@@ -7,7 +7,7 @@ import { bgLog } from '../logger';
 
 export const mountCommandListener = () => {
   browser.commands?.onCommand.addListener(async cmd => {
-    bgLog('[BG_RECEIVE_COMMAND] :', cmd);
+    bgLog('[BG_RECEIVE_COMMAND]:', cmd);
 
     switch (cmd) {
       case CommandType.wS2t:

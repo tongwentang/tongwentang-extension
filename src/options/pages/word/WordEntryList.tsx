@@ -1,5 +1,5 @@
 import { FC, useCallback } from 'react';
-import { DicObj } from 'tongwen-core';
+import { DicObj } from 'tongwen-core/dictionaries';
 import { i18n } from '../../../service/i18n/i18n';
 import { Button } from '../../components';
 

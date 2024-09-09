@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { Pref } from '../../preference/types/lastest';
 import { BrowserActionOpt } from '../../preference/types/v2';
 import { browser } from '../browser';

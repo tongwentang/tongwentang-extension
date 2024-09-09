@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useEffect, useState } from 'react';
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { getDefaultPref } from '../../../preference/default';
 import { getStorage, listenStorage, setStorage } from '../../../service/storage/storage';
 

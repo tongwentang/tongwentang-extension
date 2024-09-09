@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { MaybeTransTarget } from '../../preference/types/types';
 import { FilterTarget } from '../../preference/types/v2';
 import { browser } from '../browser';

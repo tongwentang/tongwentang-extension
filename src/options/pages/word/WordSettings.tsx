@@ -1,5 +1,5 @@
 import { FC, Fragment, useCallback, useState } from 'react';
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { PrefWordDefault } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
 import { createNoti } from '../../../service/notification/create-noti';

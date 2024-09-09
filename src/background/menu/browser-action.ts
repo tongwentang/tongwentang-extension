@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { isUrlLike } from '../../preference/filter-rule';
 import { FilterTarget } from '../../preference/types/v2';
 import { browser } from '../../service/browser';

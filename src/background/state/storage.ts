@@ -1,4 +1,4 @@
-import { patchRulesRegExp } from '../../preference/filter-rule';
+import { patchFilterRulesRegExp } from '../../preference/filter-rule';
 import type { Pref } from '../../preference/types/lastest';
 import { setBadge } from '../../service/browser-action/set-badge';
 import { createMenu } from '../../service/menu/create-menu';
@@ -8,11 +8,15 @@ let state: Pref | undefined;
 let queue: Promise<Pref> | null = null;
 
 export const bgInitialPref = () => {
-  return (queue = initialStorage().then(pref => (state = pref)));
+  return (queue = initialStorage().then(pref => (state = { ...pref, filter: patchFilterRulesRegExp(pref.filter) })));
 };
 
 export const bgGetPref = () => {
-  return state ? Promise.resolve(state) : queue ? queue : (queue = getStorage().then(p => (state = p)));
+  return state
+    ? Promise.resolve(state)
+    : queue
+      ? queue
+      : (queue = getStorage().then(p => (state = { ...p, filter: patchFilterRulesRegExp(p.filter) })));
 };
 
 export const bgSetPref = (...args: Parameters<typeof setStorage>) => {
@@ -39,7 +43,7 @@ export const bgHandlePrefUpdate = (changes: StorageChanges): void => {
       case 'filter':
         if (change?.newValue) {
           const filter = change!.newValue as Pref['filter'];
-          state && (state.filter = Object.assign(filter, { ...filter, rules: patchRulesRegExp(filter.rules) }));
+          state && (state.filter = patchFilterRulesRegExp(filter));
         }
         break;
       case 'word':

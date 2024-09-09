@@ -1,5 +1,5 @@
 import { Control, dctrl, vctrl } from 'data-fixer';
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { z } from 'zod';
 import { AutoConvertOpt, BrowserActionOpt, PrefGeneral } from '../../types/v2';
 import { isBoolean } from '../controllers';
