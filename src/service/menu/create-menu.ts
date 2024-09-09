@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { Menus } from 'webextension-polyfill';
 import { getSessionState, setSessionState } from '../../background/session';
 import type { Pref } from '../../preference/types/lastest';

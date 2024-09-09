@@ -1,4 +1,5 @@
-import { LangType, walkNode } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
+import { walkNode } from 'tongwen-core/walker';
 import { dispatchBgAction } from '../../service/runtime/background';
 import { ZhType } from '../../service/tabs/tabs.constant';
 import { CtState } from '../state';

@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { Tabs } from 'webextension-polyfill';
 import { browser } from '../browser';
 import { ZhType } from '../tabs/tabs.constant';

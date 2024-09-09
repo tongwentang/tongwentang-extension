@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { browser } from '../../service/browser';
 import type { ContextMenuChildrenId } from '../../service/menu/create-menu';
 import { dispatchCtAction } from '../../service/runtime/content';

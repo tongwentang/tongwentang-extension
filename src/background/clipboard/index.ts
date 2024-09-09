@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { browser } from '../../service/browser';
 import { i18n } from '../../service/i18n/i18n';
 import { createNoti } from '../../service/notification/create-noti';

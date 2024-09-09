@@ -1,4 +1,4 @@
-import { TARGET_NODE_ATTRIBUTES } from 'tongwen-core';
+import { TARGET_NODE_ATTRIBUTES } from 'tongwen-core/walker';
 import { getStorage } from '../service/storage/storage';
 import { ZhType } from '../service/tabs/tabs.constant';
 import { getDetectLanguage } from './services';

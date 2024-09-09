@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { browser } from '../../service/browser';
 import { CommandType } from '../../service/commands/type';
 import { dispatchCtAction } from '../../service/runtime/content';

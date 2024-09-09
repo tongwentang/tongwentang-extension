@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { MaybeTransTarget } from '../../preference/types/types';
 import { detectLanguage } from '../../service/tabs/detect-language';
 import { ZhType } from '../../service/tabs/tabs.constant';

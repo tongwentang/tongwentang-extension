@@ -1,4 +1,5 @@
-import { Converter, createConverterMap, LangType, SrcPack, type DicObj } from 'tongwen-core';
+import { createConverterMap, type Converter } from 'tongwen-core';
+import { LangType, type DicObj, type SrcPack } from 'tongwen-core/dictionaries';
 import { PrefWord } from '../../preference/types/v2';
 import { bgGetPref } from '../state/storage';
 

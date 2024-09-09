@@ -1,4 +1,4 @@
-import { ParsedResult } from 'tongwen-core';
+import type { ParsedResult } from 'tongwen-core/walker';
 
 const updateNode = (parsed: ParsedResult, text: string) => {
   switch (parsed.type) {

@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { dispatchBgAction } from '../../service/runtime/background';
 
 export const handleTextarea = (target: LangType) => {

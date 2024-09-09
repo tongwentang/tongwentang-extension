@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { getRandomId } from '../../utilities';
 import { getDefaultPref } from '../default';
 import { patternRegExpify, regularOldPattern } from '../filter-rule';
