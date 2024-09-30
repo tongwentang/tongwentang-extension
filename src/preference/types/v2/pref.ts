@@ -1,4 +1,4 @@
-import { PrefFilter, PrefGeneral, PrefMenu, PrefMeta, PrefWord } from '.';
+import type { PrefFilter, PrefGeneral, PrefMenu, PrefMeta, PrefWord } from '.';
 
 export interface PrefV2 {
   version: 2;

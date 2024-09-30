@@ -1,4 +1,4 @@
-import browser from 'webextension-polyfill';
+import type browser from 'webextension-polyfill';
 
 export const ContextOnAll: browser.Menus.ContextType[] = [
   'page',

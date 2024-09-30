@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, ReactNode } from 'react';
+import type { ChangeEvent, FC, ReactNode } from 'react';
 
 export const Select: FC<{
   id: string;

@@ -1,5 +1,6 @@
-import { Control, dctrl, rctrl } from 'data-fixer';
-import { PrefWord } from '../../types/v2';
+import type { Control} from 'data-fixer';
+import { dctrl, rctrl } from 'data-fixer';
+import type { PrefWord } from '../../types/v2';
 import { isBoolean, isString } from '../controllers';
 
 export const wordSchema: Control<PrefWord> = dctrl({

@@ -7,7 +7,7 @@ import { bgLog } from '../logger';
 import { addDomainToRules, type ActionMenuId } from './browser-action';
 
 export const listenMenusEvent = () => {
-  browser.contextMenus.onClicked.addListener((info, tab) => {
+  browser.contextMenus.onClicked.addListener(async (info, tab) => {
     bgLog('[BG_RECEIVED_MENU_EVENT]: ', { info, tab });
 
     switch (info.menuItemId as ActionMenuId | ContextMenuChildrenId) {

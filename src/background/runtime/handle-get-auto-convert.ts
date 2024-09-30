@@ -1,11 +1,11 @@
 import { LangType } from 'tongwen-core/dictionaries';
-import { MaybeTransTarget } from '../../preference/types/types';
+import type { MaybeTransTarget } from '../../preference/types/types';
 import { detectLanguage } from '../../service/tabs/detect-language';
 import { ZhType } from '../../service/tabs/tabs.constant';
 import { bgGetPref } from '../state/storage';
 
 type GetTargetByDetectLanguage = (tabId: number, t: LangType) => Promise<MaybeTransTarget>;
-export const getTargetByDetectLanguage: GetTargetByDetectLanguage = (tabId, target) =>
+export const getTargetByDetectLanguage: GetTargetByDetectLanguage = async (tabId, target) =>
   detectLanguage(tabId).then(zh => {
     switch (zh) {
       case ZhType.hans:
@@ -18,8 +18,8 @@ export const getTargetByDetectLanguage: GetTargetByDetectLanguage = (tabId, targ
   });
 
 type GetTargetByAutoConvert = (tabId: number) => Promise<MaybeTransTarget>;
-export const getTargetByAutoConvert: GetTargetByAutoConvert = tabId => {
-  return bgGetPref().then(pref => {
+export const getTargetByAutoConvert: GetTargetByAutoConvert = async tabId => {
+  return bgGetPref().then(async pref => {
     switch (pref.general.autoConvert) {
       case LangType.s2t:
       case LangType.t2s:

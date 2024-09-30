@@ -1,8 +1,9 @@
-import { actrl, Control, dctrl, vctrl } from 'data-fixer';
+import type { Control} from 'data-fixer';
+import { actrl, dctrl, vctrl } from 'data-fixer';
 import { z } from 'zod';
 import { getRandomId } from '../../../utilities';
 import { DOMAIN_PATTERN, REGEXP_PATTERN } from '../../filter-rule';
-import { FilterTarget, PrefFilter, PrefFilterRule, RegExpMaybe } from '../../types/v2';
+import type { FilterTarget, PrefFilter, PrefFilterRule, RegExpMaybe } from '../../types/v2';
 import { isBoolean } from '../controllers';
 import { vldFn } from '../validator';
 

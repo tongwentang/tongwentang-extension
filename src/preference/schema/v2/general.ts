@@ -1,7 +1,8 @@
-import { Control, dctrl, vctrl } from 'data-fixer';
+import type { Control} from 'data-fixer';
+import { dctrl, vctrl } from 'data-fixer';
 import { LangType } from 'tongwen-core/dictionaries';
 import { z } from 'zod';
-import { AutoConvertOpt, BrowserActionOpt, PrefGeneral } from '../../types/v2';
+import type { AutoConvertOpt, BrowserActionOpt, PrefGeneral } from '../../types/v2';
 import { isBoolean } from '../controllers';
 import { vldFn } from '../validator';
 

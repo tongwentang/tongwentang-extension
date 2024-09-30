@@ -1,7 +1,6 @@
-const { parsed: env } = require('dotenv').config();
-const config = require('./web-ext-config');
+import { config, env } from './web-ext-config.mjs';
 
-module.exports = {
+export default {
   ...config,
   sourceDir: './dist/firefox',
   run: {

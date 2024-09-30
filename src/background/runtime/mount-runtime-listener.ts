@@ -1,5 +1,6 @@
 import { browser } from '../../service/browser';
-import { BgReqAction, handleBgReqAction } from '../../service/runtime/background';
+import type { BgReqAction } from '../../service/runtime/background';
+import { handleBgReqAction } from '../../service/runtime/background';
 import { detectLanguage } from '../../service/tabs/detect-language';
 import { convertClipboard } from '../clipboard';
 import { getConverter } from '../converter';
@@ -13,7 +14,8 @@ import { getTarget } from './handle-get-target';
  * background message handler
  */
 export function mountRuntimeListener() {
-  browser.runtime.onMessage.addListener(async (action: BgReqAction, sender) => {
+  browser.runtime.onMessage.addListener(async (message, sender) => {
+    const action = message as BgReqAction;
     bgLog('[BG_RECEIVE_REQ] req:', action, 'sender:', sender);
 
     return bgGetPref().then(async pref => {
@@ -25,16 +27,16 @@ export function mountRuntimeListener() {
         case 'GetTarget':
           return handleBgReqAction(action, getTarget(pref, sender));
         case 'DetectLang':
-          return handleBgReqAction(action, detectLanguage(sender.tab!.id!));
+          return handleBgReqAction(action, detectLanguage(sender.tab!.id));
         case 'NodesText':
-          return getConverter().then(converter =>
+          return getConverter().then(async converter =>
             handleBgReqAction(
               action,
               action.payload.texts.map(text => converter.phrase(action.payload.target, text)),
             ),
           );
         case 'Convert':
-          return getConverter().then(converter =>
+          return getConverter().then(async converter =>
             handleBgReqAction(action, converter.phrase(action.payload.target, action.payload.text)),
           );
         case 'ConvertClipboard':

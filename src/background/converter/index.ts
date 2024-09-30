@@ -1,13 +1,13 @@
 import { createConverterMap, type Converter } from 'tongwen-core';
 import { LangType, type DicObj, type SrcPack } from 'tongwen-core/dictionaries';
-import { PrefWord } from '../../preference/types/v2';
+import type { PrefWord } from '../../preference/types/v2';
 import { bgGetPref } from '../state/storage';
 
-const getDict = (dir: LangType, type: 'char' | 'phrase') => {
-  return fetch(`dictionaries/${dir}-${type}.min.json`).then(r => r.json() as Promise<DicObj>);
+const getDict = async (dir: LangType, type: 'char' | 'phrase') => {
+  return fetch(`dictionaries/${dir}-${type}.min.json`).then(async r => r.json() as Promise<DicObj>);
 };
 
-const createSrcPack = ({ default: def, custom }: PrefWord): Promise<SrcPack> => {
+const createSrcPack = async ({ default: def, custom }: PrefWord): Promise<SrcPack> => {
   return Promise.all([
     def.s2t.char ? getDict(LangType.s2t, 'char') : {},
     def.s2t.phrase ? getDict(LangType.s2t, 'phrase') : {},
@@ -19,11 +19,11 @@ const createSrcPack = ({ default: def, custom }: PrefWord): Promise<SrcPack> => 
 let converter: Converter | undefined = undefined;
 let queue: Promise<Converter> | undefined = undefined;
 
-export const getConverter = (): Promise<Converter> => {
+export const getConverter = async (): Promise<Converter> => {
   return converter
     ? Promise.resolve(converter)
     : (queue ??
         (queue = bgGetPref()
-          .then(pref => createSrcPack(pref.word))
+          .then(async pref => createSrcPack(pref.word))
           .then(src => (converter = createConverterMap(src)))));
 };

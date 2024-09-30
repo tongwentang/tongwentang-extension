@@ -2,10 +2,11 @@ import { BrowserType } from '../../service/types';
 import { getDefaultPref } from '../default';
 import { v1SchemaFx, v1SchemaGc } from '../schema/v1';
 import { v2Schema } from '../schema/v2';
-import { Pref } from '../types/lastest';
+import type { Pref } from '../types/lastest';
 import { prefFxV1ToV2 } from './pref-fx-v1-to-v2';
 import { prefGcV1ToV2 } from './pref-gc-v1-to-v2';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const safeUpgradePref = (type: BrowserType, pref: any = {}): Pref => {
   switch (true) {
     case pref?.version === 2:

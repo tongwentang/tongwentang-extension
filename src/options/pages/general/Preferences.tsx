@@ -1,4 +1,5 @@
-import { FC, RefObject, SyntheticEvent, useCallback, useRef } from 'react';
+import type { FC, RefObject, SyntheticEvent} from 'react';
+import { useCallback, useRef } from 'react';
 import { i18n } from '../../../service/i18n/i18n';
 import { exportPref } from '../../../service/storage/export-pref';
 import { importPref } from '../../../service/storage/import-pref';

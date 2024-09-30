@@ -6,7 +6,7 @@ import { bgLog } from './logger';
 import { bgGetPref } from './state/storage';
 
 type GetTargetByDetection = (id: number, f: LangType) => Promise<LangType>;
-const getTargetByDetection: GetTargetByDetection = (id, fallback) => {
+const getTargetByDetection: GetTargetByDetection = async (id, fallback) => {
   return dispatchCtAction({ type: 'ZhType', payload: undefined }, id).then(zh => {
     switch (zh) {
       case ZhType.hans:
@@ -20,17 +20,17 @@ const getTargetByDetection: GetTargetByDetection = (id, fallback) => {
 };
 
 export function mountBrowserActionListener(): void {
-  browser.action.onClicked.addListener(tab => {
+  browser.action.onClicked.addListener(async tab => {
     bgLog('[ACTION_RECEIVE_REQ] req:', { tab });
     const tabId = tab.id;
     if (typeof tabId !== 'number') return;
 
     return bgGetPref()
-      .then(pref =>
+      .then(async pref =>
         pref.general.browserAction === 'auto'
           ? getTargetByDetection(tabId, pref.general.defaultTarget)
           : pref.general.browserAction,
       )
-      .then(target => dispatchCtAction({ type: 'Webpage', payload: target }, tabId!));
+      .then(async target => dispatchCtAction({ type: 'Webpage', payload: target }, tabId));
   });
 }

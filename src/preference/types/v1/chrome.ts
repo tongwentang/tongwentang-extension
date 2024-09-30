@@ -1,4 +1,4 @@
-import { DicObj } from 'tongwen-core/dictionaries';
+import type { DicObj } from 'tongwen-core/dictionaries';
 
 export interface PrefGcV1FilterRule {
   url: string;

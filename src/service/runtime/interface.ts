@@ -1,7 +1,7 @@
-import { LangType } from 'tongwen-core/dictionaries';
-import { MaybeTransTarget } from '../../preference/types/types';
-import { FilterTarget } from '../../preference/types/v2';
-import { ZhType } from '../tabs/tabs.constant';
+import type { LangType } from 'tongwen-core/dictionaries';
+import type { MaybeTransTarget } from '../../preference/types/types';
+import type { FilterTarget } from '../../preference/types/v2';
+import type { ZhType } from '../tabs/tabs.constant';
 
 interface WeReqAction<T, P> {
   type: T;
@@ -48,7 +48,7 @@ export type BgActConvertClipboard = WeReqAction<BgActType.ConvertClipboard, Lang
 
 export type BgActSpaMode = WeReqAction<BgActType.SpaMode, boolean>;
 
-export type BgActLog = WeReqAction<BgActType.Log, any[]>;
+export type BgActLog = WeReqAction<BgActType.Log, unknown[]>;
 
 /* req and res for content */
 export enum CtActType {

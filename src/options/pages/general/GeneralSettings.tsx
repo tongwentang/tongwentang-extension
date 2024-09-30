@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import { i18n } from '../../../service/i18n/i18n';
 import { Checkbox, Select } from '../../components';
 import { autoConvertOptions, browserActionOptions, defaultTargetOptions } from '../../hooks/general/options';

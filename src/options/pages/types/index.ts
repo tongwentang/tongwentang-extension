@@ -1,1 +1,1 @@
-export type EventCallback<T extends any[]> = (...params: T) => any;
+export type EventCallback<T extends unknown[]> = (...params: T) => void;

@@ -4,12 +4,12 @@ import { i18n } from '../../service/i18n/i18n';
 import { createNoti } from '../../service/notification/create-noti';
 import { getConverter } from '../converter';
 
-const convertClipboardContent = (target: LangType): Promise<void> =>
+const convertClipboardContent = async (target: LangType): Promise<void> =>
   Promise.all([navigator.clipboard.readText(), getConverter()])
     .then(([text, converter]) => converter.phrase(target, text))
-    .then(text => navigator.clipboard.writeText(text));
+    .then(async text => navigator.clipboard.writeText(text));
 
-export const convertClipboard = (target: LangType): Promise<void> =>
+export const convertClipboard = async (target: LangType): Promise<void> =>
   browser.permissions
     .request({ permissions: ['clipboardRead', 'clipboardWrite'] })
     .then(async isGet => (isGet && (await convertClipboardContent(target)), isGet))

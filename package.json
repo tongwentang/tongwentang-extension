@@ -1,6 +1,6 @@
 {
   "name": "tongwentang-extension",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "",
   "keywords": [],
   "author": "t7yang",
@@ -8,19 +8,19 @@
   "scripts": {
     "dev:firefox": "rspack build --mode=development --env vendor=firefox",
     "dev:chromium": "rspack build --mode=development --env vendor=chromium",
-    "we:firefox": "web-ext run --config=web-ext-config-firefox.js --no-config-discovery",
-    "we:chromium": "web-ext run --config=web-ext-config-chrome.js --no-config-discovery --target=chromium",
+    "we:firefox": "web-ext run --config=web-ext-config-firefox.mjs --no-config-discovery",
+    "we:chromium": "web-ext run --config=web-ext-config-chrome.mjs --no-config-discovery --target=chromium",
     "test:tsc": "tsc --noEmit",
     "build:firefox": "rspack build --mode=production --env vendor=firefox",
     "build:chromium": "rspack build --mode=production --env vendor=chromium",
     "build:all": "npm run build:firefox && npm run build:chromium",
     "format": "prettier . --write --ignore-unknown",
-    "lint": "eslint --fix --ext=ts,tsx src/",
+    "lint": "eslint --fix",
     "release": "standard-version -t '' --packageFiles package.json",
     "update": "ncu -i --format group",
     "we:build": "web-ext build -s dist/firefox",
-    "we:sign": "web-ext sign --config=web-ext-config-firefox.js --no-config-discovery",
-    "prepare": "husky install"
+    "we:sign": "web-ext sign --config=web-ext-config-firefox.mjs --no-config-discovery",
+    "prepare": "husky"
   },
   "nano-staged": {
     "*.{js,jsx,ts,tsx,json,md}": [
@@ -32,34 +32,32 @@
   },
   "dependencies": {
     "data-fixer": "^5.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "spectre.css": "^0.5.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "spectre.css": "^0.5.9",
     "tongwen-core": "^5.0.0-beta-1",
     "webextension-polyfill": "^0.12.0",
-    "zod": "^3.20.2"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@rspack/cli": "^1.0.0",
-    "@rspack/core": "^1.0.0",
-    "@types/node": "^22.0.0",
-    "@types/react": "^18.0.38",
-    "@types/react-dom": "^18.0.11",
-    "@types/webextension-polyfill": "^0.10.7",
-    "@typescript-eslint/eslint-plugin": "^5.20.0",
-    "@typescript-eslint/parser": "^5.20.0",
-    "dotenv": "^16.0.0",
-    "eslint": "^8.13.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.30.1",
-    "husky": "^8.0.1",
+    "@eslint/js": "^9.17.0",
+    "@rspack/cli": "^1.1.8",
+    "@rspack/core": "^1.1.8",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/webextension-polyfill": "^0.12.1",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react": "^7.37.3",
+    "globals": "^15.14.0",
+    "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.2",
     "standard-version": "^9.5.0",
-    "tongwen-dict": "^1.0.1",
-    "ts-loader": "^9.5.1",
-    "typescript": "~5.5.4",
-    "web-ext": "^7.1.1"
+    "tongwen-dict": "^1.0.2",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.18.2",
+    "web-ext": "^8.3.0"
   }
 }

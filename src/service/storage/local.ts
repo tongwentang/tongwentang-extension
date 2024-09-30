@@ -1,11 +1,11 @@
-import { Pref } from '../../preference/types/lastest';
-import { PrefFilterRule } from '../../preference/types/v2';
+import type { Pref } from '../../preference/types/lastest';
+import type { PrefFilterRule } from '../../preference/types/v2';
 import { getStorage, setStorage } from './storage';
 
 export type StoreReducer = (store: Pref) => Partial<Pref>;
-export const patchLocalStorage = (reducer: StoreReducer): Promise<void> => getStorage().then(reducer).then(setStorage);
+export const patchLocalStorage = async (reducer: StoreReducer): Promise<void> => getStorage().then(reducer).then(setStorage);
 
-export const addFilterRule = (rule: PrefFilterRule): Promise<void> => {
+export const addFilterRule = async (rule: PrefFilterRule): Promise<void> => {
   return patchLocalStorage(({ filter: { rules, ...rest } }) => ({
     filter: {
       ...rest,
@@ -16,7 +16,7 @@ export const addFilterRule = (rule: PrefFilterRule): Promise<void> => {
   }));
 };
 
-export const updateFilterRule = (rule: PrefFilterRule, index: number): Promise<void> =>
+export const updateFilterRule = async (rule: PrefFilterRule, index: number): Promise<void> =>
   patchLocalStorage(({ filter: { enabled, rules } }) => ({
     filter: {
       enabled,
@@ -24,7 +24,7 @@ export const updateFilterRule = (rule: PrefFilterRule, index: number): Promise<v
     },
   }));
 
-export const deleteFilterRule = (index: number): Promise<void> =>
+export const deleteFilterRule = async (index: number): Promise<void> =>
   patchLocalStorage(({ filter: { enabled, rules } }) => ({
     filter: {
       enabled,

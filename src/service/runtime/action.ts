@@ -1,14 +1,14 @@
-export type TActionPayload<Request, Response = Request> = {
+export interface TActionPayload<Request, Response = Request> {
   request: Request;
   response: Response;
-};
+}
 
-export type TAction<Type, Payload> = {
+export interface TAction<Type, Payload> {
   type: Type;
   payload: Payload;
-};
+}
 
-export type ActionMap = { [k: string]: TActionPayload<any, any> };
+export type ActionMap = Record<string, TActionPayload<unknown, unknown>>;
 export type TActionMap<Map extends ActionMap> = Map;
 
 export type ReqActionOf<Map extends ActionMap, Type extends keyof Map> = TAction<Type, Map[Type]['request']>;

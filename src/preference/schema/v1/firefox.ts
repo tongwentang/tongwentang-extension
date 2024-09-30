@@ -1,6 +1,7 @@
-import { actrl, Control, dctrl, vctrl } from 'data-fixer';
+import type { Control} from 'data-fixer';
+import { actrl, dctrl, vctrl } from 'data-fixer';
 import { z } from 'zod';
-import { PrefFxV1 } from '../../types/v1';
+import type { PrefFxV1 } from '../../types/v1';
 import { isDic, isFalse, isString, isTrue } from '../controllers';
 import { vldFn } from '../validator';
 

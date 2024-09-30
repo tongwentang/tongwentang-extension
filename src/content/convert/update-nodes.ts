@@ -11,4 +11,4 @@ const updateNode = (parsed: ParsedResult, text: string) => {
 };
 
 export const updateNodes = (parseds: ParsedResult[], texts: string[]): void =>
-  parseds.forEach((parsed, index) => updateNode(parsed, texts[index]));
+  { parseds.forEach((parsed, index) => { updateNode(parsed, texts[index]); }); };
