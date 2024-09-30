@@ -5,9 +5,9 @@ import { createNoti } from '../notification/create-noti';
 import { BROWSER_TYPE } from '../types';
 import { getStorage } from './storage';
 
-const delayRevoke = (url: string) => setTimeout(() => URL.revokeObjectURL(url), 60000);
+const delayRevoke = (url: string) => setTimeout(() => { URL.revokeObjectURL(url); }, 60000);
 
-export const exportPref = () => {
+export const exportPref = async () => {
   // TODO: maybe we can optionally get the download permission here
   return browser.downloads
     ? getStorage()
@@ -17,6 +17,6 @@ export const exportPref = () => {
         .then(url => (delayRevoke(url), url))
         .then(url => ({ url, filename: 'tongwentang-pref.json', saveAs: true }))
         .then(browser.downloads.download)
-        .catch(() => createNoti(i18n.getMessage('MSG_EXPORT_FAILED')))
+        .catch(async () => createNoti(i18n.getMessage('MSG_EXPORT_FAILED')))
     : Promise.resolve();
 };

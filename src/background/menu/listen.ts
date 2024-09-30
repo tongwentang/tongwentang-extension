@@ -6,15 +6,15 @@ import { convertClipboard } from '../clipboard';
 import { addDomainToRules, type ActionMenuId } from './browser-action';
 
 export const listenMenusEvent = () => {
-  browser.contextMenus.onClicked.addListener((info, tab) => {
+  browser.contextMenus.onClicked.addListener(async (info, tab) => {
     console.log({ info, tab });
     switch (info.menuItemId as ActionMenuId | ContextMenuChildrenId) {
       case 'domain_disabled':
-        return tab && addDomainToRules('disabled', tab);
+        { tab && addDomainToRules('disabled', tab); return; }
       case 'domain_s2t':
-        return tab && addDomainToRules(LangType.s2t, tab);
+        { tab && addDomainToRules(LangType.s2t, tab); return; }
       case 'domain_t2s':
-        return tab && addDomainToRules(LangType.t2s, tab);
+        { tab && addDomainToRules(LangType.t2s, tab); return; }
       case 'options':
         return browser.runtime.openOptionsPage();
       case 'clipboard_s2t':

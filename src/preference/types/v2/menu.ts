@@ -1,4 +1,4 @@
-import { TransTarget } from '../types';
+import type { TransTarget } from '../types';
 
 export type PrefMenuOptions = Record<TransTarget, boolean>;
 

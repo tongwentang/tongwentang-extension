@@ -1,7 +1,7 @@
 // @ts-check
 const { writeFileSync } = require('fs');
 const { resolve } = require('path');
-const pkg = require('../../package.json');
+const pkg = require('./package.json');
 
 /** @import { Manifest } from 'webextension-polyfill' */
 

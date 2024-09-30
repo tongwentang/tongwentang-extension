@@ -1,9 +1,11 @@
-import { Dispatch, FC, useCallback } from 'react';
+import type { Dispatch, FC} from 'react';
+import { useCallback } from 'react';
 import { i18n } from '../../../service/i18n/i18n';
-import { PageAction, PageState, PageType } from '../../hooks/page';
+import type { PageAction, PageState} from '../../hooks/page';
+import { PageType } from '../../hooks/page';
 
 export const Navbar: FC<{ page: PageState; setPage: Dispatch<PageAction> }> = ({ page, setPage }) => {
-  const setPageWith = useCallback((type: PageType) => () => setPage({ type }), [setPage]);
+  const setPageWith = useCallback((type: PageType) => () => { setPage({ type }); }, [setPage]);
 
   const toGeneral = useCallback(setPageWith(PageType.general), [setPageWith]);
   const toMenu = useCallback(setPageWith(PageType.menu), [setPageWith]);

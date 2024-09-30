@@ -1,10 +1,10 @@
 import { browser } from '../../service/browser';
 import type { SessionState } from './type';
 
-export const getSessionState = (): Promise<SessionState> => {
+export const getSessionState = async (): Promise<SessionState> => {
   return browser.storage.session.get();
 };
 
-export const setSessionState = (state: Partial<SessionState>) => {
+export const setSessionState = async (state: Partial<SessionState>) => {
   return browser.storage.session.set(state);
 };

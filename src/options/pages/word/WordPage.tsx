@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import { i18n } from '../../../service/i18n/i18n';
 import { Page } from '../../components';
 import { WordSettings } from './WordSettings';

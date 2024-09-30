@@ -82,7 +82,7 @@ module.exports = (env, argv) => {
         const state = { manifest: false, webExt: false };
 
         function writeManifest() {
-          exec('node ./src/manifest/main.js', (error, stdout, stderr) => {
+          exec('node ./manifest.js', (error, stdout, stderr) => {
             console.log('write manifest:');
             error || stderr ? console.log(`error - ${error || stderr}`) : console.log(stdout || 'done');
           });
@@ -96,7 +96,7 @@ module.exports = (env, argv) => {
 
           if (isProd) return;
 
-          watch(path.resolve(__dirname, 'src', 'manifest', 'main.js'), event => {
+          watch(path.resolve(__dirname, 'manifest.js'), event => {
             if (event !== 'change') return;
             writeManifest();
           });

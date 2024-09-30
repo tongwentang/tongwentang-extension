@@ -2,8 +2,9 @@ import { LangType } from 'tongwen-core/dictionaries';
 import { getRandomId } from '../../utilities';
 import { getDefaultPref } from '../default';
 import { patternRegExpify, regularOldPattern } from '../filter-rule';
-import { PrefFxV1, PrefFxV1Filter, V1PrefFxActionEnum, V1PrefFxAutoConverterEnum } from '../types/v1';
-import { AutoConvertOpt, BrowserActionOpt, FilterTarget, PrefFilterRule, PrefV2 } from '../types/v2';
+import type { PrefFxV1, PrefFxV1Filter} from '../types/v1';
+import { V1PrefFxActionEnum, V1PrefFxAutoConverterEnum } from '../types/v1';
+import type { AutoConvertOpt, BrowserActionOpt, FilterTarget, PrefFilterRule, PrefV2 } from '../types/v2';
 
 const filters2Rules = (rules: PrefFxV1Filter[]): PrefFilterRule[] =>
   rules.map(rule => {

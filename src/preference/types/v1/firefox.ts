@@ -1,4 +1,4 @@
-import { DicObj } from 'tongwen-core/dictionaries';
+import type { DicObj } from 'tongwen-core/dictionaries';
 
 export const V1PrefFxAutoConverterEnum = ['disabled', 's2t', 't2s'];
 

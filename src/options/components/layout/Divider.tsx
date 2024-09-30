@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 
 export const Divider: FC<{ content?: string }> = ({ content }) => {
   return (

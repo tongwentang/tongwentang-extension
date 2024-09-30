@@ -1,8 +1,8 @@
-import { LangType } from 'tongwen-core/dictionaries';
-import { Tabs } from 'webextension-polyfill';
+import type { LangType } from 'tongwen-core/dictionaries';
+import type { Tabs } from 'webextension-polyfill';
 import { browser } from '../browser';
-import { ZhType } from '../tabs/tabs.constant';
-import { ReqAction, ReqActionDispatcher, ReqActionHandler, TActionMap, TActionPayload } from './action';
+import type { ZhType } from '../tabs/tabs.constant';
+import type { ReqAction, ReqActionDispatcher, ReqActionHandler, TActionMap, TActionPayload } from './action';
 
 export type CtActionMap = TActionMap<{
   Textarea: TActionPayload<LangType, void>;
@@ -12,9 +12,9 @@ export type CtActionMap = TActionMap<{
 
 export type CtReqAction = ReqAction<CtActionMap>;
 
-export const handleCtReqAction: ReqActionHandler<CtActionMap> = (_, repP) => repP;
+export const handleCtReqAction: ReqActionHandler<CtActionMap> = async (_, repP) => repP;
 
-export const dispatchCtAction: ReqActionDispatcher<CtActionMap, [tabId: NonNullable<Tabs.Tab['id']>]> = (
+export const dispatchCtAction: ReqActionDispatcher<CtActionMap, [tabId: NonNullable<Tabs.Tab['id']>]> = async (
   action,
   tabId,
 ) => {

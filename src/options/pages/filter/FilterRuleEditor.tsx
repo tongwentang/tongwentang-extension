@@ -1,6 +1,7 @@
-import { ChangeEventHandler, FC, useCallback, useEffect, useState } from 'react';
+import type { ChangeEventHandler, FC} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { isFilterPatternValid } from '../../../preference/filter-rule';
-import { FilterTarget, PrefFilterRule } from '../../../preference/types/v2';
+import type { FilterTarget, PrefFilterRule } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
 import { Button, Select } from '../../components';
 import { FilterRuleTargetOptions } from '../../hooks/filter/options';
@@ -12,23 +13,23 @@ export const FilterRuleEditor: FC<{
 }> = ({ value: org, onSubmit: handleSubmit, onCancel: handleCancel }) => {
   const [rule, setRule] = useState({ ...org });
 
-  useEffect(() => void setRule({ ...org }), [org]);
+  useEffect(() => { setRule({ ...org }); }, [org]);
 
   const [isError, setError] = useState(false);
 
   const updatePattern: ChangeEventHandler<HTMLInputElement> = useCallback(
-    e => (pattern => setRule(rule => ({ ...rule, pattern })))(e.currentTarget.value),
+    e => { (pattern => { setRule(rule => ({ ...rule, pattern })); })(e.currentTarget.value); },
     [],
   );
 
   const updateTarget: ChangeEventHandler<HTMLSelectElement> = useCallback(
-    e => (target => setRule(rule => ({ ...rule, target })))(e.currentTarget.value as FilterTarget),
+    e => { (target => { setRule(rule => ({ ...rule, target })); })(e.currentTarget.value as FilterTarget); },
     [],
   );
 
   const submit = useCallback(() => !isError && handleSubmit(rule), [rule, isError]);
 
-  useEffect(() => void setError(!isFilterPatternValid(rule.pattern)), [rule.pattern]);
+  useEffect(() => { setError(!isFilterPatternValid(rule.pattern)); }, [rule.pattern]);
 
   return (
     <div className="columns">

@@ -1,6 +1,6 @@
 import { getRandomId } from '../../utilities';
 import type { Pref } from '../types/lastest';
-import { PrefFilterRule, RegExpMaybe } from '../types/v2';
+import type { PrefFilterRule, RegExpMaybe } from '../types/v2';
 
 export const REGEXP_PATTERN = /^\/(.+)\/([gimuy]{0,5})$/;
 export const DOMAIN_PATTERN = /^[\w-]+\.([\w-]+\.)*[\w-]+$/;
@@ -16,7 +16,7 @@ const createRegExpWithRegexLike = (pattern: string): RegExpMaybe => {
   try {
     const [, body = '', options = ''] = REGEXP_PATTERN.exec(pattern.trim()) || [];
     return new RegExp(body, [...new Set(options)].join(''));
-  } catch (error) {
+  } catch {
     return null;
   }
 };
@@ -24,7 +24,7 @@ const createRegExpWithRegexLike = (pattern: string): RegExpMaybe => {
 const createRegExpWithDomainLike = (pattern: string): RegExpMaybe => {
   try {
     return new RegExp(escapeRegex(pattern));
-  } catch (error) {
+  } catch {
     return null;
   }
 };

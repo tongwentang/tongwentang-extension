@@ -13,7 +13,7 @@ export const mountCommandListener = () => {
       case CommandType.wS2t:
         return browser.tabs
           .query({ active: true, currentWindow: true })
-          .then(([tab]) =>
+          .then(async ([tab]) =>
             typeof tab.id === 'number'
               ? dispatchCtAction({ type: 'Webpage', payload: LangType.s2t }, tab.id)
               : Promise.resolve(undefined),
@@ -21,7 +21,7 @@ export const mountCommandListener = () => {
       case CommandType.wT2s:
         return browser.tabs
           .query({ active: true, currentWindow: true })
-          .then(([tab]) =>
+          .then(async ([tab]) =>
             typeof tab.id === 'number'
               ? dispatchCtAction({ type: 'Webpage', payload: LangType.t2s }, tab.id)
               : Promise.resolve(undefined),

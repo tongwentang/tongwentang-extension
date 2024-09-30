@@ -2,8 +2,8 @@ import { LangType } from 'tongwen-core/dictionaries';
 import { getRandomId } from '../../utilities';
 import { getDefaultPref } from '../default';
 import { patternRegExpify, regularOldPattern } from '../filter-rule';
-import { PrefGcV1, PrefGcV1FilterRule } from '../types/v1';
-import { FilterTarget, PrefFilterRule, PrefV2 } from '../types/v2';
+import type { PrefGcV1, PrefGcV1FilterRule } from '../types/v1';
+import type { FilterTarget, PrefFilterRule, PrefV2 } from '../types/v2';
 
 const TargetConverter = {
   none: 'disabled' as const,

@@ -1,8 +1,8 @@
-import { LangType } from 'tongwen-core/dictionaries';
-import { Menus } from 'webextension-polyfill';
+import type { LangType } from 'tongwen-core/dictionaries';
+import type { Menus } from 'webextension-polyfill';
 import { getSessionState, setSessionState } from '../../background/session';
 import type { Pref } from '../../preference/types/lastest';
-import { PrefMenuGroupKeys, PrefMenuOptions } from '../../preference/types/v2';
+import type { PrefMenuGroupKeys, PrefMenuOptions } from '../../preference/types/v2';
 import { browser } from '../browser';
 import { i18n } from '../i18n/i18n';
 import { getSubMenuContexts, getTopMenuContexts } from './determine-context';
@@ -20,7 +20,7 @@ function createSubMenu(parentId: MenuId, funcKey: PrefMenuGroupKeys, settings: P
         parentId,
         id: `${funcKey}_${target}`,
         type: 'normal',
-        title: `${i18n.getMessage(`MSG_${funcKey}_${target}`)}`,
+        title: i18n.getMessage(`MSG_${funcKey}_${target}`),
         contexts: getSubMenuContexts(funcKey),
       };
 
@@ -28,9 +28,9 @@ function createSubMenu(parentId: MenuId, funcKey: PrefMenuGroupKeys, settings: P
     });
 }
 
-export function createMenu(menu: Pref['menu']): Promise<unknown> {
+export async function createMenu(menu: Pref['menu']): Promise<unknown> {
   return getSessionState()
-    .then(state => (state.menuId != null ? browser.contextMenus.remove(state.menuId) : Promise.resolve(null)))
+    .then(async state => (state.menuId != null ? browser.contextMenus.remove(state.menuId) : Promise.resolve(null)))
     .then(() => menu.enabled && getTopMenuContexts(menu.group))
     .then(
       contexts =>
@@ -42,13 +42,13 @@ export function createMenu(menu: Pref['menu']): Promise<unknown> {
           contexts,
         }),
     )
-    .then(menuId =>
+    .then(async menuId =>
       menuId === false
         ? Promise.resolve(null)
         : Promise.all([
             setSessionState({ menuId }),
             Object.entries(menu.group).forEach(([funcKey, settings]) =>
-              createSubMenu(menuId, funcKey as PrefMenuGroupKeys, settings),
+              { createSubMenu(menuId, funcKey as PrefMenuGroupKeys, settings); },
             ),
           ]),
     );

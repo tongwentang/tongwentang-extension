@@ -1,12 +1,13 @@
 import { browser } from '../../service/browser';
 import { dispatchBgAction } from '../../service/runtime/background';
-import { CtReqAction, handleCtReqAction } from '../../service/runtime/content';
+import type { CtReqAction} from '../../service/runtime/content';
+import { handleCtReqAction } from '../../service/runtime/content';
 import { convertNode } from '../convert';
-import { CtState } from '../state';
+import type { CtState } from '../state';
 import { handleTextarea } from './handle-textarea';
 
 export const mountRuntimeListener = (state: CtState) =>
-  browser.runtime.onMessage.addListener(async (action: CtReqAction) => {
+  { browser.runtime.onMessage.addListener(async (action: CtReqAction) => {
     dispatchBgAction({ type: 'Log', payload: ['[CT_RECEIVE_REQ]', action] });
 
     switch (action.type) {
@@ -17,4 +18,4 @@ export const mountRuntimeListener = (state: CtState) =>
       case 'ZhType':
         return handleCtReqAction(action, state.zhType);
     }
-  });
+  }); };

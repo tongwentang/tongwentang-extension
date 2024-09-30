@@ -1,4 +1,4 @@
-import { type CommandType } from './service/commands/type';
+import type { CommandType } from './service/commands/type';
 
 declare module 'webextension-polyfill' {
   namespace Browser {

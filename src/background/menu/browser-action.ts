@@ -1,6 +1,6 @@
 import { LangType } from 'tongwen-core/dictionaries';
 import { isUrlLike } from '../../preference/filter-rule';
-import { FilterTarget } from '../../preference/types/v2';
+import type { FilterTarget } from '../../preference/types/v2';
 import { browser } from '../../service/browser';
 import { i18n } from '../../service/i18n/i18n';
 import { addFilterRule } from '../../service/storage/local';
@@ -57,7 +57,7 @@ const createClipboardProperties = () =>
 
 // TODO: need icon
 export async function createBrowserActionMenus(): Promise<unknown> {
-  return getSessionState().then(({ hasBrowserActionMenu }) => {
+  return getSessionState().then(async ({ hasBrowserActionMenu }) => {
     if (hasBrowserActionMenu) return;
 
     const browserActionMenuItems: browser.Menus.CreateCreatePropertiesType[] = [
@@ -70,7 +70,7 @@ export async function createBrowserActionMenus(): Promise<unknown> {
       } satisfies browser.Menus.CreateCreatePropertiesType),
     );
 
-    const task = Promise.all(browserActionMenuItems.map(item => browser.contextMenus.create(item)));
-    return Promise.resolve([task, setSessionState({ hasBrowserActionMenu: task })]);
+    const task = browserActionMenuItems.map(item => browser.contextMenus.create(item));
+    return Promise.resolve([task, setSessionState({ hasBrowserActionMenu: Promise.resolve(task) })]);
   });
 }

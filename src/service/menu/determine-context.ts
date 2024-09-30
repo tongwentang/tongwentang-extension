@@ -1,4 +1,4 @@
-import { PrefMenuGroup, PrefMenuGroupKeys, PrefMenuOptions } from '../../preference/types/v2';
+import type { PrefMenuGroup, PrefMenuGroupKeys, PrefMenuOptions } from '../../preference/types/v2';
 import type { browser } from '../browser';
 import { ContextOnAll, ContextOnEditable } from './menus';
 

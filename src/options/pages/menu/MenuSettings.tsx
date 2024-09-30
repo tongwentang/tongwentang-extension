@@ -1,4 +1,5 @@
-import { FC, Fragment } from 'react';
+import type { FC} from 'react';
+import { Fragment } from 'react';
 import { i18n } from '../../../service/i18n/i18n';
 import { Checkbox } from '../../components/forms';
 import { useMenu } from '../../hooks/menu';
