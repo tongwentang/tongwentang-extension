@@ -1,7 +1,8 @@
-import type { ChangeEventHandler} from 'react';
+import type { ChangeEventHandler } from 'react';
 import { useEffect, useState } from 'react';
 import { LangType } from 'tongwen-core/dictionaries';
 import { getDefaultPref } from '../../../preference/default';
+import type { Pref } from '../../../preference/types/lastest';
 import { getStorage, listenStorage, setStorage } from '../../../service/storage/storage';
 
 export const useMenu = () => {
@@ -38,10 +39,21 @@ export const useMenu = () => {
       },
     });
 
-  useEffect(() => listenStorage(changes => { set(changes.menu?.newValue); }, { keys: ['menu'], areaName: ['local'] }), []);
+  useEffect(
+    () =>
+      listenStorage(
+        changes => {
+          set(changes.menu?.newValue as Pref['menu']);
+        },
+        { keys: ['menu'], areaName: ['local'] },
+      ),
+    [],
+  );
 
   useEffect(() => {
-    getStorage('menu').then(({ menu }) => { set(menu); });
+    getStorage('menu').then(({ menu }) => {
+      set(menu);
+    });
   }, []);
 
   return { menu, setMenuEnable, setWebS2t, setWebT2s, setTextS2t, setTextT2s };

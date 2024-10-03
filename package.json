@@ -20,7 +20,7 @@
     "update": "ncu -i --format group",
     "we:build": "web-ext build -s dist/firefox",
     "we:sign": "web-ext sign --config=web-ext-config-firefox.js --no-config-discovery",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "nano-staged": {
     "*.{js,jsx,ts,tsx,json,md}": [
@@ -32,33 +32,32 @@
   },
   "dependencies": {
     "data-fixer": "^5.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "spectre.css": "^0.5.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "spectre.css": "^0.5.9",
     "tongwen-core": "^5.0.0-beta-1",
     "webextension-polyfill": "^0.12.0",
-    "zod": "^3.20.2"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
-    "@rspack/cli": "^1.0.0",
-    "@rspack/core": "^1.0.0",
-    "@types/node": "^22.0.0",
-    "@types/react": "^18.0.38",
-    "@types/react-dom": "^18.0.11",
-    "@types/webextension-polyfill": "^0.10.7",
-    "dotenv": "^16.0.0",
+    "@rspack/cli": "^1.0.8",
+    "@rspack/core": "^1.0.8",
+    "@types/node": "^22.7.4",
+    "@types/react": "^18.3.10",
+    "@types/react-dom": "^18.3.0",
+    "@types/webextension-polyfill": "^0.12.1",
+    "dotenv": "^16.4.5",
     "eslint": "^9.11.1",
     "eslint-plugin-react": "^7.37.0",
     "globals": "^15.9.0",
-    "husky": "^8.0.1",
+    "husky": "^9.1.6",
     "nano-staged": "^0.8.0",
     "prettier": "^3.3.3",
     "standard-version": "^9.5.0",
     "tongwen-dict": "^1.0.1",
-    "ts-loader": "^9.5.1",
-    "typescript": "~5.5.4",
-    "typescript-eslint": "^8.7.0",
-    "web-ext": "^7.1.1"
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.8.0",
+    "web-ext": "^8.3.0"
   }
 }
