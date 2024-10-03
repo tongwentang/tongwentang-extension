@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 export const Modal: FC<{
   isActive: boolean;
@@ -7,7 +7,7 @@ export const Modal: FC<{
   children: ReactNode;
   onOk?: () => void;
   onCancel: () => void;
-}> = ({ head, footer, isActive, onOk, onCancel, children }) => {
+}> = ({ head, footer, isActive, onCancel, children }) => {
   const active = isActive ? 'active' : '';
   return (
     <div className={`modal ${active}`} id="modal-id">

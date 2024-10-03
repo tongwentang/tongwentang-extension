@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import type { LangType } from 'tongwen-core/dictionaries';
 
 export type Disabled = 'disabled';
 

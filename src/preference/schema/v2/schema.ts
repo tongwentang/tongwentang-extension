@@ -1,6 +1,7 @@
-import { Control, dctrl, vctrl } from 'data-fixer';
+import type { Control} from 'data-fixer';
+import { dctrl, vctrl } from 'data-fixer';
 import { z } from 'zod';
-import { Pref } from '../../types/lastest';
+import type { Pref } from '../../types/lastest';
 import { vldFn } from '../validator';
 import { filterSchema } from './filter';
 import { generalSchema } from './general';

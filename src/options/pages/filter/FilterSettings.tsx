@@ -1,6 +1,7 @@
-import { ChangeEventHandler, FC, Fragment, useCallback, useState } from 'react';
+import type { ChangeEventHandler, FC} from 'react';
+import { Fragment, useCallback, useState } from 'react';
 import { createFilterRule } from '../../../preference/filter-rule';
-import { PrefFilterRule } from '../../../preference/types/v2';
+import type { PrefFilterRule } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
 import { createNoti } from '../../../service/notification/create-noti';
 import { setStorage } from '../../../service/storage/storage';
@@ -14,7 +15,7 @@ export const FilterSettings: FC = () => {
   const { enabled, setEnable, rules, setRules } = useFilter();
 
   const handleEnabledChange: ChangeEventHandler<HTMLInputElement> = useCallback(
-    e => setEnable(e.currentTarget.checked),
+    e => { setEnable(e.currentTarget.checked); },
     [setEnable],
   );
 
@@ -40,14 +41,14 @@ export const FilterSettings: FC = () => {
 
   const handleSubmit = useCallback(
     (rule: PrefFilterRule) => {
-      toEdit.isAdd === false ? setRules({ type: 'UPDATE', payload: rule }) : setRules({ type: 'ADD', payload: rule });
+      !toEdit.isAdd ? setRules({ type: 'UPDATE', payload: rule }) : setRules({ type: 'ADD', payload: rule });
       off();
     },
     [toEdit, setRules],
   );
 
   const save = useCallback(
-    () => setStorage({ filter: { enabled, rules } }).then(() => createNoti(i18n.getMessage('MSG_UPDATE_COMPLETED'))),
+    async () => setStorage({ filter: { enabled, rules } }).then(async () => createNoti(i18n.getMessage('MSG_UPDATE_COMPLETED'))),
     [enabled, rules],
   );
 

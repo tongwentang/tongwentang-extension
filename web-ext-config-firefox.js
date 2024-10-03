@@ -1,9 +1,5 @@
-const { error, parsed: env } = require('dotenv').config();
+const { parsed: env } = require('dotenv').config();
 const config = require('./web-ext-config');
-
-if (error) {
-  throw error;
-}
 
 module.exports = {
   ...config,

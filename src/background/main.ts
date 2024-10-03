@@ -1,21 +1,18 @@
-import { setBadge } from '../service/browser-action/set-badge';
 import { i18n } from '../service/i18n/i18n';
-import { createMenu } from '../service/menu/create-menu';
 import { mountBrowserActionListener } from './browser-action';
 import { mountCommandListener } from './commands';
-import { createBrowserActionMenus } from './menu';
+import { createBrowserActionMenus } from './menu/browser-action';
+import { listenMenusEvent } from './menu/listen';
 import { mountRuntimeListener } from './runtime';
-import { BgState, createBgState, mountPrefListener } from './state';
+import { mountPrefListener } from './state/mount-pref-listener';
+import { bgInitialPref } from './state/storage';
 
-(async function main() {
-  const state: BgState = await createBgState();
+mountPrefListener();
+mountRuntimeListener();
+mountBrowserActionListener();
+mountCommandListener();
+listenMenusEvent();
+createBrowserActionMenus();
+bgInitialPref();
 
-  mountPrefListener(state);
-  mountRuntimeListener(state);
-  mountBrowserActionListener(state);
-  mountCommandListener(state);
-
-  await Promise.all([createMenu(state), createBrowserActionMenus(state), setBadge(state.pref)]);
-
-  console.info(`${i18n.getMessage('MSG_EXT_NAME')} 👌`);
-})().catch(console.error);
+console.info(`${i18n.getMessage('MSG_EXT_NAME')} 👌`);

@@ -1,5 +1,5 @@
 import { dispatchBgAction } from '../../service/runtime/background';
-import { CtState } from '../state';
+import type { CtState } from '../state';
 import { exhaustMutations } from './exhaust-mutations';
 
 type ObserverFn = (s: CtState) => (m: MutationRecord[]) => void;

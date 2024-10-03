@@ -2,7 +2,8 @@ import { convertNode } from './convert';
 import { mountMutationObserver } from './mutation-observer';
 import { mountRuntimeListener } from './runtime/mount-runtime-listener';
 import { getTarget } from './services';
-import { createCtState, CtState } from './state';
+import type { CtState } from './state';
+import { createCtState } from './state';
 
 (async function main() {
   const state: CtState = await createCtState();
@@ -11,5 +12,5 @@ import { createCtState, CtState } from './state';
   await mountMutationObserver(state);
 
   const target = await getTarget().catch(console.error);
-  target && convertNode(state, target, [document]).catch(console.error);
+  (target != null) && convertNode(state, target, [document]).catch(console.error);
 })();

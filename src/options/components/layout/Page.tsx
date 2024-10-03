@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 export const Page: FC<{ title: string; children: ReactNode }> = ({ title, children }) => {
   return (

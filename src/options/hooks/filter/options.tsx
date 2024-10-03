@@ -1,4 +1,4 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { i18n } from '../../../service/i18n/i18n';
 import { entriesToOption } from '../../shared/entries-to-option';
 

@@ -1,5 +1,6 @@
-import { Control, dctrl } from 'data-fixer';
-import { PrefMenu } from '../../types/v2';
+import type { Control} from 'data-fixer';
+import { dctrl } from 'data-fixer';
+import type { PrefMenu } from '../../types/v2';
 import { isBoolean } from '../controllers';
 
 const menuGroupSchema = dctrl({

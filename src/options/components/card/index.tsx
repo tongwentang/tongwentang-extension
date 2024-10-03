@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 export const Card: FC<{ children: ReactNode }> = props => <div className="card my-2">{props.children}</div>;
 
