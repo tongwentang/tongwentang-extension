@@ -2,6 +2,7 @@ import { BrowserType } from '../../service/types';
 import { v1SchemaFx, v1SchemaGc } from '../schema/v1';
 import { v2Schema } from '../schema/v2';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const validatePref = (code: BrowserType) => (pref: Record<string, any>) => {
   switch (true) {
     case code === BrowserType.FX && pref.version === 1:

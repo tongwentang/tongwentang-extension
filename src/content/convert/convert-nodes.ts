@@ -1,7 +1,8 @@
-import { LangType, walkNode } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
+import { walkNode } from 'tongwen-core/walker';
 import { dispatchBgAction } from '../../service/runtime/background';
 import { ZhType } from '../../service/tabs/tabs.constant';
-import { CtState } from '../state';
+import type { CtState } from '../state';
 import { updateLangAttr } from './update-lang-attr';
 import { updateNodes } from './update-nodes';
 
@@ -12,13 +13,13 @@ export const convertNode: SConvertNode = async (state, target, nodes) => {
     ? void 0
     : (state.converting = state.converting
         .catch(() => undefined)
-        .then(() => dispatchBgAction({ type: 'NodesText', payload: { target, texts: parsedNodes.map(n => n.text) } }))
+        .then(async () => dispatchBgAction({ type: 'NodesText', payload: { target, texts: parsedNodes.map(n => n.text) } }))
         .then(texts => {
           state.mutationObserver?.disconnect();
           updateNodes(parsedNodes, texts);
           state.mutationObserver?.observe(document, state.mutationOpt);
           state.updateLangAttr &&
-            document.querySelectorAll<HTMLElement>('[lang|="zh"]').forEach(el => updateLangAttr(el, target));
+            document.querySelectorAll<HTMLElement>('[lang|="zh"]').forEach(el => { updateLangAttr(el, target); });
 
           switch (target) {
             case LangType.s2t:

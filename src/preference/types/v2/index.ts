@@ -1,6 +1,6 @@
-export * from './filter';
-export * from './general';
-export * from './menu';
-export * from './meta';
-export * from './pref';
-export * from './word';
+export type * from './filter';
+export type * from './general';
+export type * from './menu';
+export type * from './meta';
+export type * from './pref';
+export type * from './word';

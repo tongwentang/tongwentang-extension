@@ -1,13 +1,15 @@
-import { ChangeEventHandler, useEffect, useState } from 'react';
-import { LangType } from 'tongwen-core';
+import type { ChangeEventHandler } from 'react';
+import { useEffect, useState } from 'react';
+import type { LangType } from 'tongwen-core/dictionaries';
 import { getDefaultPref } from '../../../preference/default';
-import { AutoConvertOpt, BrowserActionOpt, PrefGeneral } from '../../../preference/types/v2';
+import type { Pref } from '../../../preference/types/lastest';
+import type { AutoConvertOpt, BrowserActionOpt, PrefGeneral } from '../../../preference/types/v2';
 import { getStorage, listenStorage, setStorage } from '../../../service/storage/storage';
 
 export const useGeneralOpt = () => {
   const [general, set] = useState<PrefGeneral>(getDefaultPref().general);
 
-  const setGeneral = <T extends keyof PrefGeneral>(key: T, value: PrefGeneral[T]) =>
+  const setGeneral = async <T extends keyof PrefGeneral>(key: T, value: PrefGeneral[T]) =>
     setStorage({ general: { ...general, [key]: value } });
   const setAutoConvert: ChangeEventHandler<HTMLSelectElement> = e =>
     void setGeneral('autoConvert', e.currentTarget.value as AutoConvertOpt);
@@ -22,7 +24,7 @@ export const useGeneralOpt = () => {
 
   useEffect(
     () =>
-      listenStorage(changes => changes.general?.newValue && set(changes.general?.newValue), {
+      listenStorage(changes => changes.general?.newValue && set(changes.general.newValue as Pref['general']), {
         keys: ['general'],
         areaName: ['local'],
       }),
@@ -30,7 +32,9 @@ export const useGeneralOpt = () => {
   );
 
   useEffect(() => {
-    getStorage('general').then(({ general }) => set(general));
+    getStorage('general').then(({ general }) => {
+      set(general);
+    });
   }, []);
 
   return {

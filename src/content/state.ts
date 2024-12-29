@@ -1,6 +1,6 @@
-import { TARGET_NODE_ATTRIBUTES } from 'tongwen-core';
+import { TARGET_NODE_ATTRIBUTES } from 'tongwen-core/walker';
 import { getStorage } from '../service/storage/storage';
-import { ZhType } from '../service/tabs/tabs.constant';
+import type { ZhType } from '../service/tabs/tabs.constant';
 import { getDetectLanguage } from './services';
 
 const mutationOpt: MutationObserverInit = {
@@ -19,11 +19,11 @@ export interface CtState {
   mutationOpt: MutationObserverInit;
   mutationObserver?: MutationObserver;
   mutations: MutationRecord[];
-  converting: Promise<any>;
+  converting: Promise<void>;
 }
 
-const getUpdateLangAttr = () => getStorage('general').then(({ general }) => general.updateLangAttr);
-const getDebugMode = () => getStorage('general').then(({ general }) => general.debugMode);
+const getUpdateLangAttr = async () => getStorage('general').then(({ general }) => general.updateLangAttr);
+const getDebugMode = async () => getStorage('general').then(({ general }) => general.debugMode);
 
 export async function createCtState(): Promise<CtState> {
   return Promise.all([getDetectLanguage(), getUpdateLangAttr(), getDebugMode()]).then(
@@ -34,7 +34,7 @@ export async function createCtState(): Promise<CtState> {
       timeoutId: undefined,
       mutationOpt,
       mutations: [],
-      converting: Promise.resolve(null),
+      converting: Promise.resolve(undefined),
     }),
   );
 }

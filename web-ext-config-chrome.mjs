@@ -1,11 +1,6 @@
-const { error, parsed: env } = require('dotenv').config();
-const config = require('./web-ext-config');
+import { config, env } from './web-ext-config.mjs';
 
-if (error) {
-  throw error;
-}
-
-module.exports = {
+export default {
   ...config,
   sourceDir: './dist/chromium',
   run: {

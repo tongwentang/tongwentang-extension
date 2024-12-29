@@ -1,4 +1,4 @@
-import { type CommandType } from './service/commands/type';
+import type { CommandType } from './service/commands/type';
 
 declare module 'webextension-polyfill' {
   namespace Browser {
@@ -8,7 +8,6 @@ declare module 'webextension-polyfill' {
           onCommand: Events.Event<(command: CommandType, tab: Tabs.Tab | undefined) => void>;
         })
       | undefined;
-    const contextMenus: ContextMenus.Static | undefined;
     const downloads: Downloads.Static | undefined;
     const tabs: Omit<Tabs.Static, 'detectLanguage'> & { detectLanguage?: Tabs.Static['detectLanguage'] };
   }

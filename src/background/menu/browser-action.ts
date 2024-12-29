@@ -1,16 +1,14 @@
-import { LangType } from 'tongwen-core';
+import { LangType } from 'tongwen-core/dictionaries';
 import { isUrlLike } from '../../preference/filter-rule';
-import { FilterTarget } from '../../preference/types/v2';
+import type { FilterTarget } from '../../preference/types/v2';
 import { browser } from '../../service/browser';
 import { i18n } from '../../service/i18n/i18n';
 import { addFilterRule } from '../../service/storage/local';
 import { getHostName, getRandomId } from '../../utilities';
-import { convertClipboard } from '../clipboard';
-import { BgState } from '../state';
+import { getSessionState, setSessionState } from '../session';
 
 // TODO: handle for none http protocol url
-type AddDomainToRule = (t: FilterTarget) => (i: browser.Menus.OnClickData, t: browser.Tabs.Tab) => void;
-const addDomainToRules: AddDomainToRule = target => (_, tab) => {
+export const addDomainToRules = (target: FilterTarget, tab: browser.Tabs.Tab) => {
   isUrlLike(tab.url!) &&
     addFilterRule({
       target,
@@ -20,49 +18,59 @@ const addDomainToRules: AddDomainToRule = target => (_, tab) => {
     });
 };
 
-const createBrowserActionProperties: () => browser.Menus.CreateCreatePropertiesType[] = () => [
-  {
-    title: i18n.getMessage('MSG_ADD_DOMAIN_TO_DISABLED'),
-    onclick: addDomainToRules('disabled'),
-  },
-  {
-    title: i18n.getMessage('MSG_ADD_DOMAIN_TO_S2T'),
-    onclick: addDomainToRules(LangType.s2t),
-  },
-  {
-    title: i18n.getMessage('MSG_ADD_DOMAIN_TO_T2S'),
-    onclick: addDomainToRules(LangType.t2s),
-  },
-  {
-    title: i18n.getMessage('MSG_OPTION'),
-    onclick: () => browser.runtime.openOptionsPage(),
-  },
-];
+export type ActionMenuId = (
+  | ReturnType<typeof createBrowserActionProperties>
+  | ReturnType<typeof createClipboardProperties>
+)[number]['id'];
 
-const reqConvertClipboard = (state: BgState, target: LangType) => () => void convertClipboard(state, target);
+const createBrowserActionProperties = () =>
+  [
+    {
+      id: 'domain_disabled',
+      title: i18n.getMessage('MSG_ADD_DOMAIN_TO_DISABLED'),
+    },
+    {
+      id: `domain_${LangType.s2t}`,
+      title: i18n.getMessage('MSG_ADD_DOMAIN_TO_S2T'),
+    },
+    {
+      id: `domain_${LangType.t2s}`,
+      title: i18n.getMessage('MSG_ADD_DOMAIN_TO_T2S'),
+    },
+    {
+      id: 'options',
+      title: i18n.getMessage('MSG_OPTION'),
+    },
+  ] as const satisfies browser.Menus.CreateCreatePropertiesType[];
 
-const createClipboardProperties: (s: BgState) => browser.Menus.CreateCreatePropertiesType[] = state => [
-  {
-    title: i18n.getMessage('MSG_CONVERT_CLIPBOARD_S2T'),
-    onclick: reqConvertClipboard(state, LangType.s2t),
-  },
-  {
-    title: i18n.getMessage('MSG_CONVERT_CLIPBOARD_T2S'),
-    onclick: reqConvertClipboard(state, LangType.t2s),
-  },
-];
+const createClipboardProperties = () =>
+  [
+    {
+      id: `clipboard_${LangType.s2t}`,
+      title: i18n.getMessage('MSG_CONVERT_CLIPBOARD_S2T'),
+    },
+    {
+      id: `clipboard_${LangType.t2s}`,
+      title: i18n.getMessage('MSG_CONVERT_CLIPBOARD_T2S'),
+    },
+  ] as const satisfies browser.Menus.CreateCreatePropertiesType[];
 
 // TODO: need icon
-export async function createBrowserActionMenus(state: BgState): Promise<(string | number)[]> {
-  const browserActionMenuItems: browser.Menus.CreateCreatePropertiesType[] = [
-    ...createBrowserActionProperties(),
-    ...createClipboardProperties(state),
-  ].map(item =>
-    Object.assign(item, {
-      type: 'normal',
-      contexts: ['browser_action'],
-    } satisfies browser.Menus.CreateCreatePropertiesType),
-  );
+export async function createBrowserActionMenus(): Promise<unknown> {
+  return getSessionState().then(async ({ hasBrowserActionMenu }) => {
+    if (hasBrowserActionMenu) return;
 
-  return Promise.all(browserActionMenuItems.map(item => browser.menus.create(item)));
+    const browserActionMenuItems: browser.Menus.CreateCreatePropertiesType[] = [
+      ...createBrowserActionProperties(),
+      ...createClipboardProperties(),
+    ].map(item =>
+      Object.assign(item, {
+        type: 'normal',
+        contexts: ['action'],
+      } satisfies browser.Menus.CreateCreatePropertiesType),
+    );
+
+    const task = browserActionMenuItems.map(item => browser.contextMenus.create(item));
+    return Promise.resolve([task, setSessionState({ hasBrowserActionMenu: Promise.resolve(task) })]);
+  });
 }

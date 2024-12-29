@@ -1,4 +1,4 @@
-import { DicObj, LangType } from 'tongwen-core';
+import type { DicObj, LangType } from 'tongwen-core/dictionaries';
 
 export interface PrefWordItem {
   name: string;

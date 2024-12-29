@@ -1,5 +1,6 @@
 import { getRandomId } from '../../utilities';
-import { PrefFilterRule, RegExpMaybe } from '../types/v2';
+import type { Pref } from '../types/lastest';
+import type { PrefFilterRule, RegExpMaybe } from '../types/v2';
 
 export const REGEXP_PATTERN = /^\/(.+)\/([gimuy]{0,5})$/;
 export const DOMAIN_PATTERN = /^[\w-]+\.([\w-]+\.)*[\w-]+$/;
@@ -15,7 +16,7 @@ const createRegExpWithRegexLike = (pattern: string): RegExpMaybe => {
   try {
     const [, body = '', options = ''] = REGEXP_PATTERN.exec(pattern.trim()) || [];
     return new RegExp(body, [...new Set(options)].join(''));
-  } catch (error) {
+  } catch {
     return null;
   }
 };
@@ -23,7 +24,7 @@ const createRegExpWithRegexLike = (pattern: string): RegExpMaybe => {
 const createRegExpWithDomainLike = (pattern: string): RegExpMaybe => {
   try {
     return new RegExp(escapeRegex(pattern));
-  } catch (error) {
+  } catch {
     return null;
   }
 };
@@ -33,8 +34,8 @@ export const patternRegExpify = (pattern: string): RegExpMaybe =>
 
 export const regularOldPattern = (pattern: string) => `/${pattern.replace(/(\W)/g, '\\$1').replace(/\\\*/g, '.*')}/`;
 
-export const patchRulesRegExp = (rules: PrefFilterRule[]): PrefFilterRule[] => {
-  return rules.map(rule => ({ ...rule, regexp: patternRegExpify(rule.pattern) }));
+export const patchFilterRulesRegExp = (filter: Pref['filter']): Pref['filter'] => {
+  return { ...filter, rules: filter.rules.map(r => ({ ...r, regexp: patternRegExpify(r.pattern) })) };
 };
 
 export const createFilterRule = (): PrefFilterRule => ({

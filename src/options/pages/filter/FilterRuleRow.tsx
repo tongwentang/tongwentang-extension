@@ -1,5 +1,6 @@
-import { FC, useCallback } from 'react';
-import { PrefFilterRule } from '../../../preference/types/v2';
+import type { FC} from 'react';
+import { useCallback } from 'react';
+import type { PrefFilterRule } from '../../../preference/types/v2';
 import { i18n } from '../../../service/i18n/i18n';
 import { Button } from '../../components';
 
@@ -12,10 +13,10 @@ export const FilterRuleRow: FC<{
   onUp: (index: number) => void;
   onDown: (index: number) => void;
 }> = ({ index, rule, length, onChange: handleChange, onRemove: handleRemove, onUp: handleUp, onDown: handleDown }) => {
-  const change = useCallback(() => handleChange(rule), [rule]);
-  const remove = useCallback(() => handleRemove(rule), [rule]);
-  const up = useCallback(() => handleUp(index), [handleUp]);
-  const down = useCallback(() => handleDown(index), [handleDown]);
+  const change = useCallback(() => { handleChange(rule); }, [rule]);
+  const remove = useCallback(() => { handleRemove(rule); }, [rule]);
+  const up = useCallback(() => { handleUp(index); }, [handleUp]);
+  const down = useCallback(() => { handleDown(index); }, [handleDown]);
 
   return (
     <tr>

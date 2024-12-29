@@ -1,4 +1,5 @@
-import { FC, Reducer, useReducer } from 'react';
+import type { FC, Reducer} from 'react';
+import { useReducer } from 'react';
 import { AboutPage } from '../../pages/about/AboutPage';
 import { FilterPage } from '../../pages/filter/FilterPage';
 import { GeneralPage } from '../../pages/general/GeneralPage';
@@ -13,9 +14,9 @@ export enum PageType {
   about = 'ABOUT',
 }
 
-export type PageAction = { type: PageType };
+export interface PageAction { type: PageType }
 
-export type PageState = { type: PageType; node: FC };
+export interface PageState { type: PageType; node: FC }
 
 const pageReducer: Reducer<PageState, PageAction> = (s, { type }) => {
   switch (type) {

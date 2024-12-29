@@ -1,4 +1,4 @@
-import { Disabled, TransTarget } from '../types';
+import type { Disabled, TransTarget } from '../types';
 
 export type FilterTarget = Disabled | TransTarget;
 

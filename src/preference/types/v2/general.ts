@@ -1,5 +1,5 @@
-import { LangType } from 'tongwen-core';
-import { Auto, DetTransTarget, Disabled, TransTarget } from '../types';
+import type { LangType } from 'tongwen-core/dictionaries';
+import type { Auto, DetTransTarget, Disabled, TransTarget } from '../types';
 
 export type AutoConvertOpt = Disabled | DetTransTarget | TransTarget;
 

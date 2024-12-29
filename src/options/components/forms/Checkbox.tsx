@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from 'react';
+import type { ChangeEvent, FC } from 'react';
 
 export const Checkbox: FC<{
   isSwitch: boolean;

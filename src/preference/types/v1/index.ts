@@ -1,2 +1,2 @@
-export * from './chrome';
+export type * from './chrome';
 export * from './firefox';

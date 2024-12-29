@@ -1,7 +1,7 @@
 import { dispatchBgAction } from '../../service/runtime/background';
-import { ZhType } from '../../service/tabs/tabs.constant';
+import type { ZhType } from '../../service/tabs/tabs.constant';
 
 type GetDetectLanguage = () => Promise<ZhType>;
-export const getDetectLanguage: GetDetectLanguage = () => {
+export const getDetectLanguage: GetDetectLanguage = async () => {
   return dispatchBgAction({ type: 'DetectLang', payload: undefined });
 };

@@ -1,9 +1,9 @@
-import { LangType } from 'tongwen-core';
-import { MaybeTransTarget } from '../../preference/types/types';
-import { FilterTarget } from '../../preference/types/v2';
+import type { LangType } from 'tongwen-core/dictionaries';
+import type { MaybeTransTarget } from '../../preference/types/types';
+import type { FilterTarget } from '../../preference/types/v2';
 import { browser } from '../browser';
-import { ZhType } from '../tabs/tabs.constant';
-import { ReqAction, ReqActionDispatcher, ReqActionHandler, TActionMap, TActionPayload } from './action';
+import type { ZhType } from '../tabs/tabs.constant';
+import type { ReqAction, ReqActionDispatcher, ReqActionHandler, TActionMap, TActionPayload } from './action';
 
 export type BgActionMap = TActionMap<{
   Convert: TActionPayload<{ target: LangType; text: string }, string>;
@@ -14,13 +14,13 @@ export type BgActionMap = TActionMap<{
   ConvertClipboard: TActionPayload<LangType, void>;
   GetTarget: TActionPayload<void, MaybeTransTarget>;
   SpaMode: TActionPayload<void, boolean>;
-  Log: TActionPayload<any[], void>;
+  Log: TActionPayload<unknown[], void>;
 }>;
 
 export type BgReqAction = ReqAction<BgActionMap>;
 
-export const handleBgReqAction: ReqActionHandler<BgActionMap> = (_, repP) => repP;
+export const handleBgReqAction: ReqActionHandler<BgActionMap> = async (_, repP) => repP;
 
-export const dispatchBgAction: ReqActionDispatcher<BgActionMap> = action => {
+export const dispatchBgAction: ReqActionDispatcher<BgActionMap> = async action => {
   return browser.runtime.sendMessage(action);
 };
