@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.0](https://github.com/tongwentang/tongwentang-extension/compare/2.2.0...2.4.0) (2024-12-29)
+
+Manifest MV3 supported
+
+### Bug Fixes
+
+- should escape regex keyword before convert ([898c30e](https://github.com/tongwentang/tongwentang-extension/commit/898c30e78ab4d72aa8f532037c469a27c0e95cb0))
+- try to fix the blank page on mobile [#48](https://github.com/tongwentang/tongwentang-extension/issues/48) ([712ca2d](https://github.com/tongwentang/tongwentang-extension/commit/712ca2d56507c664461c09f58c5fc301155d916f))
+- unable to add filter rule from browser action menu ([349e897](https://github.com/tongwentang/tongwentang-extension/commit/349e897c253713a5aaf1db6569de7d00bb2c94b5)), closes [#41](https://github.com/tongwentang/tongwentang-extension/issues/41) [#65](https://github.com/tongwentang/tongwentang-extension/issues/65)
+- Update `lang` attribute of every element ([#64](https://github.com/tongwentang/tongwentang-extension/issues/64)) ([196606d](https://github.com/tongwentang/tongwentang-extension/commit/196606db2912d122a1b06b78f44142839e737bb3))
+
 ## [2.2.0](https://github.com/tongwentang/tongwentang-extension/compare/2.1.6...2.2.0) (2022-11-12)
 
 ### Features
