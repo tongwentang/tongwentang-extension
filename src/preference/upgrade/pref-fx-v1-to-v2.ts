@@ -47,6 +47,8 @@ export function prefFxV1ToV2(v1Pref: PrefFxV1): PrefV2 {
     filter: {
       enabled: v1Pref.urlFilterEnabled,
       rules: filters2Rules(v1Pref.urlFilterList),
+      chtTags: pref.filter.chtTags,
+      chsTags: pref.filter.chsTags,
     },
     word: {
       default: pref.word.default,

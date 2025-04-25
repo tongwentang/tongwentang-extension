@@ -42,12 +42,19 @@ const useFilterRules = (org: PrefFilterRule[]) => {
 export const useFilter = () => {
   const [enabled, setEnable] = useState(getDefaultPref().filter.enabled);
   const { rules, setRules } = useFilterRules(getDefaultPref().filter.rules);
+  const [chtTags, setChtTags] = useState(getDefaultPref().filter.chtTags);
+  const [chsTags, setChsTags] = useState(getDefaultPref().filter.chsTags);
 
   useEffect(() => {
     getStorage('filter').then(
-      ({ filter: { enabled, rules } }) => (setEnable(enabled), setRules({ type: 'RESET', payload: rules })),
+      ({ filter: { enabled, rules, chtTags, chsTags } }) => (
+        setEnable(enabled),
+        setRules({ type: 'RESET', payload: rules }),
+        setChtTags(chtTags),
+        setChsTags(chsTags)
+      ),
     );
   }, []);
 
-  return { enabled, setEnable, rules, setRules };
+  return { enabled, setEnable, rules, setRules, chtTags, setChtTags, chsTags, setChsTags };
 };

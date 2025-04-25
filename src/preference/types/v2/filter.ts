@@ -14,4 +14,6 @@ export interface PrefFilterRule {
 export interface PrefFilter {
   enabled: boolean;
   rules: PrefFilterRule[];
+  chtTags: string[];
+  chsTags: string[];
 }

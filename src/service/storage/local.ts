@@ -17,17 +17,17 @@ export const addFilterRule = async (rule: PrefFilterRule): Promise<void> => {
 };
 
 export const updateFilterRule = async (rule: PrefFilterRule, index: number): Promise<void> =>
-  patchLocalStorage(({ filter: { enabled, rules } }) => ({
+  patchLocalStorage(({ filter: { rules, ...rest } }) => ({
     filter: {
-      enabled,
+      ...rest,
       rules: Object.assign([...rules], { [index]: rule }).filter(r => r.pattern !== rule.pattern),
     },
   }));
 
 export const deleteFilterRule = async (index: number): Promise<void> =>
-  patchLocalStorage(({ filter: { enabled, rules } }) => ({
+  patchLocalStorage(({ filter: { rules, ...rest } }) => ({
     filter: {
-      enabled,
+      ...rest,
       rules: rules.filter((_, i) => i !== index),
     },
   }));

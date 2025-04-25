@@ -1,12 +1,13 @@
 import { LangType } from 'tongwen-core/dictionaries';
 import type { MaybeTransTarget } from '../../preference/types/types';
+import type { PrefV2 } from '../../preference/types/v2';
 import { detectLanguage } from '../../service/tabs/detect-language';
 import { ZhType } from '../../service/tabs/tabs.constant';
 import { bgGetPref } from '../state/storage';
 
-type GetTargetByDetectLanguage = (tabId: number, t: LangType) => Promise<MaybeTransTarget>;
-export const getTargetByDetectLanguage: GetTargetByDetectLanguage = async (tabId, target) =>
-  detectLanguage(tabId).then(zh => {
+type GetTargetByDetectLanguage = (tabId: number, t: LangType, perf: PrefV2, tag: string) => Promise<MaybeTransTarget>;
+export const getTargetByDetectLanguage: GetTargetByDetectLanguage = async (tabId, target, pref, tag) =>
+  detectLanguage(pref, tag, tabId).then(zh => {
     switch (zh) {
       case ZhType.hans:
         return target === LangType.t2s ? undefined : LangType.s2t;
@@ -17,17 +18,17 @@ export const getTargetByDetectLanguage: GetTargetByDetectLanguage = async (tabId
     }
   });
 
-type GetTargetByAutoConvert = (tabId: number) => Promise<MaybeTransTarget>;
-export const getTargetByAutoConvert: GetTargetByAutoConvert = async tabId => {
+type GetTargetByAutoConvert = (tag: string, tabId: number) => Promise<MaybeTransTarget>;
+export const getTargetByAutoConvert: GetTargetByAutoConvert = async (tag, tabId) => {
   return bgGetPref().then(async pref => {
     switch (pref.general.autoConvert) {
       case LangType.s2t:
       case LangType.t2s:
         return Promise.resolve(pref.general.autoConvert);
       case 'ds2t':
-        return getTargetByDetectLanguage(tabId, LangType.s2t);
+        return getTargetByDetectLanguage(tabId, LangType.s2t, pref, tag);
       case 'dt2s':
-        return getTargetByDetectLanguage(tabId, LangType.t2s);
+        return getTargetByDetectLanguage(tabId, LangType.t2s, pref, tag);
       case 'disabled':
         return Promise.resolve(undefined);
     }

@@ -111,7 +111,7 @@
     "message": "Textarea Traditional to Simplified"
   },
   "MSG_DOMAIN_RULE": {
-    "message": "Domain Rule"
+    "message": "Auto Rule"
   },
   "MSG_ENABLE_DOMAIN_RULE": {
     "message": "Enable Domain Rule"
@@ -121,6 +121,15 @@
   },
   "MSG_URL_REGEX": {
     "message": "URL or RegExp"
+  },
+  "MSG_LANG_RULE": {
+    "message": "Language Rules"
+  },
+  "MSG_LANG_CHT": {
+    "message": "Tag for Traditional Chinese (Comma Separated)"
+  },
+  "MSG_LANG_CHS": {
+    "message": "Tag for Simplified Chinese (Comma Separated)"
   },
   "MSG_ADD": {
     "message": "Add"

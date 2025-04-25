@@ -12,11 +12,21 @@ import { FilterRuleEditor } from './FilterRuleEditor';
 import { FilterRules } from './FilterRules';
 
 export const FilterSettings: FC = () => {
-  const { enabled, setEnable, rules, setRules } = useFilter();
+  const { enabled, setEnable, rules, setRules, chtTags, setChtTags, chsTags, setChsTags } = useFilter();
 
   const handleEnabledChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     e => { setEnable(e.currentTarget.checked); },
     [setEnable],
+  );
+
+  const handleChtChange: ChangeEventHandler<HTMLInputElement> = useCallback(
+    e => { setChtTags(e.currentTarget.value.split(',')); },
+    [setChtTags],
+  );
+
+  const handleChsChange: ChangeEventHandler<HTMLInputElement> = useCallback(
+    e => { setChsTags(e.currentTarget.value.split(',')); },
+    [setChsTags],
   );
 
   const [isModal, { on, off }] = useToggle(false);
@@ -48,12 +58,51 @@ export const FilterSettings: FC = () => {
   );
 
   const save = useCallback(
-    async () => setStorage({ filter: { enabled, rules } }).then(async () => createNoti(i18n.getMessage('MSG_UPDATE_COMPLETED'))),
-    [enabled, rules],
+    async () => setStorage({ filter: { enabled, rules, chtTags, chsTags } })
+      .then(async () => createNoti(i18n.getMessage('MSG_UPDATE_COMPLETED'))),
+    [enabled, rules, chtTags, chsTags],
   );
 
   return (
     <Fragment>
+      <div className="panel">
+        <div className="panel-header">
+          <div className="columns">
+            <div className="column col-auto">
+              <label className="form-label">{i18n.getMessage('MSG_LANG_RULE')}</label>
+            </div>
+            <div className="column col-auto">
+              <Button type="primary" onClick={save}>
+                {i18n.getMessage('MSG_SAVE')}
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="panel-body">
+          <div className="form-group">
+            <label className="form-label" htmlFor="l1">{i18n.getMessage('MSG_LANG_CHT')}</label>
+            <input
+              type="text"
+              className="form-input"
+              id="l1"
+              value={chtTags.toString()}
+              onChange={handleChtChange}
+            />
+          </div>
+          <div className="form-group">
+            <label className="form-label" htmlFor="l2">{i18n.getMessage('MSG_LANG_CHS')}</label>
+            <input
+              type="text"
+              className="form-input"
+              id="l2"
+              value={chsTags.toString()}
+              onChange={handleChsChange}
+            />
+          </div>
+        </div>
+        <div className="panel-footer"></div>
+      </div>
+      <br />
       <div className="panel">
         <div className="panel-nav" style={{ padding: '1em' }}>
           <div className="columns">
@@ -81,6 +130,7 @@ export const FilterSettings: FC = () => {
         <div className="panel-body" style={{ maxHeight: '60vh' }}>
           <FilterRules rules={rules} setRules={setRules} onUpdate={handleUpdate} />
         </div>
+        <div className="panel-footer"></div>
       </div>
 
       <Modal isActive={isModal} onOk={on} onCancel={off}>

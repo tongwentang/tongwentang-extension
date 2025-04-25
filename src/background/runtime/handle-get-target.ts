@@ -6,11 +6,11 @@ import { getTargetByAutoConvert } from './handle-get-auto-convert';
 import { getTargetByFilter } from './handle-get-filter-target';
 
 // TODO: remove type assertion after Promise.then type infer bug fixed
-export const getTarget = async (pref: Pref, sender: browser.Runtime.MessageSender): Promise<MaybeTransTarget> =>
+export const getTarget = async (pref: Pref, tag: string, sender: browser.Runtime.MessageSender): Promise<MaybeTransTarget> =>
   Promise.resolve(getTargetByFilter(pref, sender.url!))
     .then(async ft =>
       ft != null
         ? ft
-        : (getTargetByAutoConvert(sender.tab!.id!) as Promise<FilterTarget | undefined | MaybeTransTarget>),
+        : (getTargetByAutoConvert(tag, sender.tab!.id!) as Promise<FilterTarget | undefined | MaybeTransTarget>),
     )
     .then(ft => (ft === 'disabled' ? undefined : ft));

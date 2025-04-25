@@ -46,6 +46,8 @@ export function prefGcV1ToV2(v1Pref: PrefGcV1): PrefV2 {
     filter: {
       enabled: v1Pref.urlFilter.enable,
       rules: filterList2Rules(v1Pref.urlFilter.list),
+      chtTags: pref.filter.chtTags,
+      chsTags: pref.filter.chsTags,
     },
     word: {
       default: pref.word.default,

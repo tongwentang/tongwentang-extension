@@ -21,13 +21,13 @@ export function mountRuntimeListener() {
     return bgGetPref().then(async pref => {
       switch (action.type) {
         case 'AutoConvert':
-          return handleBgReqAction(action, getTargetByAutoConvert(sender.tab!.id!));
+          return handleBgReqAction(action, getTargetByAutoConvert(action.payload, sender.tab!.id!,));
         case 'FilterTarget':
           return handleBgReqAction(action, getTargetByFilter(pref, sender.url!));
         case 'GetTarget':
-          return handleBgReqAction(action, getTarget(pref, sender));
+          return handleBgReqAction(action, getTarget(pref, action.payload, sender));
         case 'DetectLang':
-          return handleBgReqAction(action, detectLanguage(sender.tab!.id));
+          return handleBgReqAction(action, detectLanguage(pref, action.payload, sender.tab!.id));
         case 'NodesText':
           return getConverter().then(async converter =>
             handleBgReqAction(

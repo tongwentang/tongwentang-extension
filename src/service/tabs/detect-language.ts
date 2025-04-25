@@ -1,13 +1,19 @@
 import { browser } from '../browser';
-import { chsTypes, chtTypes, ZhType } from './tabs.constant';
+import { ZhType } from './tabs.constant';
+import type { PrefV2 } from '../../preference/types/v2';
 
-const langToZhtype = (lang: string): ZhType =>
-  chsTypes.find(tag => tag === lang) ? ZhType.hans : chtTypes.find(tag => tag === lang) ? ZhType.hant : ZhType.und;
+const langToZhtype = (lang: string, p: PrefV2): ZhType =>
+  p.filter.chsTags.find(tag => tag === lang) ? ZhType.hans : p.filter.chtTags.find(tag => tag === lang) ? ZhType.hant : ZhType.und;
 
-export const detectLanguage = async (tabId?: number): Promise<ZhType> =>
-  browser.tabs
+export const detectLanguage = async (pref: PrefV2, tag: string, tabId?: number): Promise<ZhType> => {
+  let type = await browser.tabs
     .detectLanguage?.(tabId)
     .then(lang => lang.toLowerCase())
-    .then(langToZhtype)
+    .then(lang => langToZhtype(lang, pref))
     // INFO: some browsers may fail with detect language api
-    .catch(() => ZhType.und) || Promise.resolve(ZhType.und);
+    .catch(() => ZhType.und) || ZhType.und;
+  if (type === ZhType.und && tag) {
+    type = langToZhtype(tag.toLowerCase(), pref);
+  }
+  return Promise.resolve(type);
+}

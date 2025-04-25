@@ -17,4 +17,6 @@ const filterRuleSchema: Control<PrefFilterRule> = dctrl({
 export const filterSchema: Control<PrefFilter> = dctrl({
   enabled: isBoolean(true),
   rules: actrl(filterRuleSchema),
+  chtTags: vctrl(vldFn(z.array(z.string())), ['zh-hant', 'zh-tw', 'zh-hk']),
+  chsTags: vctrl(vldFn(z.array(z.string())), ['zh', 'zh-cn', 'zh-hans', 'zh-sg']),
 });
