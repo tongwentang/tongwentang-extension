@@ -32,7 +32,7 @@ export function mountRuntimeListener() {
           return getConverter().then(async converter =>
             handleBgReqAction(
               action,
-              action.payload.texts.map(text => converter.phrase(action.payload.target, text)),
+              action.payload.texts.map(text => converter.phrase(action.payload.target, text, pref.general.preserveLayout)),
             ),
           );
         case 'Convert':

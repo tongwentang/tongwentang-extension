@@ -18,6 +18,8 @@ export const useGeneralOpt = () => {
   const setDefaultTarget: ChangeEventHandler<HTMLSelectElement> = e =>
     void setGeneral('defaultTarget', e.currentTarget.value as LangType);
   const setSpaMode: ChangeEventHandler<HTMLInputElement> = e => void setGeneral('spaMode', e.currentTarget.checked);
+  const setPreserveLayout: ChangeEventHandler<HTMLInputElement> = e => 
+    void setGeneral('preserveLayout', e.currentTarget.checked);
   const setUpdateLangAttr: ChangeEventHandler<HTMLInputElement> = e =>
     void setGeneral('updateLangAttr', e.currentTarget.checked);
   const setDebugMode: ChangeEventHandler<HTMLInputElement> = e => void setGeneral('debugMode', e.currentTarget.checked);
@@ -44,6 +46,7 @@ export const useGeneralOpt = () => {
     setBrowserAction,
     setDefaultTarget,
     setSpaMode,
+    setPreserveLayout,
     setUpdateLangAttr,
     setDebugMode,
   };

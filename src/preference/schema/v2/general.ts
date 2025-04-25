@@ -14,6 +14,7 @@ export const generalSchema: Control<PrefGeneral> = dctrl({
   browserAction: vctrl<BrowserActionOpt>(vldFn(z.enum(['auto', LangType.s2t, LangType.t2s])), 'auto'),
   defaultTarget: vctrl(vldFn(z.enum([LangType.s2t, LangType.t2s])), LangType.s2t),
   spaMode: isBoolean(true),
+  preserveLayout: isBoolean(false),
   updateLangAttr: isBoolean(false),
   debugMode: isBoolean(false),
 });

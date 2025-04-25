@@ -5,8 +5,8 @@ import { autoConvertOptions, browserActionOptions, defaultTargetOptions } from '
 import { useGeneralOpt } from '../../hooks/general/use-general-opt';
 
 export const GeneralSettings: FC = () => {
-  const { general, setAutoConvert, setBrowserAction, setDefaultTarget, setSpaMode, setUpdateLangAttr, setDebugMode } =
-    useGeneralOpt();
+  const { general, setAutoConvert, setBrowserAction, setDefaultTarget, setSpaMode, setPreserveLayout, 
+    setUpdateLangAttr, setDebugMode } = useGeneralOpt();
 
   return (
     <form>
@@ -39,6 +39,12 @@ export const GeneralSettings: FC = () => {
         label={i18n.getMessage('MSG_DYNAMIC_CONVERT')}
         checked={general.spaMode}
         onChange={setSpaMode}
+      />
+      <Checkbox
+        isSwitch={true}
+        label={i18n.getMessage('MSG_PRESERVE_LAYOUT')}
+        checked={general.preserveLayout}
+        onChange={setPreserveLayout}
       />
       <Checkbox
         isSwitch={true}
