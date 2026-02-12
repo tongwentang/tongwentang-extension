@@ -58,6 +58,6 @@
     "tongwen-dict": "^1.0.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.18.2",
-    "web-ext": "^8.3.0"
+    "web-ext": "^9.3.0"
   }
 }
