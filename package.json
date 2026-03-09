@@ -20,7 +20,10 @@
     "update": "ncu -i --format group",
     "we:build": "web-ext build -s dist/firefox",
     "we:sign": "web-ext sign --config=web-ext-config-firefox.mjs --no-config-discovery",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev:safari": "rspack build --mode=development --env vendor=safari",
+    "build:safari": "rspack build --mode=production --env vendor=safari",
+    "safari:convert": "npm run build:safari && node ./scripts/safari-convert.mjs"
   },
   "nano-staged": {
     "*.{js,jsx,ts,tsx,json,md}": [

@@ -3,4 +3,8 @@ export enum BrowserType {
   GC = 'GC',
 }
 
-export const BROWSER_TYPE = navigator.userAgent.includes('Firefox') ? BrowserType.FX : BrowserType.GC;
+const userAgent = navigator.userAgent;
+
+export const IS_SAFARI = /Safari/.test(userAgent) && !/Chrome|Chromium|CriOS|Edg|OPR|Firefox|FxiOS/.test(userAgent);
+
+export const BROWSER_TYPE = userAgent.includes('Firefox') ? BrowserType.FX : BrowserType.GC;

@@ -11,12 +11,30 @@ const pkg = require('./package.json');
  */
 const createManifest = vendor => {
   const isFirefox = vendor === 'firefox';
+  const isSafari = vendor === 'safari';
   /** @type {Manifest.WebExtensionManifest['browser_specific_settings']} */
   const browser_specific_settings = isFirefox
     ? { gecko: { id: 'tongwen@softcup', strict_min_version: '63.0' } }
     : undefined;
   /** @type {Manifest.WebExtensionManifest['background']} */
   const background = isFirefox ? { scripts: ['background.js'] } : { service_worker: 'background.js' };
+  /** @type {Manifest.WebExtensionManifest['permissions']} */
+  const permissions = ['contextMenus', 'storage', 'tabs', 'unlimitedStorage'];
+
+  if (!isSafari) {
+    permissions.push('downloads', 'notifications');
+  }
+
+  /** @type {Manifest.WebExtensionManifest['optional_permissions']} */
+  const optional_permissions = isSafari ? undefined : ['clipboardWrite', 'clipboardRead'];
+  /** @type {Manifest.WebExtensionManifest['options_ui']} */
+  const options_ui = isSafari
+    ? { page: 'options.html' }
+    : {
+        browser_style: true,
+        open_in_tab: true,
+        page: 'options.html',
+      };
 
   return {
     manifest_version: 3,
@@ -33,8 +51,8 @@ const createManifest = vendor => {
       48: 'icons/tongwen-icon-48.png',
       128: 'icons/tongwen-icon-128.png',
     },
-    permissions: ['contextMenus', 'downloads', 'notifications', 'storage', 'tabs', 'unlimitedStorage'],
-    optional_permissions: ['clipboardWrite', 'clipboardRead'],
+    permissions,
+    optional_permissions,
     background,
     content_scripts: [
       {
@@ -52,11 +70,7 @@ const createManifest = vendor => {
         128: 'icons/tongwen-icon-128.png',
       },
     },
-    options_ui: {
-      browser_style: true,
-      open_in_tab: true,
-      page: 'options.html',
-    },
+    options_ui,
     commands: {
       w_s2t: {
         description: '__MSG_MSG_WEBPAGE_S2T__',

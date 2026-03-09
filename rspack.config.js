@@ -102,7 +102,7 @@ module.exports = (env, argv) => {
           });
         });
 
-        if (isProd) return;
+        if (isProd || vendor === 'safari') return;
 
         compiler.hooks.afterDone.tap('start web-ext', () => {
           if (state.webExt) return;

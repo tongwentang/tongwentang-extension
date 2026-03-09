@@ -51,3 +51,36 @@ Run command:
 ```
 $ yarn dev:chromium
 ```
+
+#### Developing with Safari
+
+Build a Safari-compatible extension bundle:
+
+```
+$ npm run build:safari
+```
+
+Generate or refresh the Xcode project:
+
+```
+$ npm run safari:convert
+```
+
+The converter defaults to:
+
+- app name: `TongWenTang Safari`
+- bundle identifier: `io.github.tongwentang.safari`
+- project location: `./safari`
+
+You can override them when needed:
+
+```
+$ SAFARI_APP_NAME="TongWenTang Safari" \
+  SAFARI_BUNDLE_ID="io.github.tongwentang.safari" \
+  SAFARI_PROJECT_LOCATION="safari" \
+  npm run safari:convert
+```
+
+The generated `safari/` directory is a local build artifact and should not be committed.
+
+Then open `safari/TongWenTang Safari/TongWenTang Safari.xcodeproj` in Xcode and run the macOS app target once to install the extension into Safari.

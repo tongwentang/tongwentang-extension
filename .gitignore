@@ -246,3 +246,11 @@ $RECYCLE.BIN/
 
 web-ext-artifacts
 dict
+
+# Xcode / Safari
+DerivedData/
+*.xcuserstate
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/project.xcworkspace/
+safari/

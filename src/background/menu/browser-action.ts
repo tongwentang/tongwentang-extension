@@ -3,6 +3,7 @@ import { isUrlLike } from '../../preference/filter-rule';
 import type { FilterTarget } from '../../preference/types/v2';
 import { browser } from '../../service/browser';
 import { i18n } from '../../service/i18n/i18n';
+import { IS_SAFARI } from '../../service/types';
 import { addFilterRule } from '../../service/storage/local';
 import { getHostName, getRandomId } from '../../utilities';
 import { getSessionState, setSessionState } from '../session';
@@ -57,6 +58,10 @@ const createClipboardProperties = () =>
 
 // TODO: need icon
 export async function createBrowserActionMenus(): Promise<unknown> {
+  if (IS_SAFARI) {
+    return Promise.resolve();
+  }
+
   return getSessionState().then(async ({ hasBrowserActionMenu }) => {
     if (hasBrowserActionMenu) return;
 

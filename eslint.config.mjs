@@ -3,7 +3,7 @@ import react from 'eslint-plugin-react';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-const scripts = ['**/rspack.config.js', '**/manifest.js', '**/web-ext-config*.js'];
+const scripts = ['**/rspack.config.js', '**/manifest.js', '**/web-ext-config*.js', '**/scripts/**/*.{js,mjs,cjs}'];
 
 /**
  * @type {import('typescript-eslint').Config}
